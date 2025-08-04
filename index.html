@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Àå¼Ò ´ë°ü ¿¹¾à ½Ã½ºÅÛ</title>
+    <title>ì¥ì†Œ ëŒ€ê´€ ì˜ˆì•½ ì‹œìŠ¤í…œ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
@@ -12,244 +12,244 @@
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
     <div class="container mx-auto px-4 py-8 max-w-6xl">
-        <!-- Canva È£È¯¼º ¾È³» ¼½¼Ç -->
+        <!-- Canva í˜¸í™˜ì„± ì•ˆë‚´ ì„¹ì…˜ -->
         <div class="bg-gradient-to-r from-blue-100 to-green-100 border border-blue-200 rounded-lg p-6 mb-6">
             <div class="text-center">
-                <h2 class="text-2xl font-bold text-blue-800 mb-3">?? ¿¹¾à ½Ã½ºÅÛ »ç¿ë ¾È³»</h2>
+                <h2 class="text-2xl font-bold text-blue-800 mb-3">ğŸ¯ ì˜ˆì•½ ì‹œìŠ¤í…œ ì‚¬ìš© ì•ˆë‚´</h2>
                 
-                <!-- È¯°æ °¨Áö ¹× ¾È³» -->
+                <!-- í™˜ê²½ ê°ì§€ ë° ì•ˆë‚´ -->
                 <div id="environmentInfo" class="mb-4">
-                    <!-- JavaScript·Î µ¿Àû »ı¼º -->
+                    <!-- JavaScriptë¡œ ë™ì  ìƒì„± -->
                 </div>
                 
-                <!-- Á÷Á¢ ¿¹¾à ¹öÆ° (Canva ¿ÜºÎ¿¡¼­¸¸ Ç¥½Ã) -->
+                <!-- ì§ì ‘ ì˜ˆì•½ ë²„íŠ¼ (Canva ì™¸ë¶€ì—ì„œë§Œ í‘œì‹œ) -->
                 <div id="directReservationSection" style="display: none;">
-                    <p class="text-blue-700 mb-4">¹Ù·Î ¿©±â¼­ ¿¹¾àÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù!</p>
+                    <p class="text-blue-700 mb-4">ë°”ë¡œ ì—¬ê¸°ì„œ ì˜ˆì•½í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤!</p>
                     <button onclick="scrollToReservation()" 
                             class="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-4 rounded-xl text-xl font-bold shadow-lg transform hover:scale-105 transition-all duration-200 mb-4">
-                        ?? ¹Ù·Î ¿¹¾àÇÏ±â
+                        ğŸ“… ë°”ë¡œ ì˜ˆì•½í•˜ê¸°
                     </button>
                 </div>
                 
-                <!-- Canva ³»ºÎ¿¡¼­ÀÇ ¾È³» -->
+                <!-- Canva ë‚´ë¶€ì—ì„œì˜ ì•ˆë‚´ -->
                 <div id="canvaInstructions" style="display: none;">
-                    <p class="text-purple-700 mb-4">Canva¿¡¼­´Â º¸¾È»ó Á÷Á¢ ¿¹¾àÀÌ Á¦ÇÑµË´Ï´Ù.</p>
+                    <p class="text-purple-700 mb-4">Canvaì—ì„œëŠ” ë³´ì•ˆìƒ ì§ì ‘ ì˜ˆì•½ì´ ì œí•œë©ë‹ˆë‹¤.</p>
                     
-                    <!-- µ¶¸³ ÆäÀÌÁö ¸µÅ© -->
+                    <!-- ë…ë¦½ í˜ì´ì§€ ë§í¬ -->
                     <div class="bg-white rounded-lg p-4 border border-purple-200 mb-4">
-                        <h3 class="font-bold text-purple-800 mb-2">?? µ¶¸³ ¿¹¾à ÆäÀÌÁö</h3>
-                        <p class="text-sm text-purple-700 mb-3">¾Æ·¡ ¸µÅ©¸¦ º¹»çÇØ¼­ »õ ÅÇ¿¡¼­ ¿­¾îÁÖ¼¼¿ä:</p>
+                        <h3 class="font-bold text-purple-800 mb-2">ğŸ”— ë…ë¦½ ì˜ˆì•½ í˜ì´ì§€</h3>
+                        <p class="text-sm text-purple-700 mb-3">ì•„ë˜ ë§í¬ë¥¼ ë³µì‚¬í•´ì„œ ìƒˆ íƒ­ì—ì„œ ì—´ì–´ì£¼ì„¸ìš”:</p>
                         <div class="bg-gray-100 p-3 rounded border text-sm font-mono break-all">
                             <span id="currentPageUrl"></span>
                         </div>
                         <button onclick="copyCurrentUrl()" 
                                 class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded mt-2 text-sm transition-colors">
-                            ?? ¸µÅ© º¹»ç
+                            ğŸ“‹ ë§í¬ ë³µì‚¬
                         </button>
                     </div>
                     
-                    <!-- »ç¿ë¹ı ¾È³» -->
+                    <!-- ì‚¬ìš©ë²• ì•ˆë‚´ -->
                     <div class="bg-white rounded-lg p-4 border border-purple-200">
-                        <h3 class="font-bold text-purple-800 mb-2">?? »ç¿ë ¹æ¹ı:</h3>
+                        <h3 class="font-bold text-purple-800 mb-2">ğŸ“‹ ì‚¬ìš© ë°©ë²•:</h3>
                         <div class="text-left text-sm text-purple-700 space-y-2">
                             <div class="flex items-start">
                                 <span class="bg-purple-200 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">1</span>
-                                <span>À§ÀÇ ¸µÅ©¸¦ º¹»ç</span>
+                                <span>ìœ„ì˜ ë§í¬ë¥¼ ë³µì‚¬</span>
                             </div>
                             <div class="flex items-start">
                                 <span class="bg-purple-200 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">2</span>
-                                <span>»õ ÅÇ¿¡¼­ ¸µÅ© ¿­±â</span>
+                                <span>ìƒˆ íƒ­ì—ì„œ ë§í¬ ì—´ê¸°</span>
                             </div>
                             <div class="flex items-start">
                                 <span class="bg-purple-200 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">3</span>
-                                <span>µ¶¸³ ÆäÀÌÁö¿¡¼­ ¿¹¾à ÁøÇà</span>
+                                <span>ë…ë¦½ í˜ì´ì§€ì—ì„œ ì˜ˆì•½ ì§„í–‰</span>
                             </div>
                         </div>
                         
-                        <!-- Æ¯º° ¾È³»: Canva ÀÓº£µå URLÀÎ °æ¿ì -->
+                        <!-- íŠ¹ë³„ ì•ˆë‚´: Canva ì„ë² ë“œ URLì¸ ê²½ìš° -->
                         <div id="embedUrlNotice" class="mt-3 bg-orange-50 border border-orange-200 rounded-lg p-3" style="display: none;">
-                            <p class="text-orange-800 text-xs font-bold mb-1">?? ÀÓº£µå URL °¨ÁöµÊ</p>
+                            <p class="text-orange-800 text-xs font-bold mb-1">âš ï¸ ì„ë² ë“œ URL ê°ì§€ë¨</p>
                             <p class="text-orange-700 text-xs">
-                                ÇöÀç URLÀÌ Canva ÀÓº£µå ÇüÅÂÀÔ´Ï´Ù.<br>
-                                À§ÀÇ º¯È¯µÈ µ¶¸³ URLÀ» »ç¿ëÇÏ°Å³ª, Canva¿¡¼­ "À¥»çÀÌÆ® °Ô½Ã" ±â´ÉÀ» ÀÌ¿ëÇØÁÖ¼¼¿ä.
+                                í˜„ì¬ URLì´ Canva ì„ë² ë“œ í˜•íƒœì…ë‹ˆë‹¤.<br>
+                                ìœ„ì˜ ë³€í™˜ëœ ë…ë¦½ URLì„ ì‚¬ìš©í•˜ê±°ë‚˜, Canvaì—ì„œ "ì›¹ì‚¬ì´íŠ¸ ê²Œì‹œ" ê¸°ëŠ¥ì„ ì´ìš©í•´ì£¼ì„¸ìš”.
                             </p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- ±â¼úÀû ÇÑ°è ¼³¸í -->
+                <!-- ê¸°ìˆ ì  í•œê³„ ì„¤ëª… -->
                 <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-4">
                     <p class="text-yellow-800 text-sm">
-                        ?? <strong>±â¼úÀû ¾È³»:</strong> CanvaÀÇ º¸¾È Á¤Ã¥À¸·Î ÀÎÇØ ³»ºÎ¿¡¼­´Â ¿ÜºÎ API ¿¬°áÀÌ Á¦ÇÑµË´Ï´Ù.<br>
-                        µ¶¸³ ÆäÀÌÁö¿¡¼­´Â ¸ğµç ±â´ÉÀÌ Á¤»ó ÀÛµ¿ÇÕ´Ï´Ù!
+                        ğŸ’¡ <strong>ê¸°ìˆ ì  ì•ˆë‚´:</strong> Canvaì˜ ë³´ì•ˆ ì •ì±…ìœ¼ë¡œ ì¸í•´ ë‚´ë¶€ì—ì„œëŠ” ì™¸ë¶€ API ì—°ê²°ì´ ì œí•œë©ë‹ˆë‹¤.<br>
+                        ë…ë¦½ í˜ì´ì§€ì—ì„œëŠ” ëª¨ë“  ê¸°ëŠ¥ì´ ì •ìƒ ì‘ë™í•©ë‹ˆë‹¤!
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- °ü¸®ÀÚ Àü¿ë ±¸±Û ½ÃÆ® ¿¬µ¿ ¼³Á¤ -->
+        <!-- ê´€ë¦¬ì ì „ìš© êµ¬ê¸€ ì‹œíŠ¸ ì—°ë™ ì„¤ì • -->
         <div id="googleSheetSection" class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6" style="display: none;">
-            <h3 class="text-lg font-semibold text-blue-800 mb-3">?? ±¸±Û ½ÃÆ® ¿¬µ¿ ¼³Á¤ (°ü¸®ÀÚ Àü¿ë)</h3>
+            <h3 class="text-lg font-semibold text-blue-800 mb-3">ğŸ”— êµ¬ê¸€ ì‹œíŠ¸ ì—°ë™ ì„¤ì • (ê´€ë¦¬ì ì „ìš©)</h3>
             
-            <!-- ´Ü°èº° ¾È³» -->
+            <!-- ë‹¨ê³„ë³„ ì•ˆë‚´ -->
             <div class="bg-white rounded-lg p-4 mb-4 border border-blue-200">
-                <h4 class="font-semibold text-blue-800 mb-2">?? ¼³Á¤ ¹æ¹ı:</h4>
+                <h4 class="font-semibold text-blue-800 mb-2">ğŸ“‹ ì„¤ì • ë°©ë²•:</h4>
                 <ol class="text-sm text-blue-700 space-y-1 list-decimal list-inside">
-                    <li><strong>±¸±Û ½ÃÆ® ¿­±â:</strong> <a href="https://docs.google.com/spreadsheets/d/1FDCPdhGcVUoBxK9T4kb1YeVJCCnrOXj05kyTCfO8Zqs/edit" target="_blank" class="text-blue-600 underline hover:text-blue-800">¿©±â¸¦ Å¬¸¯</a></li>
-                    <li><strong>Apps Script ¿­±â:</strong> È®Àå ÇÁ·Î±×·¥ ¡æ Apps Script Å¬¸¯</li>
-                    <li><strong>ÄÚµå ºÙ¿©³Ö±â:</strong> ¾Æ·¡ ÄÚµå¸¦ º¹»çÇØ¼­ ºÙ¿©³Ö±â</li>
-                    <li><strong>¹èÆ÷ÇÏ±â:</strong> ¹èÆ÷ ¡æ »õ ¹èÆ÷ ¡æ À¥ ¾ÛÀ¸·Î ¹èÆ÷</li>
-                    <li><strong>URL º¹»ç:</strong> »ı¼ºµÈ À¥¾Û URLÀ» ¾Æ·¡¿¡ ÀÔ·Â</li>
+                    <li><strong>êµ¬ê¸€ ì‹œíŠ¸ ì—´ê¸°:</strong> <a href="https://docs.google.com/spreadsheets/d/1FDCPdhGcVUoBxK9T4kb1YeVJCCnrOXj05kyTCfO8Zqs/edit" target="_blank" class="text-blue-600 underline hover:text-blue-800">ì—¬ê¸°ë¥¼ í´ë¦­</a></li>
+                    <li><strong>Apps Script ì—´ê¸°:</strong> í™•ì¥ í”„ë¡œê·¸ë¨ â†’ Apps Script í´ë¦­</li>
+                    <li><strong>ì½”ë“œ ë¶™ì—¬ë„£ê¸°:</strong> ì•„ë˜ ì½”ë“œë¥¼ ë³µì‚¬í•´ì„œ ë¶™ì—¬ë„£ê¸°</li>
+                    <li><strong>ë°°í¬í•˜ê¸°:</strong> ë°°í¬ â†’ ìƒˆ ë°°í¬ â†’ ì›¹ ì•±ìœ¼ë¡œ ë°°í¬</li>
+                    <li><strong>URL ë³µì‚¬:</strong> ìƒì„±ëœ ì›¹ì•± URLì„ ì•„ë˜ì— ì…ë ¥</li>
                 </ol>
                 
-                <!-- Canva/Netlify Æ¯º° ¿ä±¸»çÇ× -->
+                <!-- Canva/Netlify íŠ¹ë³„ ìš”êµ¬ì‚¬í•­ -->
                 <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mt-3">
-                    <h5 class="font-bold text-yellow-800 mb-2">?? Canva/Netlify È¯°æ ÇÊ¼ö ¿ä±¸»çÇ×</h5>
+                    <h5 class="font-bold text-yellow-800 mb-2">ğŸš¨ Canva/Netlify í™˜ê²½ í•„ìˆ˜ ìš”êµ¬ì‚¬í•­</h5>
                     <div class="text-yellow-700 text-sm space-y-2">
                         <div class="flex items-start">
                             <span class="bg-yellow-200 text-yellow-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">1</span>
                             <div>
-                                <p class="font-semibold">HTTPS À¥¾ÛÀ¸·Î ¹èÆ÷ ÇÊ¼ö</p>
-                                <p class="text-xs">HTTP´Â ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù. ¹İµå½Ã https://script.google.com/... URLÀÌ¾î¾ß ÇÔ</p>
+                                <p class="font-semibold">HTTPS ì›¹ì•±ìœ¼ë¡œ ë°°í¬ í•„ìˆ˜</p>
+                                <p class="text-xs">HTTPëŠ” ì‘ë™í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë°˜ë“œì‹œ https://script.google.com/... URLì´ì–´ì•¼ í•¨</p>
                             </div>
                         </div>
                         <div class="flex items-start">
                             <span class="bg-yellow-200 text-yellow-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">2</span>
                             <div>
-                                <p class="font-semibold">¾×¼¼½º ±ÇÇÑ: "¸ğµç »ç¿ëÀÚ" (Anyone) ÇÊ¼ö</p>
-                                <p class="text-xs">ÀÍ¸í »ç¿ëÀÚ Á¢±ÙÀÌ Çã¿ëµÇ¾î¾ß Canva/Netlify¿¡¼­ ÀÛµ¿</p>
+                                <p class="font-semibold">ì•¡ì„¸ìŠ¤ ê¶Œí•œ: "ëª¨ë“  ì‚¬ìš©ì" (Anyone) í•„ìˆ˜</p>
+                                <p class="text-xs">ìµëª… ì‚¬ìš©ì ì ‘ê·¼ì´ í—ˆìš©ë˜ì–´ì•¼ Canva/Netlifyì—ì„œ ì‘ë™</p>
                             </div>
                         </div>
                         <div class="flex items-start">
                             <span class="bg-yellow-200 text-yellow-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">3</span>
                             <div>
-                                <p class="font-semibold">ÃÖÀûÈ­µÈ ÄÚµå »ç¿ë</p>
-                                <p class="text-xs">CORS Çì´õ Á¦°ÅµÈ ContentService¸¸ »ç¿ë (À§ ÄÚµå Àû¿ë)</p>
+                                <p class="font-semibold">ìµœì í™”ëœ ì½”ë“œ ì‚¬ìš©</p>
+                                <p class="text-xs">CORS í—¤ë” ì œê±°ëœ ContentServiceë§Œ ì‚¬ìš© (ìœ„ ì½”ë“œ ì ìš©)</p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- iframe Á¦ÇÑ °æ°í -->
+                    <!-- iframe ì œí•œ ê²½ê³  -->
                     <div class="bg-red-50 border border-red-300 rounded-lg p-3 mt-3">
-                        <p class="text-red-800 font-bold text-sm mb-1">?? iframe È¯°æ Á¦ÇÑ»çÇ×</p>
+                        <p class="text-red-800 font-bold text-sm mb-1">âš ï¸ iframe í™˜ê²½ ì œí•œì‚¬í•­</p>
                         <p class="text-red-700 text-xs">
-                            Google Apps Script´Â iframe ±â¹İ È£½ºÆÃ¿¡¼­ CORS¸¦ ¿Ïº®È÷ Áö¿øÇÏÁö ¾Ê½À´Ï´Ù.<br>
-                            <strong>µ¶¸³ ÆäÀÌÁö¿¡¼­´Â Á¤»ó ÀÛµ¿</strong>ÇÏÁö¸¸, <strong>Canva ³»ºÎ¿¡¼­´Â ºÒ¾ÈÁ¤</strong>ÇÒ ¼ö ÀÖ½À´Ï´Ù.<br>
-                            ÃÖ»óÀÇ °æÇèÀ» À§ÇØ¼­´Â "À¥»çÀÌÆ® °Ô½Ã" ±â´ÉÀ» »ç¿ëÇÏ¼¼¿ä.
+                            Google Apps ScriptëŠ” iframe ê¸°ë°˜ í˜¸ìŠ¤íŒ…ì—ì„œ CORSë¥¼ ì™„ë²½íˆ ì§€ì›í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.<br>
+                            <strong>ë…ë¦½ í˜ì´ì§€ì—ì„œëŠ” ì •ìƒ ì‘ë™</strong>í•˜ì§€ë§Œ, <strong>Canva ë‚´ë¶€ì—ì„œëŠ” ë¶ˆì•ˆì •</strong>í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.<br>
+                            ìµœìƒì˜ ê²½í—˜ì„ ìœ„í•´ì„œëŠ” "ì›¹ì‚¬ì´íŠ¸ ê²Œì‹œ" ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì„¸ìš”.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- ¿À·ù ÇØ°á ¾È³» -->
+            <!-- ì˜¤ë¥˜ í•´ê²° ì•ˆë‚´ -->
             <div class="bg-red-50 border border-red-300 rounded-lg p-4 mb-4">
-                <h4 class="font-bold text-red-800 mb-2">?? ¿¬°á ¿À·ù ÇØ°á ¹æ¹ı</h4>
+                <h4 class="font-bold text-red-800 mb-2">ğŸš¨ ì—°ê²° ì˜¤ë¥˜ í•´ê²° ë°©ë²•</h4>
                 <div class="text-red-700 text-sm space-y-3">
                     
-                    <!-- Failed to fetch ¿À·ù -->
+                    <!-- Failed to fetch ì˜¤ë¥˜ -->
                     <div class="bg-orange-100 border border-orange-300 rounded p-3">
-                        <p class="font-bold text-orange-800 mb-1">?? "Failed to fetch" ¿À·ù (°¡Àå ÈçÇÑ ¿À·ù):</p>
-                        <p class="text-orange-700 mb-2">³×Æ®¿öÅ© ¿äÃ»ÀÌ Â÷´ÜµÇ¾ú½À´Ï´Ù. Canva/Netlify È¯°æ¿¡¼­´Â CORS Á¦ÇÑÀÌ ´õ ¾ö°İÇÕ´Ï´Ù.</p>
+                        <p class="font-bold text-orange-800 mb-1">ğŸ”¥ "Failed to fetch" ì˜¤ë¥˜ (ê°€ì¥ í”í•œ ì˜¤ë¥˜):</p>
+                        <p class="text-orange-700 mb-2">ë„¤íŠ¸ì›Œí¬ ìš”ì²­ì´ ì°¨ë‹¨ë˜ì—ˆìŠµë‹ˆë‹¤. Canva/Netlify í™˜ê²½ì—ì„œëŠ” CORS ì œí•œì´ ë” ì—„ê²©í•©ë‹ˆë‹¤.</p>
                         <div class="bg-white border border-orange-200 rounded p-2 mt-2">
-                            <p class="font-bold text-orange-800 text-xs mb-1">? Canva/Netlify Æ¯È­ ÇØ°á¹ı:</p>
+                            <p class="font-bold text-orange-800 text-xs mb-1">âœ… Canva/Netlify íŠ¹í™” í•´ê²°ë²•:</p>
                             <ul class="list-disc list-inside text-orange-700 text-xs space-y-1">
-                                <li><strong>1´Ü°è:</strong> À§ÀÇ ÃÖÀûÈ­µÈ ÄÚµå »ç¿ë (CORS Çì´õ Á¦°ÅµÊ)</li>
-                                <li><strong>2´Ü°è:</strong> Apps Script¿¡¼­ ±âÁ¸ ¹èÆ÷ ¸ğµÎ »èÁ¦</li>
-                                <li><strong>3´Ü°è:</strong> »õ ¹èÆ÷ »ı¼º ½Ã "¾×¼¼½º ±ÇÇÑ: ¸ğµç »ç¿ëÀÚ" ÇÊ¼ö!</li>
-                                <li><strong>4´Ü°è:</strong> ±ÇÇÑ ½ÂÀÎ ½Ã "°í±Ş" ¡æ "¾ÈÀüÇÏÁö ¾ÊÀº ÆäÀÌÁö·Î ÀÌµ¿" Å¬¸¯</li>
-                                <li><strong>5´Ü°è:</strong> iframe È¯°æ¿¡¼­´Â ¿©ÀüÈ÷ ºÒ¾ÈÁ¤ÇÒ ¼ö ÀÖÀ½</li>
+                                <li><strong>1ë‹¨ê³„:</strong> ìœ„ì˜ ìµœì í™”ëœ ì½”ë“œ ì‚¬ìš© (CORS í—¤ë” ì œê±°ë¨)</li>
+                                <li><strong>2ë‹¨ê³„:</strong> Apps Scriptì—ì„œ ê¸°ì¡´ ë°°í¬ ëª¨ë‘ ì‚­ì œ</li>
+                                <li><strong>3ë‹¨ê³„:</strong> ìƒˆ ë°°í¬ ìƒì„± ì‹œ "ì•¡ì„¸ìŠ¤ ê¶Œí•œ: ëª¨ë“  ì‚¬ìš©ì" í•„ìˆ˜!</li>
+                                <li><strong>4ë‹¨ê³„:</strong> ê¶Œí•œ ìŠ¹ì¸ ì‹œ "ê³ ê¸‰" â†’ "ì•ˆì „í•˜ì§€ ì•Šì€ í˜ì´ì§€ë¡œ ì´ë™" í´ë¦­</li>
+                                <li><strong>5ë‹¨ê³„:</strong> iframe í™˜ê²½ì—ì„œëŠ” ì—¬ì „íˆ ë¶ˆì•ˆì •í•  ìˆ˜ ìˆìŒ</li>
                             </ul>
                         </div>
                         <div class="bg-yellow-50 border border-yellow-200 rounded p-2 mt-2">
-                            <p class="text-yellow-800 text-xs font-bold">?? Áß¿ä ¾È³»:</p>
+                            <p class="text-yellow-800 text-xs font-bold">âš ï¸ ì¤‘ìš” ì•ˆë‚´:</p>
                             <p class="text-yellow-700 text-xs">
-                                Google Apps Script´Â iframe ±â¹İ È£½ºÆÃ(Canva µî)¿¡¼­ CORS¸¦ ¿Ïº®È÷ Áö¿øÇÏÁö ¾Ê½À´Ï´Ù.<br>
-                                µ¶¸³ ÆäÀÌÁö¿¡¼­´Â Á¤»ó ÀÛµ¿ÇÏÁö¸¸, Canva ³»ºÎ¿¡¼­´Â Á¦ÇÑµÉ ¼ö ÀÖ½À´Ï´Ù.
+                                Google Apps ScriptëŠ” iframe ê¸°ë°˜ í˜¸ìŠ¤íŒ…(Canva ë“±)ì—ì„œ CORSë¥¼ ì™„ë²½íˆ ì§€ì›í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.<br>
+                                ë…ë¦½ í˜ì´ì§€ì—ì„œëŠ” ì •ìƒ ì‘ë™í•˜ì§€ë§Œ, Canva ë‚´ë¶€ì—ì„œëŠ” ì œí•œë  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
                             </p>
                         </div>
                     </div>
                     
                     <div class="bg-yellow-100 border border-yellow-300 rounded p-3">
-                        <p class="font-bold text-yellow-800 mb-1">?? 302 ¿À·ù (·Î±×ÀÎ ¸®´ÙÀÌ·ºÆ®):</p>
-                        <p class="text-yellow-700">Apps Script°¡ ·Î±×ÀÎ ÆäÀÌÁö·Î ¸®´ÙÀÌ·ºÆ®ÇÏ°í ÀÖ½À´Ï´Ù. ¹èÆ÷ ¼³Á¤ÀÌ Àß¸øµÇ¾ú°Å³ª ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.</p>
+                        <p class="font-bold text-yellow-800 mb-1">âš ï¸ 302 ì˜¤ë¥˜ (ë¡œê·¸ì¸ ë¦¬ë‹¤ì´ë ‰íŠ¸):</p>
+                        <p class="text-yellow-700">Apps Scriptê°€ ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ ë¦¬ë‹¤ì´ë ‰íŠ¸í•˜ê³  ìˆìŠµë‹ˆë‹¤. ë°°í¬ ì„¤ì •ì´ ì˜ëª»ë˜ì—ˆê±°ë‚˜ ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.</p>
                     </div>
                     
-                    <p><strong>?? ÇØ°á ¹æ¹ı (¼ø¼­´ë·Î ÁøÇà):</strong></p>
+                    <p><strong>ğŸ”§ í•´ê²° ë°©ë²• (ìˆœì„œëŒ€ë¡œ ì§„í–‰):</strong></p>
                     
                     <div class="bg-white border border-red-200 rounded p-3">
-                        <p class="font-bold text-red-800 mb-2">1?? ±âÁ¸ ¹èÆ÷ ¿ÏÀü »èÁ¦</p>
+                        <p class="font-bold text-red-800 mb-2">1ï¸âƒ£ ê¸°ì¡´ ë°°í¬ ì™„ì „ ì‚­ì œ</p>
                         <ul class="list-disc list-inside ml-4 space-y-1 text-red-600">
-                            <li>Apps Script¿¡¼­ "¹èÆ÷" ¡æ "¹èÆ÷ °ü¸®" Å¬¸¯</li>
-                            <li>±âÁ¸ ¹èÆ÷°¡ ÀÖ´Ù¸é <strong>¸ğµÎ »èÁ¦</strong> (??? ¾ÆÀÌÄÜ Å¬¸¯)</li>
-                            <li>?? ÀÌ ´Ü°è¸¦ °Ç³Ê¶Ù¸é 302 ¿À·ù°¡ °è¼Ó ¹ß»ıÇÕ´Ï´Ù!</li>
+                            <li>Apps Scriptì—ì„œ "ë°°í¬" â†’ "ë°°í¬ ê´€ë¦¬" í´ë¦­</li>
+                            <li>ê¸°ì¡´ ë°°í¬ê°€ ìˆë‹¤ë©´ <strong>ëª¨ë‘ ì‚­ì œ</strong> (ğŸ—‘ï¸ ì•„ì´ì½˜ í´ë¦­)</li>
+                            <li>âš ï¸ ì´ ë‹¨ê³„ë¥¼ ê±´ë„ˆë›°ë©´ 302 ì˜¤ë¥˜ê°€ ê³„ì† ë°œìƒí•©ë‹ˆë‹¤!</li>
                         </ul>
                     </div>
                     
                     <div class="bg-white border border-red-200 rounded p-3">
-                        <p class="font-bold text-red-800 mb-2">2?? »õ ¹èÆ÷ ¸¸µé±â (Canva/Netlify Æ¯È­)</p>
+                        <p class="font-bold text-red-800 mb-2">2ï¸âƒ£ ìƒˆ ë°°í¬ ë§Œë“¤ê¸° (Canva/Netlify íŠ¹í™”)</p>
                         <ul class="list-disc list-inside ml-4 space-y-1 text-red-600">
-                            <li>"¹èÆ÷" ¡æ "»õ ¹èÆ÷" Å¬¸¯</li>
-                            <li>?? ¼³Á¤ ¾ÆÀÌÄÜ Å¬¸¯ ¡æ "À¥ ¾Û" ¼±ÅÃ</li>
-                            <li><span class="bg-yellow-200 px-2 py-1 rounded font-bold">½ÇÇà ±ÇÇÑ: "³ª"</span></li>
-                            <li><span class="bg-green-200 px-2 py-1 rounded font-bold">¾×¼¼½º ±ÇÇÑ: "¸ğµç »ç¿ëÀÚ"</span> ? Canva/Netlify ÇÊ¼ö!</li>
-                            <li><span class="bg-blue-200 px-2 py-1 rounded font-bold">HTTPS À¥¾Û URL È®ÀÎ</span> (https://script.google.com/...)</li>
-                            <li>"¹èÆ÷" ¹öÆ° Å¬¸¯</li>
-                            <li>?? ±ÇÇÑ ½ÂÀÎ È­¸é¿¡¼­ "°í±Ş" ¡æ "¾ÈÀüÇÏÁö ¾ÊÀº ÆäÀÌÁö·Î ÀÌµ¿" Å¬¸¯</li>
-                            <li>¸ğµç ±ÇÇÑ Çã¿ë (ÀÍ¸í »ç¿ëÀÚ Á¢±Ù Æ÷ÇÔ)</li>
+                            <li>"ë°°í¬" â†’ "ìƒˆ ë°°í¬" í´ë¦­</li>
+                            <li>âš™ï¸ ì„¤ì • ì•„ì´ì½˜ í´ë¦­ â†’ "ì›¹ ì•±" ì„ íƒ</li>
+                            <li><span class="bg-yellow-200 px-2 py-1 rounded font-bold">ì‹¤í–‰ ê¶Œí•œ: "ë‚˜"</span></li>
+                            <li><span class="bg-green-200 px-2 py-1 rounded font-bold">ì•¡ì„¸ìŠ¤ ê¶Œí•œ: "ëª¨ë“  ì‚¬ìš©ì"</span> â­ Canva/Netlify í•„ìˆ˜!</li>
+                            <li><span class="bg-blue-200 px-2 py-1 rounded font-bold">HTTPS ì›¹ì•± URL í™•ì¸</span> (https://script.google.com/...)</li>
+                            <li>"ë°°í¬" ë²„íŠ¼ í´ë¦­</li>
+                            <li>ğŸ” ê¶Œí•œ ìŠ¹ì¸ í™”ë©´ì—ì„œ "ê³ ê¸‰" â†’ "ì•ˆì „í•˜ì§€ ì•Šì€ í˜ì´ì§€ë¡œ ì´ë™" í´ë¦­</li>
+                            <li>ëª¨ë“  ê¶Œí•œ í—ˆìš© (ìµëª… ì‚¬ìš©ì ì ‘ê·¼ í¬í•¨)</li>
                         </ul>
                         
                         <div class="bg-orange-50 border border-orange-200 rounded p-2 mt-2">
-                            <p class="text-orange-800 text-xs font-bold">?? Canva/Netlify È¯°æ ÁÖÀÇ»çÇ×:</p>
+                            <p class="text-orange-800 text-xs font-bold">ğŸš¨ Canva/Netlify í™˜ê²½ ì£¼ì˜ì‚¬í•­:</p>
                             <p class="text-orange-700 text-xs">
-                                ? "¸ğµç »ç¿ëÀÚ" ±ÇÇÑÀÌ ¾øÀ¸¸é CORS ¿À·ù ¹ß»ı<br>
-                                ? HTTP URLÀº Àı´ë ÀÛµ¿ÇÏÁö ¾ÊÀ½ (HTTPS ÇÊ¼ö)<br>
-                                ? Content-Type: application/json Çì´õ ÇÊ¼ö
+                                â€¢ "ëª¨ë“  ì‚¬ìš©ì" ê¶Œí•œì´ ì—†ìœ¼ë©´ CORS ì˜¤ë¥˜ ë°œìƒ<br>
+                                â€¢ HTTP URLì€ ì ˆëŒ€ ì‘ë™í•˜ì§€ ì•ŠìŒ (HTTPS í•„ìˆ˜)<br>
+                                â€¢ Content-Type: application/json í—¤ë” í•„ìˆ˜
                             </p>
                         </div>
                     </div>
                     
                     <div class="bg-white border border-red-200 rounded p-3">
-                        <p class="font-bold text-red-800 mb-2">3?? Áß¿äÇÑ È®ÀÎ»çÇ×</p>
+                        <p class="font-bold text-red-800 mb-2">3ï¸âƒ£ ì¤‘ìš”í•œ í™•ì¸ì‚¬í•­</p>
                         <ul class="list-disc list-inside ml-4 space-y-1 text-red-600">
-                            <li>¹èÆ÷ ÈÄ »ı¼ºµÈ URLÀÌ <code>https://script.google.com/macros/s/...</code> ÇüÅÂÀÎÁö È®ÀÎ</li>
-                            <li>±¸±Û ½ÃÆ® URLÀÌ ¾Æ´Ñ <strong>À¥¾Û URL</strong>À» »ç¿ëÇØ¾ß ÇÔ</li>
-                            <li>¹èÆ÷ ½Ã "»õ ¹öÀü" »ı¼º È®ÀÎ</li>
+                            <li>ë°°í¬ í›„ ìƒì„±ëœ URLì´ <code>https://script.google.com/macros/s/...</code> í˜•íƒœì¸ì§€ í™•ì¸</li>
+                            <li>êµ¬ê¸€ ì‹œíŠ¸ URLì´ ì•„ë‹Œ <strong>ì›¹ì•± URL</strong>ì„ ì‚¬ìš©í•´ì•¼ í•¨</li>
+                            <li>ë°°í¬ ì‹œ "ìƒˆ ë²„ì „" ìƒì„± í™•ì¸</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Apps Script ÄÚµå -->
+            <!-- Apps Script ì½”ë“œ -->
             <div class="bg-gray-50 rounded-lg p-3 mb-4 border">
                 <div class="flex justify-between items-center mb-2">
-                    <h4 class="font-semibold text-gray-800">?? ÃÖ½Å Apps Script ÄÚµå (CORS ÇØ°á):</h4>
+                    <h4 class="font-semibold text-gray-800">ğŸ“ ìµœì‹  Apps Script ì½”ë“œ (CORS í•´ê²°):</h4>
                     <button onclick="copyAppsScriptCode()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
-                        ?? º¹»ç
+                        ğŸ“‹ ë³µì‚¬
                     </button>
                 </div>
-                <textarea id="appsScriptCode" readonly class="w-full h-40 text-xs font-mono bg-white border rounded p-2 resize-none">// ?? Canva/Netlify È¯°æ ÃÖÀûÈ­ ÄÚµå
-// 1. HTTPS À¥¾ÛÀ¸·Î ¹èÆ÷ (HTTP ºÒ°¡)
-// 2. ¾×¼¼½º ±ÇÇÑ: "¸ğµç »ç¿ëÀÚ" (Anyone) ÇÊ¼ö
-// 3. ContentService¸¸ »ç¿ë (CORS Çì´õ Á¦°Å·Î ¾ÈÁ¤¼º Çâ»ó)
+                <textarea id="appsScriptCode" readonly class="w-full h-40 text-xs font-mono bg-white border rounded p-2 resize-none">// ğŸš¨ Canva/Netlify í™˜ê²½ ìµœì í™” ì½”ë“œ
+// 1. HTTPS ì›¹ì•±ìœ¼ë¡œ ë°°í¬ (HTTP ë¶ˆê°€)
+// 2. ì•¡ì„¸ìŠ¤ ê¶Œí•œ: "ëª¨ë“  ì‚¬ìš©ì" (Anyone) í•„ìˆ˜
+// 3. ContentServiceë§Œ ì‚¬ìš© (CORS í—¤ë” ì œê±°ë¡œ ì•ˆì •ì„± í–¥ìƒ)
 
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('½ÃÆ®1'); // ½ÃÆ® ÀÌ¸§ Á¤È®È÷ ÀÔ·Â
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('ì‹œíŠ¸1'); // ì‹œíŠ¸ ì´ë¦„ ì •í™•íˆ ì…ë ¥
     
     if (data.reservations && Array.isArray(data.reservations)) {
-      // ±âÁ¸ µ¥ÀÌÅÍ »èÁ¦ ÈÄ »õ µ¥ÀÌÅÍ ÀÔ·Â
+      // ê¸°ì¡´ ë°ì´í„° ì‚­ì œ í›„ ìƒˆ ë°ì´í„° ì…ë ¥
       sheet.clearContents();
-      sheet.appendRow(['³¯Â¥', '½Ã°£', '¿¹¾àÀÚ']); // Çì´õ Ãß°¡
+      sheet.appendRow(['ë‚ ì§œ', 'ì‹œê°„', 'ì˜ˆì•½ì']); // í—¤ë” ì¶”ê°€
       
-      // ¿¹¾à µ¥ÀÌÅÍ Ãß°¡
+      // ì˜ˆì•½ ë°ì´í„° ì¶”ê°€
       data.reservations.forEach(row => {
         if (row && row.length >= 3) {
           sheet.appendRow(row);
         }
       });
       
-      // ¼º°ø ÀÀ´ä (JSON ÇüÅÂ·Î ¹İÈ¯)
+      // ì„±ê³µ ì‘ë‹µ (JSON í˜•íƒœë¡œ ë°˜í™˜)
       return ContentService
         .createTextOutput(JSON.stringify({ 
           success: true, 
@@ -259,7 +259,7 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     
-    // µ¥ÀÌÅÍ°¡ ¾ø´Â °æ¿ì
+    // ë°ì´í„°ê°€ ì—†ëŠ” ê²½ìš°
     return ContentService
       .createTextOutput(JSON.stringify({ 
         success: false, 
@@ -268,8 +268,8 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
       
   } catch (err) {
-    // ¿À·ù ¹ß»ı ½Ã
-    console.error('doPost ¿À·ù:', err);
+    // ì˜¤ë¥˜ ë°œìƒ ì‹œ
+    console.error('doPost ì˜¤ë¥˜:', err);
     return ContentService
       .createTextOutput(JSON.stringify({ 
         success: false, 
@@ -282,21 +282,21 @@ function doPost(e) {
 
 function doGet(e) {
   try {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('½ÃÆ®1');
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('ì‹œíŠ¸1');
     
-    // ½ÃÆ®¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö È®ÀÎ
+    // ì‹œíŠ¸ì— ë°ì´í„°ê°€ ìˆëŠ”ì§€ í™•ì¸
     const lastRow = sheet.getLastRow();
     if (lastRow <= 1) {
-      // Çì´õ¸¸ ÀÖ°Å³ª µ¥ÀÌÅÍ°¡ ¾ø´Â °æ¿ì
+      // í—¤ë”ë§Œ ìˆê±°ë‚˜ ë°ì´í„°ê°€ ì—†ëŠ” ê²½ìš°
       return ContentService
         .createTextOutput(JSON.stringify([]))
         .setMimeType(ContentService.MimeType.JSON);
     }
     
-    // Çì´õ Á¦¿ÜÇÏ°í µ¥ÀÌÅÍ¸¸ °¡Á®¿À±â
+    // í—¤ë” ì œì™¸í•˜ê³  ë°ì´í„°ë§Œ ê°€ì ¸ì˜¤ê¸°
     const data = sheet.getRange(2, 1, lastRow - 1, 3).getValues();
     
-    // ºó Çà Á¦°Å
+    // ë¹ˆ í–‰ ì œê±°
     const filteredData = data.filter(row => 
       row[0] && row[1] && row[2] && 
       row[0].toString().trim() !== '' && 
@@ -309,7 +309,7 @@ function doGet(e) {
       .setMimeType(ContentService.MimeType.JSON);
       
   } catch (err) {
-    console.error('doGet ¿À·ù:', err);
+    console.error('doGet ì˜¤ë¥˜:', err);
     return ContentService
       .createTextOutput(JSON.stringify({ 
         error: err.message,
@@ -320,83 +320,83 @@ function doGet(e) {
 }</textarea>
             </div>
 
-            <!-- URL ÀÔ·Â -->
+            <!-- URL ì…ë ¥ -->
             <div class="flex flex-col md:flex-row gap-3 items-center">
-                <input type="url" id="googleSheetUrl" placeholder="Apps Script À¥¾Û URLÀ» ÀÔ·ÂÇÏ¼¼¿ä (https://script.google.com/...)" 
+                <input type="url" id="googleSheetUrl" placeholder="Apps Script ì›¹ì•± URLì„ ì…ë ¥í•˜ì„¸ìš” (https://script.google.com/...)" 
                        class="flex-1 px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <button onclick="connectGoogleSheet()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
-                    ¿¬°á Å×½ºÆ®
+                    ì—°ê²° í…ŒìŠ¤íŠ¸
                 </button>
                 <button onclick="loadFromGoogleSheet()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
-                    µ¥ÀÌÅÍ ºÒ·¯¿À±â
+                    ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
                 </button>
             </div>
             
-            <!-- ¿¬°á »óÅÂ ¹× Ã¼Å©¸®½ºÆ® -->
+            <!-- ì—°ê²° ìƒíƒœ ë° ì²´í¬ë¦¬ìŠ¤íŠ¸ -->
             <div class="mt-2 text-sm">
-                <p id="connectionStatus" class="text-red-700 font-medium">? ±¸±Û ½ÃÆ® ¿¬°á ¾ÈµÊ - ·ÎÄÃ ÀúÀå¸¸ °¡´É</p>
-                <p class="text-xs mt-1 text-blue-600">?? Apps Script À¥¾Û URLÀÌ ÇÊ¿äÇÕ´Ï´Ù (±¸±Û ½ÃÆ® URLÀÌ ¾Æ´Ô)</p>
+                <p id="connectionStatus" class="text-red-700 font-medium">âŒ êµ¬ê¸€ ì‹œíŠ¸ ì—°ê²° ì•ˆë¨ - ë¡œì»¬ ì €ì¥ë§Œ ê°€ëŠ¥</p>
+                <p class="text-xs mt-1 text-blue-600">ğŸ’¡ Apps Script ì›¹ì•± URLì´ í•„ìš”í•©ë‹ˆë‹¤ (êµ¬ê¸€ ì‹œíŠ¸ URLì´ ì•„ë‹˜)</p>
                 
-                <!-- ¿¬°á ½ÇÆĞ ½Ã Ã¼Å©¸®½ºÆ® -->
+                <!-- ì—°ê²° ì‹¤íŒ¨ ì‹œ ì²´í¬ë¦¬ìŠ¤íŠ¸ -->
                 <div id="troubleshootingChecklist" class="mt-3 bg-orange-50 border border-orange-200 rounded-lg p-3" style="display: none;">
-                    <p class="font-bold text-orange-800 text-sm mb-2">?? ¿¬°á ½ÇÆĞ Ã¼Å©¸®½ºÆ®:</p>
+                    <p class="font-bold text-orange-800 text-sm mb-2">ğŸ” ì—°ê²° ì‹¤íŒ¨ ì²´í¬ë¦¬ìŠ¤íŠ¸:</p>
                     <div class="text-orange-700 text-xs space-y-1">
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" class="mr-2 text-orange-600"> 
-                            <span>Apps Script ÄÚµå¸¦ Á¤È®È÷ º¹»çÇß³ª¿ä?</span>
+                            <span>Apps Script ì½”ë“œë¥¼ ì •í™•íˆ ë³µì‚¬í–ˆë‚˜ìš”?</span>
                         </label>
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" class="mr-2 text-orange-600"> 
-                            <span>±âÁ¸ ¹èÆ÷¸¦ ¸ğµÎ »èÁ¦Çß³ª¿ä?</span>
+                            <span>ê¸°ì¡´ ë°°í¬ë¥¼ ëª¨ë‘ ì‚­ì œí–ˆë‚˜ìš”?</span>
                         </label>
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" class="mr-2 text-orange-600"> 
-                            <span>¾×¼¼½º ±ÇÇÑÀ» "¸ğµç »ç¿ëÀÚ"·Î ¼³Á¤Çß³ª¿ä?</span>
+                            <span>ì•¡ì„¸ìŠ¤ ê¶Œí•œì„ "ëª¨ë“  ì‚¬ìš©ì"ë¡œ ì„¤ì •í–ˆë‚˜ìš”?</span>
                         </label>
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" class="mr-2 text-orange-600"> 
-                            <span>±ÇÇÑ ½ÂÀÎ¿¡¼­ "°í±Ş" ¡æ "¾ÈÀüÇÏÁö ¾ÊÀº ÆäÀÌÁö·Î ÀÌµ¿"À» Å¬¸¯Çß³ª¿ä?</span>
+                            <span>ê¶Œí•œ ìŠ¹ì¸ì—ì„œ "ê³ ê¸‰" â†’ "ì•ˆì „í•˜ì§€ ì•Šì€ í˜ì´ì§€ë¡œ ì´ë™"ì„ í´ë¦­í–ˆë‚˜ìš”?</span>
                         </label>
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" class="mr-2 text-orange-600"> 
-                            <span>À¥¾Û URLÀ» »ç¿ëÇÏ°í ÀÖ³ª¿ä? (±¸±Û ½ÃÆ® URLÀÌ ¾Æ´Ñ)</span>
+                            <span>ì›¹ì•± URLì„ ì‚¬ìš©í•˜ê³  ìˆë‚˜ìš”? (êµ¬ê¸€ ì‹œíŠ¸ URLì´ ì•„ë‹Œ)</span>
                         </label>
                     </div>
                     <p class="text-orange-600 text-xs mt-2 font-medium">
-                        ? ¸ğµç Ç×¸ñÀ» Ã¼Å©ÇÑ ÈÄ ´Ù½Ã ¿¬°á Å×½ºÆ®¸¦ ÇØº¸¼¼¿ä!
+                        âœ… ëª¨ë“  í•­ëª©ì„ ì²´í¬í•œ í›„ ë‹¤ì‹œ ì—°ê²° í…ŒìŠ¤íŠ¸ë¥¼ í•´ë³´ì„¸ìš”!
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- Çì´õ -->
+        <!-- í—¤ë” -->
         <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-gray-800 mb-2">?? ´ëÈ¸Àü ¸àÅä¸µ ¿¹¾à</h1>
-            <p class="text-gray-600">2025³â 8¿ù 10ÀÏ ~ 9¿ù 2ÀÏ | ¿ÀÀü 10½Ã ~ ¿ÀÈÄ 7½Ã</p>
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">ğŸ† ëŒ€íšŒì „ ë©˜í† ë§ ì˜ˆì•½</h1>
+            <p class="text-gray-600">2025ë…„ 8ì›” 10ì¼ ~ 9ì›” 2ì¼ | ì˜¤ì „ 10ì‹œ ~ ì˜¤í›„ 7ì‹œ</p>
             <div class="mt-4 text-sm text-gray-700 space-y-2">
                 <div class="bg-blue-50 p-3 rounded-lg">
-                    <p class="mb-1">?? <strong>¸àÅä¸µÀå:</strong> ¾È¾ç½Ã ÀÎÀçÀ°¼ºÀç´Ü 1Ãş &lt;»êÅä¸®´Ï&gt; °­ÀÇ½Ç</p>
-                    <p class="text-xs text-gray-600">(Àç´ÜÀº °ÔÀÓ¸¶¿¡½ºÅÍ°íµîÇĞ±³ »ûº°°ü¿¡ ÀÖ½À´Ï´Ù.)</p>
+                    <p class="mb-1">ğŸ“ <strong>ë©˜í† ë§ì¥:</strong> ì•ˆì–‘ì‹œ ì¸ì¬ìœ¡ì„±ì¬ë‹¨ 1ì¸µ &lt;ì‚°í† ë¦¬ë‹ˆ&gt; ê°•ì˜ì‹¤</p>
+                    <p class="text-xs text-gray-600">(ì¬ë‹¨ì€ ê²Œì„ë§ˆì—ìŠ¤í„°ê³ ë“±í•™êµ ìƒ›ë³„ê´€ì— ìˆìŠµë‹ˆë‹¤.)</p>
                 </div>
                 <div class="bg-green-50 p-4 rounded-lg border border-green-200">
                     <div class="text-center mb-3">
-                        <h3 class="text-lg font-bold text-green-800 mb-1">??? ´ëÈ¸ ¿î¿µ ¾È³»</h3>
+                        <h3 class="text-lg font-bold text-green-800 mb-1">ğŸŸï¸ ëŒ€íšŒ ìš´ì˜ ì•ˆë‚´</h3>
                         <div class="w-16 h-0.5 bg-green-400 mx-auto"></div>
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center justify-center bg-white rounded-lg p-2 shadow-sm">
-                            <span class="text-green-700 font-medium">?? Àå¼Ò: </span>
-                            <span class="ml-2 font-semibold text-gray-800">ÆòÃÌ Áß¾Ó°ø¿ø</span>
+                            <span class="text-green-700 font-medium">ğŸ“ ì¥ì†Œ: </span>
+                            <span class="ml-2 font-semibold text-gray-800">í‰ì´Œ ì¤‘ì•™ê³µì›</span>
                         </div>
                         <div class="bg-white rounded-lg p-3 shadow-sm">
-                            <p class="text-green-700 font-medium text-center mb-2">? °æ±â ½Ã°£</p>
+                            <p class="text-green-700 font-medium text-center mb-2">â° ê²½ê¸° ì‹œê°„</p>
                             <div class="grid grid-cols-2 gap-2">
                                 <div class="bg-blue-50 rounded-lg p-2 text-center border border-blue-200">
-                                    <div class="text-blue-700 font-semibold text-sm">ÃÊµîºÎ</div>
+                                    <div class="text-blue-700 font-semibold text-sm">ì´ˆë“±ë¶€</div>
                                     <div class="text-blue-800 font-bold">12:00 - 13:00</div>
                                 </div>
                                 <div class="bg-purple-50 rounded-lg p-2 text-center border border-purple-200">
-                                    <div class="text-purple-700 font-semibold text-sm">°íµîºÎ</div>
+                                    <div class="text-purple-700 font-semibold text-sm">ê³ ë“±ë¶€</div>
                                     <div class="text-purple-800 font-bold">15:00 - 18:00</div>
                                 </div>
                             </div>
@@ -406,156 +406,156 @@ function doGet(e) {
             </div>
         </div>
 
-        <!-- ³¯Â¥ ¼±ÅÃ -->
+        <!-- ë‚ ì§œ ì„ íƒ -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <h2 class="text-xl font-semibold mb-4 text-gray-800">?? ³¯Â¥ ¼±ÅÃ</h2>
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">ğŸ“… ë‚ ì§œ ì„ íƒ</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2" id="dateSelector">
-                <!-- ³¯Â¥ ¹öÆ°µéÀÌ ¿©±â¿¡ »ı¼ºµË´Ï´Ù -->
+                <!-- ë‚ ì§œ ë²„íŠ¼ë“¤ì´ ì—¬ê¸°ì— ìƒì„±ë©ë‹ˆë‹¤ -->
             </div>
         </div>
 
-        <!-- ½Ã°£Ç¥ -->
+        <!-- ì‹œê°„í‘œ -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                <h2 class="text-xl font-semibold text-gray-800 mb-2 md:mb-0">? ½Ã°£º° ¿¹¾à ÇöÈ²</h2>
+                <h2 class="text-xl font-semibold text-gray-800 mb-2 md:mb-0">â° ì‹œê°„ë³„ ì˜ˆì•½ í˜„í™©</h2>
                 <div class="bg-red-50 border border-red-200 rounded-lg px-4 py-2">
-                    <p class="text-red-700 text-sm font-medium">?? ¿¹¾àÈÄ¿¡´Â ¼öÁ¤ÀÌ ¾ÈµË´Ï´Ù. º¯°æÀÌ ÇÊ¿äÇÑ °æ¿ì ´ÜÅåÀ¸·Î ³²°ÜÁÖ¼¼¿ä</p>
+                    <p class="text-red-700 text-sm font-medium">âš ï¸ ì˜ˆì•½í›„ì—ëŠ” ìˆ˜ì •ì´ ì•ˆë©ë‹ˆë‹¤. ë³€ê²½ì´ í•„ìš”í•œ ê²½ìš° ë‹¨í†¡ìœ¼ë¡œ ë‚¨ê²¨ì£¼ì„¸ìš”</p>
                 </div>
             </div>
             <div class="text-center mb-4">
-                <span class="text-lg font-medium text-blue-600" id="selectedDateDisplay">³¯Â¥¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä</span>
+                <span class="text-lg font-medium text-blue-600" id="selectedDateDisplay">ë‚ ì§œë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”</span>
             </div>
             
             <div class="overflow-x-auto">
                 <table class="w-full border-collapse border border-gray-300">
                     <thead>
                         <tr class="bg-gray-50">
-                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-700">½Ã°£</th>
-                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-700">¿¹¾àÀÚ</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-700">ì‹œê°„</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-700">ì˜ˆì•½ì</th>
                         </tr>
                     </thead>
                     <tbody id="timeTable">
-                        <!-- ½Ã°£Ç¥°¡ ¿©±â¿¡ »ı¼ºµË´Ï´Ù -->
+                        <!-- ì‹œê°„í‘œê°€ ì—¬ê¸°ì— ìƒì„±ë©ë‹ˆë‹¤ -->
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- °ü¸®ÀÚ ¸ğµå ¹öÆ° -->
+        <!-- ê´€ë¦¬ì ëª¨ë“œ ë²„íŠ¼ -->
         <div class="bg-white rounded-lg shadow-lg p-6">
             <div class="text-center">
                 <button id="adminModeBtn" onclick="toggleAdminMode()" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition-colors">
-                    ?? °ü¸®ÀÚ ¸ğµå
+                    ğŸ” ê´€ë¦¬ì ëª¨ë“œ
                 </button>
-                <p class="text-sm text-gray-600 mt-2">°ü¸®ÀÚ ±â´É ¹× ±¸±Û ½ÃÆ® ¿¬µ¿</p>
+                <p class="text-sm text-gray-600 mt-2">ê´€ë¦¬ì ê¸°ëŠ¥ ë° êµ¬ê¸€ ì‹œíŠ¸ ì—°ë™</p>
             </div>
         </div>
     </div>
 
-    <!-- ¿¹¾à ¸ğ´Ş -->
+    <!-- ì˜ˆì•½ ëª¨ë‹¬ -->
     <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-96 mx-4">
-            <h3 class="text-lg font-semibold mb-4 text-gray-800">¿¹¾àÇÏ±â</h3>
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">ì˜ˆì•½í•˜ê¸°</h3>
             <form onsubmit="event.preventDefault(); confirmReservation();">
                 <div class="mb-4">
-                    <p class="text-sm text-gray-600 mb-3">¼±ÅÃÇÑ ½Ã°£: <span id="modalTimeSlot" class="font-medium"></span></p>
+                    <p class="text-sm text-gray-600 mb-3">ì„ íƒí•œ ì‹œê°„: <span id="modalTimeSlot" class="font-medium"></span></p>
                     
-                    <!-- ÇĞ±Ş ¼±ÅÃ -->
+                    <!-- í•™ê¸‰ ì„ íƒ -->
                     <div class="mb-3">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">ÇĞ±Ş ¼±ÅÃ</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">í•™ê¸‰ ì„ íƒ</label>
                         <div class="flex gap-3">
                             <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="grade" value="ÃÊµî" id="elementary" class="mr-2 text-blue-600 focus:ring-blue-500">
-                                <span class="text-blue-700 font-medium">?? ÃÊµîºÎ</span>
+                                <input type="radio" name="grade" value="ì´ˆë“±" id="elementary" class="mr-2 text-blue-600 focus:ring-blue-500">
+                                <span class="text-blue-700 font-medium">ğŸ’ ì´ˆë“±ë¶€</span>
                             </label>
                             <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="grade" value="°íµî" id="highschool" class="mr-2 text-purple-600 focus:ring-purple-500">
-                                <span class="text-purple-700 font-medium">?? °íµîºÎ</span>
+                                <input type="radio" name="grade" value="ê³ ë“±" id="highschool" class="mr-2 text-purple-600 focus:ring-purple-500">
+                                <span class="text-purple-700 font-medium">ğŸ“ ê³ ë“±ë¶€</span>
                             </label>
                         </div>
                     </div>
                     
-                    <!-- ÀÌ¸§ ÀÔ·Â -->
+                    <!-- ì´ë¦„ ì…ë ¥ -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">ÀÌ¸§</label>
-                        <input type="text" id="nameInput" placeholder="ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ì´ë¦„</label>
+                        <input type="text" id="nameInput" placeholder="ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                 </div>
                 <div class="flex gap-2">
                     <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
-                        ¿¹¾àÇÏ±â
+                        ì˜ˆì•½í•˜ê¸°
                     </button>
                     <button type="button" onclick="closeModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors">
-                        Ãë¼Ò
+                        ì·¨ì†Œ
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- ¼öÁ¤/»èÁ¦ ¸ğ´Ş -->
+    <!-- ìˆ˜ì •/ì‚­ì œ ëª¨ë‹¬ -->
     <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-96 mx-4">
-            <h3 class="text-lg font-semibold mb-4 text-gray-800">¿¹¾à ¼öÁ¤/»èÁ¦</h3>
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">ì˜ˆì•½ ìˆ˜ì •/ì‚­ì œ</h3>
             <form onsubmit="event.preventDefault();">
                 <div class="mb-4">
-                    <p class="text-sm text-gray-600 mb-2">ÇöÀç ¿¹¾àÀÚ: <span id="currentReserver" class="font-medium"></span></p>
-                    <input type="password" id="passwordInput" placeholder="°ü¸®ÀÚ ºñ¹Ğ¹øÈ£" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3">
-                    <input type="text" id="newNameInput" placeholder="»õ ÀÌ¸§ (¼öÁ¤½Ã¿¡¸¸)" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <p class="text-sm text-gray-600 mb-2">í˜„ì¬ ì˜ˆì•½ì: <span id="currentReserver" class="font-medium"></span></p>
+                    <input type="password" id="passwordInput" placeholder="ê´€ë¦¬ì ë¹„ë°€ë²ˆí˜¸" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3">
+                    <input type="text" id="newNameInput" placeholder="ìƒˆ ì´ë¦„ (ìˆ˜ì •ì‹œì—ë§Œ)" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="flex gap-2">
                     <button type="button" onclick="updateReservation()" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors">
-                        ¼öÁ¤
+                        ìˆ˜ì •
                     </button>
                     <button type="button" onclick="deleteReservation()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors">
-                        »èÁ¦
+                        ì‚­ì œ
                     </button>
                     <button type="button" onclick="closeEditModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors">
-                        Ãë¼Ò
+                        ì·¨ì†Œ
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- °ü¸®ÀÚ ºñ¹Ğ¹øÈ£ ¸ğ´Ş -->
+    <!-- ê´€ë¦¬ì ë¹„ë°€ë²ˆí˜¸ ëª¨ë‹¬ -->
     <div id="adminPasswordModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-96 mx-4">
-            <h3 class="text-lg font-semibold mb-4 text-gray-800">°ü¸®ÀÚ ÀÎÁõ</h3>
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">ê´€ë¦¬ì ì¸ì¦</h3>
             <form onsubmit="event.preventDefault(); checkAdminPassword();">
                 <div class="mb-4">
-                    <input type="password" id="adminPasswordInput" placeholder="°ü¸®ÀÚ ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="password" id="adminPasswordInput" placeholder="ê´€ë¦¬ì ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="flex gap-2">
                     <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
-                        È®ÀÎ
+                        í™•ì¸
                     </button>
                     <button type="button" onclick="closeAdminPasswordModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors">
-                        Ãë¼Ò
+                        ì·¨ì†Œ
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- È®ÀÎ ¸ğ´Ş -->
+    <!-- í™•ì¸ ëª¨ë‹¬ -->
     <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-96 mx-4">
-            <h3 class="text-lg font-semibold mb-4 text-gray-800">È®ÀÎ</h3>
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">í™•ì¸</h3>
             <p id="confirmMessage" class="text-gray-600 mb-6"></p>
             <div class="flex gap-2">
                 <button id="confirmYes" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors">
-                    È®ÀÎ
+                    í™•ì¸
                 </button>
                 <button id="confirmNo" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors">
-                    Ãë¼Ò
+                    ì·¨ì†Œ
                 </button>
             </div>
         </div>
     </div>
 
     <script>
-        // Àü¿ª º¯¼ö
+        // ì „ì—­ ë³€ìˆ˜
         let reservations = {};
         let disabledSlots = {};
         let selectedDate = '';
@@ -565,11 +565,11 @@ function doGet(e) {
         let isConnected = false;
         const PASSWORD = '1234';
 
-        // È¯°æ °¨Áö ¹× UI ¼³Á¤
+        // í™˜ê²½ ê°ì§€ ë° UI ì„¤ì •
         function detectEnvironmentAndSetupUI() {
             const isInCanva = window.location.hostname.includes('canva.site') || 
                              window.location.hostname.includes('canva.com') ||
-                             window.parent !== window || // iframe ³»ºÎ
+                             window.parent !== window || // iframe ë‚´ë¶€
                              document.referrer.includes('canva');
             
             const environmentInfo = document.getElementById('environmentInfo');
@@ -578,37 +578,37 @@ function doGet(e) {
             const currentPageUrl = document.getElementById('currentPageUrl');
             
             if (isInCanva) {
-                // Canva È¯°æ
+                // Canva í™˜ê²½
                 environmentInfo.innerHTML = `
                     <div class="bg-purple-100 border border-purple-300 rounded-lg p-3">
-                        <p class="text-purple-800 font-medium">?? Canva È¯°æ¿¡¼­ ½ÇÇà Áß</p>
+                        <p class="text-purple-800 font-medium">ğŸ¨ Canva í™˜ê²½ì—ì„œ ì‹¤í–‰ ì¤‘</p>
                     </div>
                 `;
                 canvaInstructions.style.display = 'block';
                 directSection.style.display = 'none';
                 
-                // ÇöÀç ÆäÀÌÁö URL Ç¥½Ã (µ¶¸³ ÆäÀÌÁö¿ë)
-                // Canva ÀÓº£µå URLÀ» µ¶¸³ ÆäÀÌÁö URL·Î º¯È¯
+                // í˜„ì¬ í˜ì´ì§€ URL í‘œì‹œ (ë…ë¦½ í˜ì´ì§€ìš©)
+                // Canva ì„ë² ë“œ URLì„ ë…ë¦½ í˜ì´ì§€ URLë¡œ ë³€í™˜
                 let independentUrl = window.location.href;
                 
-                // Canva ÀÓº£µå URL ÆĞÅÏ °¨Áö ¹× º¯È¯
+                // Canva ì„ë² ë“œ URL íŒ¨í„´ ê°ì§€ ë° ë³€í™˜
                 if (independentUrl.includes('canva-hosted-embed.com')) {
-                    // ÀÓº£µå URL¿¡¼­ µ¶¸³ ÆäÀÌÁö URL ÃßÃâ ½Ãµµ
+                    // ì„ë² ë“œ URLì—ì„œ ë…ë¦½ í˜ì´ì§€ URL ì¶”ì¶œ ì‹œë„
                     const urlParts = independentUrl.split('/');
-                    const codeId = urlParts[urlParts.length - 2]; // codelet ID ÃßÃâ
+                    const codeId = urlParts[urlParts.length - 2]; // codelet ID ì¶”ì¶œ
                     
-                    // µ¶¸³ ÆäÀÌÁö URL »ı¼º (¿¹»ó ÆĞÅÏ)
+                    // ë…ë¦½ í˜ì´ì§€ URL ìƒì„± (ì˜ˆìƒ íŒ¨í„´)
                     independentUrl = `https://${codeId.substring(0, 16)}.canva.site/`;
                     
-                    console.log('Canva ÀÓº£µå URL °¨Áö:', window.location.href);
-                    console.log('º¯È¯µÈ µ¶¸³ URL:', independentUrl);
+                    console.log('Canva ì„ë² ë“œ URL ê°ì§€:', window.location.href);
+                    console.log('ë³€í™˜ëœ ë…ë¦½ URL:', independentUrl);
                 }
                 
                 if (currentPageUrl) {
                     currentPageUrl.textContent = independentUrl;
                 }
                 
-                // ÀÓº£µå URLÀÎ °æ¿ì Æ¯º° ¾È³» Ç¥½Ã
+                // ì„ë² ë“œ URLì¸ ê²½ìš° íŠ¹ë³„ ì•ˆë‚´ í‘œì‹œ
                 if (window.location.href.includes('canva-hosted-embed.com')) {
                     const embedNotice = document.getElementById('embedUrlNotice');
                     if (embedNotice) {
@@ -616,20 +616,20 @@ function doGet(e) {
                     }
                 }
             } else {
-                // µ¶¸³ È¯°æ
+                // ë…ë¦½ í™˜ê²½
                 environmentInfo.innerHTML = `
                     <div class="bg-green-100 border border-green-300 rounded-lg p-3">
-                        <p class="text-green-800 font-medium">? µ¶¸³ ÆäÀÌÁö¿¡¼­ ½ÇÇà Áß - ¸ğµç ±â´É »ç¿ë °¡´É!</p>
+                        <p class="text-green-800 font-medium">âœ… ë…ë¦½ í˜ì´ì§€ì—ì„œ ì‹¤í–‰ ì¤‘ - ëª¨ë“  ê¸°ëŠ¥ ì‚¬ìš© ê°€ëŠ¥!</p>
                     </div>
                 `;
                 directSection.style.display = 'block';
                 canvaInstructions.style.display = 'none';
             }
             
-            return !isInCanva; // µ¶¸³ È¯°æÀÌ¸é true ¹İÈ¯
+            return !isInCanva; // ë…ë¦½ í™˜ê²½ì´ë©´ true ë°˜í™˜
         }
         
-        // ¿¹¾à ¼½¼ÇÀ¸·Î ½ºÅ©·Ñ
+        // ì˜ˆì•½ ì„¹ì…˜ìœ¼ë¡œ ìŠ¤í¬ë¡¤
         function scrollToReservation() {
             const dateSelector = document.getElementById('dateSelector');
             if (dateSelector) {
@@ -637,18 +637,18 @@ function doGet(e) {
                     behavior: 'smooth',
                     block: 'start'
                 });
-                showAlert('?? ³¯Â¥¸¦ ¼±ÅÃÇØ¼­ ¿¹¾àÀ» ½ÃÀÛÇÏ¼¼¿ä!');
+                showAlert('ğŸ“… ë‚ ì§œë¥¼ ì„ íƒí•´ì„œ ì˜ˆì•½ì„ ì‹œì‘í•˜ì„¸ìš”!');
             }
         }
         
-        // ÇöÀç URL º¹»ç
+        // í˜„ì¬ URL ë³µì‚¬
         function copyCurrentUrl() {
             const url = window.location.href;
             
-            // Å¬¸³º¸µå API »ç¿ë (ÃÖ½Å ºê¶ó¿ìÀú)
+            // í´ë¦½ë³´ë“œ API ì‚¬ìš© (ìµœì‹  ë¸Œë¼ìš°ì €)
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(url).then(() => {
-                    showAlert('? ¸µÅ©°¡ º¹»çµÇ¾ú½À´Ï´Ù!\n\n»õ ÅÇ¿¡¼­ ºÙ¿©³Ö±âÇØ¼­ ¿­¾îÁÖ¼¼¿ä.');
+                    showAlert('âœ… ë§í¬ê°€ ë³µì‚¬ë˜ì—ˆìŠµë‹ˆë‹¤!\n\nìƒˆ íƒ­ì—ì„œ ë¶™ì—¬ë„£ê¸°í•´ì„œ ì—´ì–´ì£¼ì„¸ìš”.');
                 }).catch(() => {
                     fallbackCopyUrl(url);
                 });
@@ -657,9 +657,9 @@ function doGet(e) {
             }
         }
         
-        // Å¬¸³º¸µå API Áö¿øÇÏÁö ¾Ê´Â °æ¿ì ´ëÃ¼ ¹æ¹ı
+        // í´ë¦½ë³´ë“œ API ì§€ì›í•˜ì§€ ì•ŠëŠ” ê²½ìš° ëŒ€ì²´ ë°©ë²•
         function fallbackCopyUrl(url) {
-            // ÀÓ½Ã ÅØ½ºÆ® ¿µ¿ª »ı¼º
+            // ì„ì‹œ í…ìŠ¤íŠ¸ ì˜ì—­ ìƒì„±
             const textArea = document.createElement('textarea');
             textArea.value = url;
             textArea.style.position = 'fixed';
@@ -671,15 +671,15 @@ function doGet(e) {
             
             try {
                 document.execCommand('copy');
-                showAlert('? ¸µÅ©°¡ º¹»çµÇ¾ú½À´Ï´Ù!\n\n»õ ÅÇ¿¡¼­ ºÙ¿©³Ö±âÇØ¼­ ¿­¾îÁÖ¼¼¿ä.');
+                showAlert('âœ… ë§í¬ê°€ ë³µì‚¬ë˜ì—ˆìŠµë‹ˆë‹¤!\n\nìƒˆ íƒ­ì—ì„œ ë¶™ì—¬ë„£ê¸°í•´ì„œ ì—´ì–´ì£¼ì„¸ìš”.');
             } catch (err) {
-                showAlert('? ÀÚµ¿ º¹»ç¿¡ ½ÇÆĞÇß½À´Ï´Ù.\n\n¸µÅ©¸¦ Á÷Á¢ ¼±ÅÃÇØ¼­ º¹»çÇØÁÖ¼¼¿ä:\n\n' + url);
+                showAlert('âŒ ìë™ ë³µì‚¬ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.\n\në§í¬ë¥¼ ì§ì ‘ ì„ íƒí•´ì„œ ë³µì‚¬í•´ì£¼ì„¸ìš”:\n\n' + url);
             }
             
             document.body.removeChild(textArea);
         }
 
-        // Apps Script ÄÚµå º¹»ç
+        // Apps Script ì½”ë“œ ë³µì‚¬
         function copyAppsScriptCode() {
             const textarea = document.getElementById('appsScriptCode');
             textarea.select();
@@ -687,45 +687,45 @@ function doGet(e) {
             
             try {
                 document.execCommand('copy');
-                showAlert('? Apps Script ÄÚµå°¡ º¹»çµÇ¾ú½À´Ï´Ù!\n\n±¸±Û ½ÃÆ®ÀÇ Apps Script¿¡ ºÙ¿©³ÖÀ¸¼¼¿ä.');
+                showAlert('âœ… Apps Script ì½”ë“œê°€ ë³µì‚¬ë˜ì—ˆìŠµë‹ˆë‹¤!\n\nêµ¬ê¸€ ì‹œíŠ¸ì˜ Apps Scriptì— ë¶™ì—¬ë„£ìœ¼ì„¸ìš”.');
             } catch (err) {
-                showAlert('? º¹»ç¿¡ ½ÇÆĞÇß½À´Ï´Ù.\n\nÄÚµå¸¦ Á÷Á¢ ¼±ÅÃÇØ¼­ º¹»çÇØÁÖ¼¼¿ä.');
+                showAlert('âŒ ë³µì‚¬ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.\n\nì½”ë“œë¥¼ ì§ì ‘ ì„ íƒí•´ì„œ ë³µì‚¬í•´ì£¼ì„¸ìš”.');
             }
         }
 
-        // ±¸±Û ½ÃÆ® ¿¬°á Å×½ºÆ®
+        // êµ¬ê¸€ ì‹œíŠ¸ ì—°ê²° í…ŒìŠ¤íŠ¸
         async function connectGoogleSheet() {
             const url = document.getElementById('googleSheetUrl').value.trim();
             if (!url) {
-                showAlert('Apps Script À¥¾Û URLÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.');
+                showAlert('Apps Script ì›¹ì•± URLì„ ì…ë ¥í•´ì£¼ì„¸ìš”.');
                 return;
             }
             
-            // HTTPS °ËÁõ (Canva/Netlify ÇÊ¼ö)
+            // HTTPS ê²€ì¦ (Canva/Netlify í•„ìˆ˜)
             if (!url.startsWith('https://')) {
-                showAlert('? HTTPS URLÀÌ ÇÊ¿äÇÕ´Ï´Ù!\n\nCanva/Netlify È¯°æ¿¡¼­´Â HTTP URLÀÌ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù.\n¹İµå½Ã https://script.google.com/... ÇüÅÂ¿©¾ß ÇÕ´Ï´Ù.');
+                showAlert('âŒ HTTPS URLì´ í•„ìš”í•©ë‹ˆë‹¤!\n\nCanva/Netlify í™˜ê²½ì—ì„œëŠ” HTTP URLì´ ì‘ë™í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\në°˜ë“œì‹œ https://script.google.com/... í˜•íƒœì—¬ì•¼ í•©ë‹ˆë‹¤.');
                 return;
             }
             
             if (!url.includes('script.google.com')) {
-                showAlert('? ¿Ã¹Ù¸¥ Apps Script URLÀÌ ¾Æ´Õ´Ï´Ù.\n\n±¸±Û ½ÃÆ® URLÀÌ ¾Æ´Ñ Apps Script À¥¾Û URLÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.\n(https://script.google.com/... ÇüÅÂ)');
+                showAlert('âŒ ì˜¬ë°”ë¥¸ Apps Script URLì´ ì•„ë‹™ë‹ˆë‹¤.\n\nêµ¬ê¸€ ì‹œíŠ¸ URLì´ ì•„ë‹Œ Apps Script ì›¹ì•± URLì„ ì…ë ¥í•´ì£¼ì„¸ìš”.\n(https://script.google.com/... í˜•íƒœ)');
                 return;
             }
             
-            // ¿¬°á Å×½ºÆ® ½ÃÀÛ ¾Ë¸²
-            showAlert('?? ¿¬°áÀ» Å×½ºÆ®ÇÏ´Â Áß...\nÀá½Ã¸¸ ±â´Ù·ÁÁÖ¼¼¿ä.');
+            // ì—°ê²° í…ŒìŠ¤íŠ¸ ì‹œì‘ ì•Œë¦¼
+            showAlert('ğŸ”„ ì—°ê²°ì„ í…ŒìŠ¤íŠ¸í•˜ëŠ” ì¤‘...\nì ì‹œë§Œ ê¸°ë‹¤ë ¤ì£¼ì„¸ìš”.');
             
             try {
-                console.log('=== ±¸±Û ½ÃÆ® ¿¬°á Å×½ºÆ® ½ÃÀÛ ===');
-                console.log('Å×½ºÆ® URL:', url);
-                console.log('ºê¶ó¿ìÀú:', navigator.userAgent);
-                console.log('ÇöÀç ½Ã°£:', new Date().toISOString());
+                console.log('=== êµ¬ê¸€ ì‹œíŠ¸ ì—°ê²° í…ŒìŠ¤íŠ¸ ì‹œì‘ ===');
+                console.log('í…ŒìŠ¤íŠ¸ URL:', url);
+                console.log('ë¸Œë¼ìš°ì €:', navigator.userAgent);
+                console.log('í˜„ì¬ ì‹œê°„:', new Date().toISOString());
                 
-                // 1´Ü°è: ±âº» ¿¬°á¼º Å×½ºÆ® (°£´ÜÇÑ GET ¿äÃ»)
-                console.log('\n1´Ü°è: ±âº» ¿¬°á¼º Å×½ºÆ®');
+                // 1ë‹¨ê³„: ê¸°ë³¸ ì—°ê²°ì„± í…ŒìŠ¤íŠ¸ (ê°„ë‹¨í•œ GET ìš”ì²­)
+                console.log('\n1ë‹¨ê³„: ê¸°ë³¸ ì—°ê²°ì„± í…ŒìŠ¤íŠ¸');
                 
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 15000); // 15ÃÊ Å¸ÀÓ¾Æ¿ô
+                const timeoutId = setTimeout(() => controller.abort(), 15000); // 15ì´ˆ íƒ€ì„ì•„ì›ƒ
                 
                 const getResponse = await fetch(url, {
                     method: 'GET',
@@ -741,47 +741,47 @@ function doGet(e) {
                 
                 clearTimeout(timeoutId);
                 
-                console.log('? GET ¿äÃ» ¼º°ø');
-                console.log('ÀÀ´ä »óÅÂ:', getResponse.status, getResponse.statusText);
-                console.log('ÀÀ´ä URL:', getResponse.url);
-                console.log('ÀÀ´ä Çì´õ:', Object.fromEntries(getResponse.headers.entries()));
+                console.log('âœ… GET ìš”ì²­ ì„±ê³µ');
+                console.log('ì‘ë‹µ ìƒíƒœ:', getResponse.status, getResponse.statusText);
+                console.log('ì‘ë‹µ URL:', getResponse.url);
+                console.log('ì‘ë‹µ í—¤ë”:', Object.fromEntries(getResponse.headers.entries()));
                 
-                // ÀÀ´ä »óÅÂ È®ÀÎ
+                // ì‘ë‹µ ìƒíƒœ í™•ì¸
                 if (!getResponse.ok) {
                     throw new Error(`HTTP ${getResponse.status}: ${getResponse.statusText}`);
                 }
                 
-                // ÀÀ´ä ³»¿ë È®ÀÎ
+                // ì‘ë‹µ ë‚´ìš© í™•ì¸
                 const getResponseText = await getResponse.text();
-                console.log('ÀÀ´ä ³»¿ë ±æÀÌ:', getResponseText.length);
-                console.log('ÀÀ´ä ³»¿ë ¹Ì¸®º¸±â:', getResponseText.substring(0, 200));
+                console.log('ì‘ë‹µ ë‚´ìš© ê¸¸ì´:', getResponseText.length);
+                console.log('ì‘ë‹µ ë‚´ìš© ë¯¸ë¦¬ë³´ê¸°:', getResponseText.substring(0, 200));
                 
-                // JSON ÆÄ½Ì ½Ãµµ
+                // JSON íŒŒì‹± ì‹œë„
                 let getData;
                 try {
                     getData = JSON.parse(getResponseText);
-                    console.log('? JSON ÆÄ½Ì ¼º°ø:', getData);
+                    console.log('âœ… JSON íŒŒì‹± ì„±ê³µ:', getData);
                 } catch (parseError) {
-                    console.log('? JSON ÆÄ½Ì ½ÇÆĞ:', parseError.message);
+                    console.log('âŒ JSON íŒŒì‹± ì‹¤íŒ¨:', parseError.message);
                     
-                    // HTML ÀÀ´ä È®ÀÎ (·Î±×ÀÎ ÆäÀÌÁö µî)
+                    // HTML ì‘ë‹µ í™•ì¸ (ë¡œê·¸ì¸ í˜ì´ì§€ ë“±)
                     if (getResponseText.includes('<html') || getResponseText.includes('<!DOCTYPE')) {
-                        throw new Error('PERMISSION_ERROR: HTML ·Î±×ÀÎ ÆäÀÌÁö ÀÀ´ä - ±ÇÇÑ ¼³Á¤ È®ÀÎ ÇÊ¿ä');
+                        throw new Error('PERMISSION_ERROR: HTML ë¡œê·¸ì¸ í˜ì´ì§€ ì‘ë‹µ - ê¶Œí•œ ì„¤ì • í™•ì¸ í•„ìš”');
                     }
                     
-                    // ºó ÀÀ´ä È®ÀÎ
+                    // ë¹ˆ ì‘ë‹µ í™•ì¸
                     if (getResponseText.trim() === '') {
-                        throw new Error('EMPTY_RESPONSE: ºó ÀÀ´ä - Apps Script ÄÚµå È®ÀÎ ÇÊ¿ä');
+                        throw new Error('EMPTY_RESPONSE: ë¹ˆ ì‘ë‹µ - Apps Script ì½”ë“œ í™•ì¸ í•„ìš”');
                     }
                     
                     throw new Error(`JSON_PARSE_ERROR: ${parseError.message}`);
                 }
                 
-                // 2´Ü°è: POST ¿äÃ»À¸·Î ¾²±â ±ÇÇÑ Å×½ºÆ®
-                console.log('\n2´Ü°è: ¾²±â ±ÇÇÑ Å×½ºÆ®');
+                // 2ë‹¨ê³„: POST ìš”ì²­ìœ¼ë¡œ ì“°ê¸° ê¶Œí•œ í…ŒìŠ¤íŠ¸
+                console.log('\n2ë‹¨ê³„: ì“°ê¸° ê¶Œí•œ í…ŒìŠ¤íŠ¸');
                 
                 const testData = {
-                    reservations: [['2025-08-10', '10:00', '¿¬°áÅ×½ºÆ®_' + Date.now()]]
+                    reservations: [['2025-08-10', '10:00', 'ì—°ê²°í…ŒìŠ¤íŠ¸_' + Date.now()]]
                 };
                 
                 const postController = new AbortController();
@@ -803,172 +803,172 @@ function doGet(e) {
                 
                 clearTimeout(postTimeoutId);
                 
-                console.log('? POST ¿äÃ» ¼º°ø');
-                console.log('POST ÀÀ´ä »óÅÂ:', postResponse.status, postResponse.statusText);
-                console.log('POST ÀÀ´ä Çì´õ:', Object.fromEntries(postResponse.headers.entries()));
+                console.log('âœ… POST ìš”ì²­ ì„±ê³µ');
+                console.log('POST ì‘ë‹µ ìƒíƒœ:', postResponse.status, postResponse.statusText);
+                console.log('POST ì‘ë‹µ í—¤ë”:', Object.fromEntries(postResponse.headers.entries()));
                 
                 if (!postResponse.ok) {
                     throw new Error(`POST_ERROR: HTTP ${postResponse.status} - ${postResponse.statusText}`);
                 }
                 
                 const postResponseText = await postResponse.text();
-                console.log('POST ÀÀ´ä ³»¿ë:', postResponseText);
+                console.log('POST ì‘ë‹µ ë‚´ìš©:', postResponseText);
                 
                 let result;
                 try {
                     result = JSON.parse(postResponseText);
-                    console.log('? POST JSON ÆÄ½Ì ¼º°ø:', result);
+                    console.log('âœ… POST JSON íŒŒì‹± ì„±ê³µ:', result);
                 } catch (parseError) {
-                    console.log('? POST JSON ÆÄ½Ì ½ÇÆĞ:', parseError.message);
+                    console.log('âŒ POST JSON íŒŒì‹± ì‹¤íŒ¨:', parseError.message);
                     
                     if (postResponseText.includes('<html') || postResponseText.includes('<!DOCTYPE')) {
-                        throw new Error('PERMISSION_ERROR: POST ¿äÃ»¿¡¼­ HTML ÀÀ´ä - ±ÇÇÑ ¼³Á¤ È®ÀÎ ÇÊ¿ä');
+                        throw new Error('PERMISSION_ERROR: POST ìš”ì²­ì—ì„œ HTML ì‘ë‹µ - ê¶Œí•œ ì„¤ì • í™•ì¸ í•„ìš”');
                     }
                     
                     throw new Error(`POST_JSON_PARSE_ERROR: ${parseError.message}`);
                 }
                 
-                // °á°ú È®ÀÎ
+                // ê²°ê³¼ í™•ì¸
                 if (result.success) {
-                    console.log('?? ¿¬°á Å×½ºÆ® ¿ÏÀü ¼º°ø!');
+                    console.log('ğŸ‰ ì—°ê²° í…ŒìŠ¤íŠ¸ ì™„ì „ ì„±ê³µ!');
                     
-                    // ¿¬°á ¼º°ø Ã³¸®
+                    // ì—°ê²° ì„±ê³µ ì²˜ë¦¬
                     googleSheetUrl = url;
                     localStorage.setItem('googleSheetUrl', url);
                     isConnected = true;
                     
-                    document.getElementById('connectionStatus').innerHTML = '? ±¸±Û ½ÃÆ® ¿¬°áµÊ - ½Ç½Ã°£ µ¿±âÈ­ °¡´É';
+                    document.getElementById('connectionStatus').innerHTML = 'âœ… êµ¬ê¸€ ì‹œíŠ¸ ì—°ê²°ë¨ - ì‹¤ì‹œê°„ ë™ê¸°í™” ê°€ëŠ¥';
                     document.getElementById('connectionStatus').className = 'text-green-700 font-medium';
                     
-                    // Ã¼Å©¸®½ºÆ® ¼û±â±â
+                    // ì²´í¬ë¦¬ìŠ¤íŠ¸ ìˆ¨ê¸°ê¸°
                     document.getElementById('troubleshootingChecklist').style.display = 'none';
                     
-                    showAlert('?? ±¸±Û ½ÃÆ® ¿¬°á ¿ÏÀü ¼º°ø!\n\n? ³×Æ®¿öÅ© ¿¬°á È®ÀÎ\n? ÀĞ±â ±ÇÇÑ È®ÀÎ\n? ¾²±â ±ÇÇÑ È®ÀÎ\n? µ¥ÀÌÅÍ ÀúÀå Å×½ºÆ® ¿Ï·á\n\nÀÌÁ¦ ¿¹¾à µ¥ÀÌÅÍ°¡ ½Ç½Ã°£À¸·Î µ¿±âÈ­µË´Ï´Ù!');
+                    showAlert('ğŸ‰ êµ¬ê¸€ ì‹œíŠ¸ ì—°ê²° ì™„ì „ ì„±ê³µ!\n\nâœ… ë„¤íŠ¸ì›Œí¬ ì—°ê²° í™•ì¸\nâœ… ì½ê¸° ê¶Œí•œ í™•ì¸\nâœ… ì“°ê¸° ê¶Œí•œ í™•ì¸\nâœ… ë°ì´í„° ì €ì¥ í…ŒìŠ¤íŠ¸ ì™„ë£Œ\n\nì´ì œ ì˜ˆì•½ ë°ì´í„°ê°€ ì‹¤ì‹œê°„ìœ¼ë¡œ ë™ê¸°í™”ë©ë‹ˆë‹¤!');
                     
-                    // ¿¬°á ÈÄ ÀÚµ¿À¸·Î µ¥ÀÌÅÍ ºÒ·¯¿À±â
+                    // ì—°ê²° í›„ ìë™ìœ¼ë¡œ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
                     setTimeout(() => loadFromGoogleSheet(), 1000);
                 } else {
-                    throw new Error(`SAVE_TEST_FAILED: ${result.error || 'ÀúÀå Å×½ºÆ® ½ÇÆĞ'}`);
+                    throw new Error(`SAVE_TEST_FAILED: ${result.error || 'ì €ì¥ í…ŒìŠ¤íŠ¸ ì‹¤íŒ¨'}`);
                 }
                 
             } catch (error) {
-                console.error('? ¿¬°á Å×½ºÆ® ½ÇÆĞ:', error);
-                console.error('¿À·ù ½ºÅÃ:', error.stack);
+                console.error('âŒ ì—°ê²° í…ŒìŠ¤íŠ¸ ì‹¤íŒ¨:', error);
+                console.error('ì˜¤ë¥˜ ìŠ¤íƒ:', error.stack);
                 
                 isConnected = false;
                 
-                // ¿À·ù À¯Çüº° ¸ÂÃã ¸Ş½ÃÁö
-                let errorMessage = '? ±¸±Û ½ÃÆ® ¿¬°á¿¡ ½ÇÆĞÇß½À´Ï´Ù.\n\n';
+                // ì˜¤ë¥˜ ìœ í˜•ë³„ ë§ì¶¤ ë©”ì‹œì§€
+                let errorMessage = 'âŒ êµ¬ê¸€ ì‹œíŠ¸ ì—°ê²°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.\n\n';
                 let errorType = 'UNKNOWN';
                 
                 if (error.name === 'AbortError' || error.message.includes('aborted')) {
                     errorType = 'TIMEOUT';
-                    errorMessage += '? ¿¬°á ½Ã°£ ÃÊ°ú (15ÃÊ)\n\n';
-                    errorMessage += '?? °¡´ÉÇÑ ¿øÀÎ:\n';
-                    errorMessage += '? ³×Æ®¿öÅ© ¿¬°áÀÌ ´À¸²\n';
-                    errorMessage += '? Apps Script ¼­¹ö ÀÀ´ä Áö¿¬\n';
-                    errorMessage += '? ¹æÈ­º®ÀÌ³ª º¸¾È ÇÁ·Î±×·¥ÀÌ Â÷´Ü\n\n';
-                    errorMessage += '?? ÇØ°á ¹æ¹ı:\n';
-                    errorMessage += '? Àá½Ã ÈÄ ´Ù½Ã ½Ãµµ\n';
-                    errorMessage += '? ´Ù¸¥ ³×Æ®¿öÅ©¿¡¼­ ½Ãµµ\n';
-                    errorMessage += '? VPN »ç¿ë ÁßÀÌ¸é ÇØÁ¦ ÈÄ ½Ãµµ\n';
+                    errorMessage += 'â° ì—°ê²° ì‹œê°„ ì´ˆê³¼ (15ì´ˆ)\n\n';
+                    errorMessage += 'ğŸ” ê°€ëŠ¥í•œ ì›ì¸:\n';
+                    errorMessage += 'â€¢ ë„¤íŠ¸ì›Œí¬ ì—°ê²°ì´ ëŠë¦¼\n';
+                    errorMessage += 'â€¢ Apps Script ì„œë²„ ì‘ë‹µ ì§€ì—°\n';
+                    errorMessage += 'â€¢ ë°©í™”ë²½ì´ë‚˜ ë³´ì•ˆ í”„ë¡œê·¸ë¨ì´ ì°¨ë‹¨\n\n';
+                    errorMessage += 'ğŸ’¡ í•´ê²° ë°©ë²•:\n';
+                    errorMessage += 'â€¢ ì ì‹œ í›„ ë‹¤ì‹œ ì‹œë„\n';
+                    errorMessage += 'â€¢ ë‹¤ë¥¸ ë„¤íŠ¸ì›Œí¬ì—ì„œ ì‹œë„\n';
+                    errorMessage += 'â€¢ VPN ì‚¬ìš© ì¤‘ì´ë©´ í•´ì œ í›„ ì‹œë„\n';
                 } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
                     errorType = 'NETWORK_BLOCKED';
-                    errorMessage += '?? ³×Æ®¿öÅ© ¿äÃ»ÀÌ Â÷´ÜµÇ¾ú½À´Ï´Ù.\n\n';
-                    errorMessage += '?? ÀÌ°ÍÀº °¡Àå ÈçÇÑ "Failed to fetch" ¿À·ùÀÔ´Ï´Ù!\n\n';
-                    errorMessage += '?? ÁÖ¿ä ¿øÀÎ:\n';
-                    errorMessage += '1?? Apps Script ¹èÆ÷ ±ÇÇÑÀÌ Àß¸øµÊ (90%)\n';
-                    errorMessage += '2?? CORS Á¤Ã¥ À§¹İ\n';
-                    errorMessage += '3?? ºê¶ó¿ìÀú º¸¾È ¼³Á¤\n\n';
+                    errorMessage += 'ğŸš« ë„¤íŠ¸ì›Œí¬ ìš”ì²­ì´ ì°¨ë‹¨ë˜ì—ˆìŠµë‹ˆë‹¤.\n\n';
+                    errorMessage += 'ğŸ”¥ ì´ê²ƒì€ ê°€ì¥ í”í•œ "Failed to fetch" ì˜¤ë¥˜ì…ë‹ˆë‹¤!\n\n';
+                    errorMessage += 'ğŸ¯ ì£¼ìš” ì›ì¸:\n';
+                    errorMessage += '1ï¸âƒ£ Apps Script ë°°í¬ ê¶Œí•œì´ ì˜ëª»ë¨ (90%)\n';
+                    errorMessage += '2ï¸âƒ£ CORS ì •ì±… ìœ„ë°˜\n';
+                    errorMessage += '3ï¸âƒ£ ë¸Œë¼ìš°ì € ë³´ì•ˆ ì„¤ì •\n\n';
                     
-                    errorMessage += '?? ±ä±Ş ÇØ°á¹ı (¼ø¼­´ë·Î!):\n\n';
-                    errorMessage += '?? 1´Ü°è: ±âÁ¸ ¹èÆ÷ ¿ÏÀü »èÁ¦\n';
-                    errorMessage += '? Apps Script ¡æ "¹èÆ÷" ¡æ "¹èÆ÷ °ü¸®"\n';
-                    errorMessage += '? ±âÁ¸ ¹èÆ÷ ¸ğµÎ »èÁ¦ (??? ¾ÆÀÌÄÜ)\n';
-                    errorMessage += '? ?? ÀÌ ´Ü°è°¡ °¡Àå Áß¿äÇÕ´Ï´Ù!\n\n';
+                    errorMessage += 'ğŸš¨ ê¸´ê¸‰ í•´ê²°ë²• (ìˆœì„œëŒ€ë¡œ!):\n\n';
+                    errorMessage += 'ğŸ”§ 1ë‹¨ê³„: ê¸°ì¡´ ë°°í¬ ì™„ì „ ì‚­ì œ\n';
+                    errorMessage += 'â€¢ Apps Script â†’ "ë°°í¬" â†’ "ë°°í¬ ê´€ë¦¬"\n';
+                    errorMessage += 'â€¢ ê¸°ì¡´ ë°°í¬ ëª¨ë‘ ì‚­ì œ (ğŸ—‘ï¸ ì•„ì´ì½˜)\n';
+                    errorMessage += 'â€¢ âš ï¸ ì´ ë‹¨ê³„ê°€ ê°€ì¥ ì¤‘ìš”í•©ë‹ˆë‹¤!\n\n';
                     
-                    errorMessage += '?? 2´Ü°è: »õ ¹èÆ÷ »ı¼º\n';
-                    errorMessage += '? "¹èÆ÷" ¡æ "»õ ¹èÆ÷"\n';
-                    errorMessage += '? ?? ¼³Á¤ ¡æ "À¥ ¾Û" ¼±ÅÃ\n';
-                    errorMessage += '? ½ÇÇà ±ÇÇÑ: "³ª"\n';
-                    errorMessage += '? ¾×¼¼½º ±ÇÇÑ: "¸ğµç »ç¿ëÀÚ" ?\n';
-                    errorMessage += '? "¹èÆ÷" Å¬¸¯\n\n';
+                    errorMessage += 'ğŸ”§ 2ë‹¨ê³„: ìƒˆ ë°°í¬ ìƒì„±\n';
+                    errorMessage += 'â€¢ "ë°°í¬" â†’ "ìƒˆ ë°°í¬"\n';
+                    errorMessage += 'â€¢ âš™ï¸ ì„¤ì • â†’ "ì›¹ ì•±" ì„ íƒ\n';
+                    errorMessage += 'â€¢ ì‹¤í–‰ ê¶Œí•œ: "ë‚˜"\n';
+                    errorMessage += 'â€¢ ì•¡ì„¸ìŠ¤ ê¶Œí•œ: "ëª¨ë“  ì‚¬ìš©ì" â­\n';
+                    errorMessage += 'â€¢ "ë°°í¬" í´ë¦­\n\n';
                     
-                    errorMessage += '?? 3´Ü°è: ±ÇÇÑ ½ÂÀÎ (ÇÙ½É!)\n';
-                    errorMessage += '? "¾ÛÀÌ È®ÀÎµÇÁö ¾ÊÀ½" ¡æ "°í±Ş"\n';
-                    errorMessage += '? "¾ÈÀüÇÏÁö ¾ÊÀº ÆäÀÌÁö·Î ÀÌµ¿"\n';
-                    errorMessage += '? ¸ğµç ±ÇÇÑ "Çã¿ë"\n';
+                    errorMessage += 'ğŸ”§ 3ë‹¨ê³„: ê¶Œí•œ ìŠ¹ì¸ (í•µì‹¬!)\n';
+                    errorMessage += 'â€¢ "ì•±ì´ í™•ì¸ë˜ì§€ ì•ŠìŒ" â†’ "ê³ ê¸‰"\n';
+                    errorMessage += 'â€¢ "ì•ˆì „í•˜ì§€ ì•Šì€ í˜ì´ì§€ë¡œ ì´ë™"\n';
+                    errorMessage += 'â€¢ ëª¨ë“  ê¶Œí•œ "í—ˆìš©"\n';
                 } else if (error.message.includes('PERMISSION_ERROR')) {
                     errorType = 'PERMISSION';
-                    errorMessage += '?? ±ÇÇÑ ¼³Á¤ ¹®Á¦\n\n';
-                    errorMessage += 'Apps Script°¡ HTML ·Î±×ÀÎ ÆäÀÌÁö¸¦ ¹İÈ¯Çß½À´Ï´Ù.\n';
-                    errorMessage += 'ÀÌ´Â ¹èÆ÷ ±ÇÇÑÀÌ ¿Ã¹Ù¸£Áö ¾ÊÀ½À» ÀÇ¹ÌÇÕ´Ï´Ù.\n\n';
-                    errorMessage += '? ÇØ°á ¹æ¹ı:\n';
-                    errorMessage += '? ¹èÆ÷ ½Ã "¾×¼¼½º ±ÇÇÑ"À» "¸ğµç »ç¿ëÀÚ"·Î ¼³Á¤\n';
-                    errorMessage += '? ±âÁ¸ ¹èÆ÷ »èÁ¦ ÈÄ »õ·Î ¹èÆ÷\n';
-                    errorMessage += '? ±ÇÇÑ ½ÂÀÎ °úÁ¤À» Á¤È®È÷ ÁøÇà\n';
+                    errorMessage += 'ğŸ”’ ê¶Œí•œ ì„¤ì • ë¬¸ì œ\n\n';
+                    errorMessage += 'Apps Scriptê°€ HTML ë¡œê·¸ì¸ í˜ì´ì§€ë¥¼ ë°˜í™˜í–ˆìŠµë‹ˆë‹¤.\n';
+                    errorMessage += 'ì´ëŠ” ë°°í¬ ê¶Œí•œì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŒì„ ì˜ë¯¸í•©ë‹ˆë‹¤.\n\n';
+                    errorMessage += 'âœ… í•´ê²° ë°©ë²•:\n';
+                    errorMessage += 'â€¢ ë°°í¬ ì‹œ "ì•¡ì„¸ìŠ¤ ê¶Œí•œ"ì„ "ëª¨ë“  ì‚¬ìš©ì"ë¡œ ì„¤ì •\n';
+                    errorMessage += 'â€¢ ê¸°ì¡´ ë°°í¬ ì‚­ì œ í›„ ìƒˆë¡œ ë°°í¬\n';
+                    errorMessage += 'â€¢ ê¶Œí•œ ìŠ¹ì¸ ê³¼ì •ì„ ì •í™•íˆ ì§„í–‰\n';
                 } else if (error.message.includes('JSON_PARSE_ERROR')) {
                     errorType = 'CODE_ERROR';
-                    errorMessage += '?? Apps Script ÄÚµå ¹®Á¦\n\n';
-                    errorMessage += 'Apps Script¿¡¼­ ¿Ã¹Ù¸¥ JSONÀ» ¹İÈ¯ÇÏÁö ¾Ê½À´Ï´Ù.\n\n';
-                    errorMessage += '? ÇØ°á ¹æ¹ı:\n';
-                    errorMessage += '? Á¦°øµÈ ÄÚµå¸¦ Á¤È®È÷ º¹»çÇß´ÂÁö È®ÀÎ\n';
-                    errorMessage += '? Apps Script¿¡¼­ ÄÚµå ÀúÀå (Ctrl+S)\n';
-                    errorMessage += '? »õ ¹èÆ÷ »ı¼º\n';
+                    errorMessage += 'ğŸ“ Apps Script ì½”ë“œ ë¬¸ì œ\n\n';
+                    errorMessage += 'Apps Scriptì—ì„œ ì˜¬ë°”ë¥¸ JSONì„ ë°˜í™˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\n';
+                    errorMessage += 'âœ… í•´ê²° ë°©ë²•:\n';
+                    errorMessage += 'â€¢ ì œê³µëœ ì½”ë“œë¥¼ ì •í™•íˆ ë³µì‚¬í–ˆëŠ”ì§€ í™•ì¸\n';
+                    errorMessage += 'â€¢ Apps Scriptì—ì„œ ì½”ë“œ ì €ì¥ (Ctrl+S)\n';
+                    errorMessage += 'â€¢ ìƒˆ ë°°í¬ ìƒì„±\n';
                 } else if (error.message.includes('EMPTY_RESPONSE')) {
                     errorType = 'EMPTY_RESPONSE';
-                    errorMessage += '?? ºó ÀÀ´ä ¿À·ù\n\n';
-                    errorMessage += 'Apps Script°¡ ¾Æ¹«°Íµµ ¹İÈ¯ÇÏÁö ¾Ê½À´Ï´Ù.\n\n';
-                    errorMessage += '? ÇØ°á ¹æ¹ı:\n';
-                    errorMessage += '? Apps Script ÄÚµå°¡ ¿Ã¹Ù¸¥Áö È®ÀÎ\n';
-                    errorMessage += '? doGet, doPost ÇÔ¼ö°¡ ÀÖ´ÂÁö È®ÀÎ\n';
-                    errorMessage += '? ÄÚµå ÀúÀå ÈÄ »õ ¹èÆ÷\n';
+                    errorMessage += 'ğŸ“­ ë¹ˆ ì‘ë‹µ ì˜¤ë¥˜\n\n';
+                    errorMessage += 'Apps Scriptê°€ ì•„ë¬´ê²ƒë„ ë°˜í™˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\n';
+                    errorMessage += 'âœ… í•´ê²° ë°©ë²•:\n';
+                    errorMessage += 'â€¢ Apps Script ì½”ë“œê°€ ì˜¬ë°”ë¥¸ì§€ í™•ì¸\n';
+                    errorMessage += 'â€¢ doGet, doPost í•¨ìˆ˜ê°€ ìˆëŠ”ì§€ í™•ì¸\n';
+                    errorMessage += 'â€¢ ì½”ë“œ ì €ì¥ í›„ ìƒˆ ë°°í¬\n';
                 } else {
-                    errorMessage += `?? ¿À·ù »ó¼¼: ${error.message}\n\n`;
+                    errorMessage += `ğŸ” ì˜¤ë¥˜ ìƒì„¸: ${error.message}\n\n`;
                 }
                 
-                // °øÅë Ãß°¡ µµ¿ò¸»
-                errorMessage += '\n?? Ãß°¡ µµ¿ò¸»:\n\n';
-                errorMessage += '?? ºê¶ó¿ìÀúº° ÇØ°á¹ı:\n';
-                errorMessage += '? Chrome: ½ÃÅ©¸´ ¸ğµå¿¡¼­ ½Ãµµ\n';
-                errorMessage += '? Firefox: ÃßÀû ¹æÁö ÇØÁ¦\n';
-                errorMessage += '? Safari: °³¹ßÀÚ ¸Ş´º¿¡¼­ CORS ÇØÁ¦\n\n';
+                // ê³µí†µ ì¶”ê°€ ë„ì›€ë§
+                errorMessage += '\nğŸ“‹ ì¶”ê°€ ë„ì›€ë§:\n\n';
+                errorMessage += 'ğŸŒ ë¸Œë¼ìš°ì €ë³„ í•´ê²°ë²•:\n';
+                errorMessage += 'â€¢ Chrome: ì‹œí¬ë¦¿ ëª¨ë“œì—ì„œ ì‹œë„\n';
+                errorMessage += 'â€¢ Firefox: ì¶”ì  ë°©ì§€ í•´ì œ\n';
+                errorMessage += 'â€¢ Safari: ê°œë°œì ë©”ë‰´ì—ì„œ CORS í•´ì œ\n\n';
                 
-                errorMessage += '?? °í±Ş ÇØ°á¹ı:\n';
-                errorMessage += '? ºê¶ó¿ìÀú Ä³½Ã ¿ÏÀü »èÁ¦\n';
-                errorMessage += '? ´Ù¸¥ ±¸±Û °èÁ¤À¸·Î ½Ãµµ\n';
-                errorMessage += '? °³¹ßÀÚ µµ±¸(F12) ¡æ ÄÜ¼Ö ÅÇ¿¡¼­ »ó¼¼ ¿À·ù È®ÀÎ\n\n';
+                errorMessage += 'ğŸ”§ ê³ ê¸‰ í•´ê²°ë²•:\n';
+                errorMessage += 'â€¢ ë¸Œë¼ìš°ì € ìºì‹œ ì™„ì „ ì‚­ì œ\n';
+                errorMessage += 'â€¢ ë‹¤ë¥¸ êµ¬ê¸€ ê³„ì •ìœ¼ë¡œ ì‹œë„\n';
+                errorMessage += 'â€¢ ê°œë°œì ë„êµ¬(F12) â†’ ì½˜ì†” íƒ­ì—ì„œ ìƒì„¸ ì˜¤ë¥˜ í™•ì¸\n\n';
                 
-                errorMessage += '?? ¿©ÀüÈ÷ ¾È µÇ¸é:\n';
-                errorMessage += '? 30ºĞ ÈÄ ´Ù½Ã ½Ãµµ (±¸±Û ¼­¹ö µ¿±âÈ­ ½Ã°£)\n';
-                errorMessage += '? ´Ù¸¥ ±â±â/³×Æ®¿öÅ©¿¡¼­ ½Ãµµ\n';
-                errorMessage += '? ±¸±Û Apps Script »óÅÂ ÆäÀÌÁö È®ÀÎ';
+                errorMessage += 'ğŸ’¡ ì—¬ì „íˆ ì•ˆ ë˜ë©´:\n';
+                errorMessage += 'â€¢ 30ë¶„ í›„ ë‹¤ì‹œ ì‹œë„ (êµ¬ê¸€ ì„œë²„ ë™ê¸°í™” ì‹œê°„)\n';
+                errorMessage += 'â€¢ ë‹¤ë¥¸ ê¸°ê¸°/ë„¤íŠ¸ì›Œí¬ì—ì„œ ì‹œë„\n';
+                errorMessage += 'â€¢ êµ¬ê¸€ Apps Script ìƒíƒœ í˜ì´ì§€ í™•ì¸';
                 
                 showAlert(errorMessage);
                 
-                // ¿¬°á ½ÇÆĞ »óÅÂ Ç¥½Ã
-                document.getElementById('connectionStatus').innerHTML = `? ¿¬°á ½ÇÆĞ (${errorType}) - ·ÎÄÃ ÀúÀå¸¸ °¡´É`;
+                // ì—°ê²° ì‹¤íŒ¨ ìƒíƒœ í‘œì‹œ
+                document.getElementById('connectionStatus').innerHTML = `âŒ ì—°ê²° ì‹¤íŒ¨ (${errorType}) - ë¡œì»¬ ì €ì¥ë§Œ ê°€ëŠ¥`;
                 document.getElementById('connectionStatus').className = 'text-red-700 font-medium';
                 
-                // Ã¼Å©¸®½ºÆ® Ç¥½Ã
+                // ì²´í¬ë¦¬ìŠ¤íŠ¸ í‘œì‹œ
                 document.getElementById('troubleshootingChecklist').style.display = 'block';
             }
         }
 
-        // ±¸±Û ½ÃÆ®¿¡¼­ µ¥ÀÌÅÍ ºÒ·¯¿À±â
+        // êµ¬ê¸€ ì‹œíŠ¸ì—ì„œ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
         async function loadFromGoogleSheet() {
             if (!isConnected || !googleSheetUrl) {
-                showAlert('¸ÕÀú ±¸±Û ½ÃÆ®¸¦ ¿¬°áÇØÁÖ¼¼¿ä.');
+                showAlert('ë¨¼ì € êµ¬ê¸€ ì‹œíŠ¸ë¥¼ ì—°ê²°í•´ì£¼ì„¸ìš”.');
                 return;
             }
             
             try {
-                showAlert('µ¥ÀÌÅÍ¸¦ ºÒ·¯¿À´Â Áß...');
+                showAlert('ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘...');
                 
                 const response = await fetch(googleSheetUrl);
                 const data = await response.json();
                 
-                // µ¥ÀÌÅÍ ÆÄ½Ì
+                // ë°ì´í„° íŒŒì‹±
                 reservations = {};
                 if (data && data.length > 0) {
                     data.forEach(row => {
@@ -979,29 +979,29 @@ function doGet(e) {
                     });
                 }
                 
-                // UI ¾÷µ¥ÀÌÆ®
+                // UI ì—…ë°ì´íŠ¸
                 updateDateButtonColors();
                 if (selectedDate) {
                     createTimeTable();
                 }
                 
-                showAlert(`? µ¥ÀÌÅÍ¸¦ ¼º°øÀûÀ¸·Î ºÒ·¯¿Ô½À´Ï´Ù!\nÃÑ ${Object.keys(reservations).length}°³ÀÇ ¿¹¾à`);
+                showAlert(`âœ… ë°ì´í„°ë¥¼ ì„±ê³µì ìœ¼ë¡œ ë¶ˆëŸ¬ì™”ìŠµë‹ˆë‹¤!\nì´ ${Object.keys(reservations).length}ê°œì˜ ì˜ˆì•½`);
                 
             } catch (error) {
-                console.error('µ¥ÀÌÅÍ ºÒ·¯¿À±â ½ÇÆĞ:', error);
-                showAlert('? µ¥ÀÌÅÍ ºÒ·¯¿À±â¿¡ ½ÇÆĞÇß½À´Ï´Ù.\nURLÀ» È®ÀÎÇØÁÖ¼¼¿ä.');
+                console.error('ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì‹¤íŒ¨:', error);
+                showAlert('âŒ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.\nURLì„ í™•ì¸í•´ì£¼ì„¸ìš”.');
             }
         }
 
-        // ±¸±Û ½ÃÆ®¿¡ µ¥ÀÌÅÍ ÀúÀå
+        // êµ¬ê¸€ ì‹œíŠ¸ì— ë°ì´í„° ì €ì¥
         async function saveToGoogleSheet() {
             if (!isConnected || !googleSheetUrl) {
-                console.log('±¸±Û ½ÃÆ® ¿¬°á ¾ÈµÊ - ·ÎÄÃ ÀúÀå¸¸');
-                return; // ¿¬°áµÇÁö ¾ÊÀº °æ¿ì ·ÎÄÃ ÀúÀå¸¸
+                console.log('êµ¬ê¸€ ì‹œíŠ¸ ì—°ê²° ì•ˆë¨ - ë¡œì»¬ ì €ì¥ë§Œ');
+                return; // ì—°ê²°ë˜ì§€ ì•Šì€ ê²½ìš° ë¡œì»¬ ì €ì¥ë§Œ
             }
             
             try {
-                // ¿¹¾à µ¥ÀÌÅÍ¸¦ ¹è¿­·Î º¯È¯
+                // ì˜ˆì•½ ë°ì´í„°ë¥¼ ë°°ì—´ë¡œ ë³€í™˜
                 const reservationArray = [];
                 Object.keys(reservations).forEach(key => {
                     const parts = key.split('_');
@@ -1015,8 +1015,8 @@ function doGet(e) {
                     reservations: reservationArray
                 };
                 
-                console.log('±¸±Û ½ÃÆ®¿¡ ÀúÀåÇÒ µ¥ÀÌÅÍ:', payload);
-                console.log('ÀúÀåÇÒ URL:', googleSheetUrl);
+                console.log('êµ¬ê¸€ ì‹œíŠ¸ì— ì €ì¥í•  ë°ì´í„°:', payload);
+                console.log('ì €ì¥í•  URL:', googleSheetUrl);
                 
                 const response = await fetch(googleSheetUrl, {
                     method: 'POST',
@@ -1029,39 +1029,39 @@ function doGet(e) {
                     body: JSON.stringify(payload)
                 });
                 
-                console.log('ÀÀ´ä »óÅÂ:', response.status);
-                console.log('ÀÀ´ä Çì´õ:', response.headers);
+                console.log('ì‘ë‹µ ìƒíƒœ:', response.status);
+                console.log('ì‘ë‹µ í—¤ë”:', response.headers);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
                 
                 const result = await response.json();
-                console.log('±¸±Û ½ÃÆ® ÀúÀå °á°ú:', result);
+                console.log('êµ¬ê¸€ ì‹œíŠ¸ ì €ì¥ ê²°ê³¼:', result);
                 
                 if (result.success) {
-                    console.log(`? ±¸±Û ½ÃÆ®¿¡ ${result.saved || reservationArray.length}°³ µ¥ÀÌÅÍ ÀúÀå ¿Ï·á`);
+                    console.log(`âœ… êµ¬ê¸€ ì‹œíŠ¸ì— ${result.saved || reservationArray.length}ê°œ ë°ì´í„° ì €ì¥ ì™„ë£Œ`);
                     
-                    // ÀúÀå ¼º°ø ½Ã ¿¬°á »óÅÂ ¾÷µ¥ÀÌÆ®
-                    document.getElementById('connectionStatus').innerHTML = '? ±¸±Û ½ÃÆ® ¿¬°áµÊ - ½Ç½Ã°£ µ¿±âÈ­ °¡´É';
+                    // ì €ì¥ ì„±ê³µ ì‹œ ì—°ê²° ìƒíƒœ ì—…ë°ì´íŠ¸
+                    document.getElementById('connectionStatus').innerHTML = 'âœ… êµ¬ê¸€ ì‹œíŠ¸ ì—°ê²°ë¨ - ì‹¤ì‹œê°„ ë™ê¸°í™” ê°€ëŠ¥';
                     document.getElementById('connectionStatus').className = 'text-green-700 font-medium';
                 } else {
-                    throw new Error(result.error || 'ÀúÀå ½ÇÆĞ');
+                    throw new Error(result.error || 'ì €ì¥ ì‹¤íŒ¨');
                 }
                 
             } catch (error) {
-                console.error('±¸±Û ½ÃÆ® ÀúÀå ½ÇÆĞ:', error);
+                console.error('êµ¬ê¸€ ì‹œíŠ¸ ì €ì¥ ì‹¤íŒ¨:', error);
                 
-                // ¿¬°á »óÅÂ¸¦ ½ÇÆĞ·Î º¯°æ
+                // ì—°ê²° ìƒíƒœë¥¼ ì‹¤íŒ¨ë¡œ ë³€ê²½
                 isConnected = false;
-                document.getElementById('connectionStatus').innerHTML = '? ±¸±Û ½ÃÆ® ÀúÀå ½ÇÆĞ - ·ÎÄÃ ÀúÀå¸¸ °¡´É';
+                document.getElementById('connectionStatus').innerHTML = 'âŒ êµ¬ê¸€ ì‹œíŠ¸ ì €ì¥ ì‹¤íŒ¨ - ë¡œì»¬ ì €ì¥ë§Œ ê°€ëŠ¥';
                 document.getElementById('connectionStatus').className = 'text-red-700';
                 
-                showAlert('?? ±¸±Û ½ÃÆ® ÀúÀå¿¡ ½ÇÆĞÇß½À´Ï´Ù.\n·ÎÄÃ¿¡¸¸ ÀúÀåµÇ¾ú½À´Ï´Ù.\n\n¿À·ù: ' + error.message + '\n\n°ü¸®ÀÚ ¸ğµå¿¡¼­ ´Ù½Ã ¿¬°áÇØº¸¼¼¿ä.');
+                showAlert('âš ï¸ êµ¬ê¸€ ì‹œíŠ¸ ì €ì¥ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.\në¡œì»¬ì—ë§Œ ì €ì¥ë˜ì—ˆìŠµë‹ˆë‹¤.\n\nì˜¤ë¥˜: ' + error.message + '\n\nê´€ë¦¬ì ëª¨ë“œì—ì„œ ë‹¤ì‹œ ì—°ê²°í•´ë³´ì„¸ìš”.');
             }
         }
 
-        // ³¯Â¥¸¦ yyyy-mm-dd Çü½ÄÀ¸·Î Æ÷¸ËÆÃ
+        // ë‚ ì§œë¥¼ yyyy-mm-dd í˜•ì‹ìœ¼ë¡œ í¬ë§·íŒ…
         function formatDateToYYYYMMDD(date) {
             const yyyy = date.getFullYear();
             const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -1069,11 +1069,11 @@ function doGet(e) {
             return `${yyyy}-${mm}-${dd}`;
         }
 
-        // ³¯Â¥ »ı¼º (8¿ù 10ÀÏ ~ 9¿ù 2ÀÏ)
+        // ë‚ ì§œ ìƒì„± (8ì›” 10ì¼ ~ 9ì›” 2ì¼)
         function generateDates() {
             const dates = [];
-            const startDate = new Date(2025, 7, 10); // 8¿ù 10ÀÏ (¿ùÀº 0ºÎÅÍ ½ÃÀÛ)
-            const endDate = new Date(2025, 8, 2);   // 9¿ù 2ÀÏ
+            const startDate = new Date(2025, 7, 10); // 8ì›” 10ì¼ (ì›”ì€ 0ë¶€í„° ì‹œì‘)
+            const endDate = new Date(2025, 8, 2);   // 9ì›” 2ì¼
             
             const currentDate = new Date(startDate);
             while (currentDate <= endDate) {
@@ -1083,7 +1083,7 @@ function doGet(e) {
             return dates;
         }
 
-        // ³¯Â¥ ¹öÆ° »ı¼º
+        // ë‚ ì§œ ë²„íŠ¼ ìƒì„±
         function createDateButtons() {
             const dateSelector = document.getElementById('dateSelector');
             const dates = generateDates();
@@ -1099,7 +1099,7 @@ function doGet(e) {
             });
         }
 
-        // ¿¹¾à °³¼ö¿¡ µû¸¥ »ö»ó Å¬·¡½º ¹İÈ¯ (ÃÊ·Ï»ö ±×¶óµ¥ÀÌ¼Ç)
+        // ì˜ˆì•½ ê°œìˆ˜ì— ë”°ë¥¸ ìƒ‰ìƒ í´ë˜ìŠ¤ ë°˜í™˜ (ì´ˆë¡ìƒ‰ ê·¸ë¼ë°ì´ì…˜)
         function getReservationColorClass(count) {
             if (count === 0) return 'px-4 py-2 border border-gray-300 rounded-lg hover:bg-blue-50 transition-colors';
             if (count === 1) return 'px-4 py-2 border border-green-200 bg-green-100 text-green-700 rounded-lg hover:bg-green-150 transition-colors';
@@ -1109,7 +1109,7 @@ function doGet(e) {
             return 'px-4 py-2 border border-green-600 bg-green-500 text-white rounded-lg hover:bg-green-550 transition-colors font-bold';
         }
 
-        // Æ¯Á¤ ³¯Â¥ÀÇ ¿¹¾à °³¼ö °è»ê
+        // íŠ¹ì • ë‚ ì§œì˜ ì˜ˆì•½ ê°œìˆ˜ ê³„ì‚°
         function getReservationCount(dateStr) {
             let count = 0;
             for (let hour = 10; hour <= 19; hour++) {
@@ -1121,7 +1121,7 @@ function doGet(e) {
             return count;
         }
 
-        // ¸ğµç ³¯Â¥ ¹öÆ° »ö»ó ¾÷µ¥ÀÌÆ®
+        // ëª¨ë“  ë‚ ì§œ ë²„íŠ¼ ìƒ‰ìƒ ì—…ë°ì´íŠ¸
         function updateDateButtonColors() {
             document.querySelectorAll('#dateSelector button').forEach(button => {
                 const dateStr = button.getAttribute('data-date');
@@ -1136,68 +1136,68 @@ function doGet(e) {
             });
         }
 
-        // ³¯Â¥ ¼±ÅÃ
+        // ë‚ ì§œ ì„ íƒ
         function selectDate(dateStr, buttonElement) {
             selectedDate = dateStr;
             
-            console.log('=== ³¯Â¥ ¼±ÅÃ µğ¹ö±ë ===');
-            console.log('ÀÔ·ÂµÈ dateStr:', dateStr);
+            console.log('=== ë‚ ì§œ ì„ íƒ ë””ë²„ê¹… ===');
+            console.log('ì…ë ¥ëœ dateStr:', dateStr);
             
             try {
-                // ¿ÏÀüÈ÷ ¼öµ¿À¸·Î ³¯Â¥ ÆÄ½Ì (Date °´Ã¼ »ç¿ë ¾ÈÇÔ)
+                // ì™„ì „íˆ ìˆ˜ë™ìœ¼ë¡œ ë‚ ì§œ íŒŒì‹± (Date ê°ì²´ ì‚¬ìš© ì•ˆí•¨)
                 const parts = dateStr.split('-');
                 const year = parseInt(parts[0]);
                 const month = parseInt(parts[1]);
                 const day = parseInt(parts[2]);
                 
-                console.log('ÆÄ½ÌµÈ °ªµé:', { year, month, day });
+                console.log('íŒŒì‹±ëœ ê°’ë“¤:', { year, month, day });
                 
-                // ¿äÀÏ °è»êµµ ¼öµ¿À¸·Î (Zeller's congruence ¾Ë°í¸®Áò)
+                // ìš”ì¼ ê³„ì‚°ë„ ìˆ˜ë™ìœ¼ë¡œ (Zeller's congruence ì•Œê³ ë¦¬ì¦˜)
                 let m = month;
                 let y = year;
                 
-                // 1¿ù°ú 2¿ùÀº Àü³âµµÀÇ 13¿ù, 14¿ù·Î °è»ê
+                // 1ì›”ê³¼ 2ì›”ì€ ì „ë…„ë„ì˜ 13ì›”, 14ì›”ë¡œ ê³„ì‚°
                 if (month <= 2) {
                     m = month + 12;
                     y = year - 1;
                 }
                 
-                // Zeller's congruence °ø½Ä
+                // Zeller's congruence ê³µì‹
                 const q = day;
                 const k = y % 100;
                 const j = Math.floor(y / 100);
                 
                 const h = (q + Math.floor((13 * (m + 1)) / 5) + k + Math.floor(k / 4) + Math.floor(j / 4) - 2 * j) % 7;
                 
-                // °á°ú¸¦ ÀÏ¿äÀÏ=0 ±âÁØÀ¸·Î º¯È¯ (Zeller´Â Åä¿äÀÏ=0ÀÌ¹Ç·Î Á¶Á¤)
+                // ê²°ê³¼ë¥¼ ì¼ìš”ì¼=0 ê¸°ì¤€ìœ¼ë¡œ ë³€í™˜ (ZellerëŠ” í† ìš”ì¼=0ì´ë¯€ë¡œ ì¡°ì •)
                 const dayOfWeek = (h + 6) % 7;
                 
-                const dayNames = ['ÀÏ', '¿ù', 'È­', '¼ö', '¸ñ', '±İ', 'Åä'];
+                const dayNames = ['ì¼', 'ì›”', 'í™”', 'ìˆ˜', 'ëª©', 'ê¸ˆ', 'í† '];
                 const koreanDayName = dayNames[dayOfWeek];
                 
-                console.log('¼öµ¿ °è»êµÈ ¿äÀÏ ÀÎµ¦½º:', dayOfWeek);
-                console.log('ÇÑ±¹¾î ¿äÀÏ:', koreanDayName);
+                console.log('ìˆ˜ë™ ê³„ì‚°ëœ ìš”ì¼ ì¸ë±ìŠ¤:', dayOfWeek);
+                console.log('í•œêµ­ì–´ ìš”ì¼:', koreanDayName);
                 
-                // ³¯Â¥ Ç¥½Ã - ÆÄ½ÌµÈ °ªÀ» Á÷Á¢ »ç¿ë
-                const displayText = `${month}¿ù ${day}ÀÏ (${koreanDayName})`;
-                console.log('ÃÖÁ¾ Ç¥½Ã ÅØ½ºÆ®:', displayText);
+                // ë‚ ì§œ í‘œì‹œ - íŒŒì‹±ëœ ê°’ì„ ì§ì ‘ ì‚¬ìš©
+                const displayText = `${month}ì›” ${day}ì¼ (${koreanDayName})`;
+                console.log('ìµœì¢… í‘œì‹œ í…ìŠ¤íŠ¸:', displayText);
                 
                 document.getElementById('selectedDateDisplay').textContent = displayText;
                 
             } catch (error) {
-                console.error('³¯Â¥ ÆÄ½Ì ¿À·ù:', error);
-                document.getElementById('selectedDateDisplay').textContent = `³¯Â¥ ¿À·ù: ${dateStr}`;
+                console.error('ë‚ ì§œ íŒŒì‹± ì˜¤ë¥˜:', error);
+                document.getElementById('selectedDateDisplay').textContent = `ë‚ ì§œ ì˜¤ë¥˜: ${dateStr}`;
             }
             
-            console.log('=== ³¯Â¥ ¼±ÅÃ µğ¹ö±ë ³¡ ===');
+            console.log('=== ë‚ ì§œ ì„ íƒ ë””ë²„ê¹… ë ===');
             
-            // ¸ğµç ¹öÆ° »ö»ó ¾÷µ¥ÀÌÆ®
+            // ëª¨ë“  ë²„íŠ¼ ìƒ‰ìƒ ì—…ë°ì´íŠ¸
             updateDateButtonColors();
             
             createTimeTable();
         }
 
-        // ½Ã°£Ç¥ »ı¼º
+        // ì‹œê°„í‘œ ìƒì„±
         function createTimeTable() {
             const timeTable = document.getElementById('timeTable');
             timeTable.innerHTML = '';
@@ -1212,7 +1212,7 @@ function doGet(e) {
                 row.className = 'hover:bg-gray-50';
                 
                 if (isDisabled) {
-                    // ºñÈ°¼ºÈ­µÈ °æ¿ì
+                    // ë¹„í™œì„±í™”ëœ ê²½ìš°
                     row.innerHTML = `
                         <td class="border border-gray-300 px-4 py-2 font-medium text-gray-700">${timeSlot}</td>
                         <td class="border border-gray-300 px-4 py-2">
@@ -1223,14 +1223,14 @@ function doGet(e) {
                                 ${isAdminMode ? `
                                     <button onclick="toggleSlotDisabled('${timeSlot}')" 
                                             class="bg-green-100 hover:bg-green-200 text-green-800 px-3 py-1 rounded text-sm transition-colors">
-                                        È°¼ºÈ­
+                                        í™œì„±í™”
                                     </button>
                                 ` : ''}
                             </div>
                         </td>
                     `;
                 } else if (reserver) {
-                    // ¿¹¾àµÈ °æ¿ì
+                    // ì˜ˆì•½ëœ ê²½ìš°
                     row.innerHTML = `
                         <td class="border border-gray-300 px-4 py-2 font-medium text-gray-700">${timeSlot}</td>
                         <td class="border border-gray-300 px-4 py-2">
@@ -1241,12 +1241,12 @@ function doGet(e) {
                                 <div class="flex gap-2">
                                     <button onclick="openEditModal('${timeSlot}')" 
                                             class="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-3 py-1 rounded text-sm transition-colors">
-                                        ¼öÁ¤/»èÁ¦
+                                        ìˆ˜ì •/ì‚­ì œ
                                     </button>
                                     ${isAdminMode ? `
                                         <button onclick="toggleSlotDisabled('${timeSlot}')" 
                                                 class="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1 rounded text-sm transition-colors">
-                                            ºñÈ°¼ºÈ­
+                                            ë¹„í™œì„±í™”
                                         </button>
                                     ` : ''}
                                 </div>
@@ -1254,23 +1254,23 @@ function doGet(e) {
                         </td>
                     `;
                 } else {
-                    // ¿¹¾à °¡´ÉÇÑ °æ¿ì
+                    // ì˜ˆì•½ ê°€ëŠ¥í•œ ê²½ìš°
                     row.innerHTML = `
                         <td class="border border-gray-300 px-4 py-2 font-medium text-gray-700">${timeSlot}</td>
                         <td class="border border-gray-300 px-4 py-2">
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400" id="reserver_${key}">
-                                    ¿¹¾à °¡´É
+                                    ì˜ˆì•½ ê°€ëŠ¥
                                 </span>
                                 <div class="flex gap-2">
                                     <button onclick="openReservationModal('${timeSlot}')" 
                                             class="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded text-sm transition-colors">
-                                        ¿¹¾àÇÏ±â
+                                        ì˜ˆì•½í•˜ê¸°
                                     </button>
                                     ${isAdminMode ? `
                                         <button onclick="toggleSlotDisabled('${timeSlot}')" 
                                                 class="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1 rounded text-sm transition-colors">
-                                            ºñÈ°¼ºÈ­
+                                            ë¹„í™œì„±í™”
                                         </button>
                                     ` : ''}
                                 </div>
@@ -1283,10 +1283,10 @@ function doGet(e) {
             }
         }
 
-        // ¿¹¾à ¸ğ´Ş ¿­±â
+        // ì˜ˆì•½ ëª¨ë‹¬ ì—´ê¸°
         function openReservationModal(timeSlot) {
             if (!selectedDate) {
-                showAlert('¸ÕÀú ³¯Â¥¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä.');
+                showAlert('ë¨¼ì € ë‚ ì§œë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”.');
                 return;
             }
             
@@ -1294,7 +1294,7 @@ function doGet(e) {
             document.getElementById('modalTimeSlot').textContent = `${selectedDate} ${timeSlot}`;
             document.getElementById('nameInput').value = '';
             
-            // ÇĞ±Ş ¼±ÅÃ ÃÊ±âÈ­
+            // í•™ê¸‰ ì„ íƒ ì´ˆê¸°í™”
             document.getElementById('elementary').checked = false;
             document.getElementById('highschool').checked = false;
             
@@ -1302,10 +1302,10 @@ function doGet(e) {
             document.getElementById('reservationModal').classList.add('flex');
         }
 
-        // ¼öÁ¤/»èÁ¦ ¸ğ´Ş ¿­±â
+        // ìˆ˜ì •/ì‚­ì œ ëª¨ë‹¬ ì—´ê¸°
         function openEditModal(timeSlot) {
             if (!selectedDate) {
-                showAlert('¸ÕÀú ³¯Â¥¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä.');
+                showAlert('ë¨¼ì € ë‚ ì§œë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”.');
                 return;
             }
             
@@ -1320,13 +1320,13 @@ function doGet(e) {
             document.getElementById('editModal').classList.add('flex');
         }
 
-        // ¿¹¾à È®ÀÎ
+        // ì˜ˆì•½ í™•ì¸
         async function confirmReservation() {
             const name = document.getElementById('nameInput').value.trim();
             const gradeRadios = document.getElementsByName('grade');
             let selectedGrade = '';
             
-            // ÇĞ±Ş ¼±ÅÃ È®ÀÎ
+            // í•™ê¸‰ ì„ íƒ í™•ì¸
             for (let radio of gradeRadios) {
                 if (radio.checked) {
                     selectedGrade = radio.value;
@@ -1335,106 +1335,106 @@ function doGet(e) {
             }
             
             if (!selectedGrade) {
-                showAlert('ÇĞ±ŞÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.');
+                showAlert('í•™ê¸‰ì„ ì„ íƒí•´ì£¼ì„¸ìš”.');
                 return;
             }
             
             if (!name) {
-                showAlert('ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.');
+                showAlert('ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.');
                 return;
             }
             
             const key = `${selectedDate}_${selectedTimeSlot}`;
             reservations[key] = `${selectedGrade} - ${name}`;
             
-            // ·ÎÄÃ ÀúÀå
+            // ë¡œì»¬ ì €ì¥
             localStorage.setItem('reservations', JSON.stringify(reservations));
             
-            // ±¸±Û ½ÃÆ®¿¡ ÀúÀå
+            // êµ¬ê¸€ ì‹œíŠ¸ì— ì €ì¥
             await saveToGoogleSheet();
             
             closeModal();
             createTimeTable();
             updateDateButtonColors();
-            showAlert('¿¹¾àÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù!');
+            showAlert('ì˜ˆì•½ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤!');
         }
 
-        // ¿¹¾à ¼öÁ¤
+        // ì˜ˆì•½ ìˆ˜ì •
         async function updateReservation() {
             const password = document.getElementById('passwordInput').value;
             const newName = document.getElementById('newNameInput').value.trim();
             
             if (password !== PASSWORD) {
-                showAlert('ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù.');
+                showAlert('ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.');
                 return;
             }
             
             if (!newName) {
-                showAlert('»õ ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.');
+                showAlert('ìƒˆ ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.');
                 return;
             }
             
             const key = `${selectedDate}_${selectedTimeSlot}`;
             reservations[key] = newName;
             
-            // ·ÎÄÃ ÀúÀå
+            // ë¡œì»¬ ì €ì¥
             localStorage.setItem('reservations', JSON.stringify(reservations));
             
-            // ±¸±Û ½ÃÆ®¿¡ ÀúÀå
+            // êµ¬ê¸€ ì‹œíŠ¸ì— ì €ì¥
             await saveToGoogleSheet();
             
             closeEditModal();
             createTimeTable();
             updateDateButtonColors();
-            showAlert('¿¹¾àÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù!');
+            showAlert('ì˜ˆì•½ì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤!');
         }
 
-        // ¿¹¾à »èÁ¦
+        // ì˜ˆì•½ ì‚­ì œ
         function deleteReservation() {
             const password = document.getElementById('passwordInput').value;
             
             if (password !== PASSWORD) {
-                showAlert('ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù.');
+                showAlert('ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.');
                 return;
             }
             
-            showConfirm('Á¤¸»·Î ¿¹¾àÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?', async () => {
+            showConfirm('ì •ë§ë¡œ ì˜ˆì•½ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?', async () => {
                 const key = `${selectedDate}_${selectedTimeSlot}`;
                 
-                // ¿¹¾à µ¥ÀÌÅÍ¿¡¼­ »èÁ¦
+                // ì˜ˆì•½ ë°ì´í„°ì—ì„œ ì‚­ì œ
                 if (reservations[key]) {
                     delete reservations[key];
                     
-                    // ·ÎÄÃ ÀúÀå
+                    // ë¡œì»¬ ì €ì¥
                     localStorage.setItem('reservations', JSON.stringify(reservations));
                     
-                    // ±¸±Û ½ÃÆ®¿¡ ÀúÀå
+                    // êµ¬ê¸€ ì‹œíŠ¸ì— ì €ì¥
                     await saveToGoogleSheet();
                     
-                    // ¸ğ´Ş ´İ±â¸¦ ¸ÕÀú ½ÇÇà
+                    // ëª¨ë‹¬ ë‹«ê¸°ë¥¼ ë¨¼ì € ì‹¤í–‰
                     closeEditModal();
                     
-                    // UI ¾÷µ¥ÀÌÆ®
+                    // UI ì—…ë°ì´íŠ¸
                     createTimeTable();
                     updateDateButtonColors();
                     
-                    // ¼º°ø ¸Ş½ÃÁö
-                    showAlert('¿¹¾àÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù!');
+                    // ì„±ê³µ ë©”ì‹œì§€
+                    showAlert('ì˜ˆì•½ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤!');
                 } else {
                     closeEditModal();
-                    showAlert('»èÁ¦ÇÒ ¿¹¾àÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.');
+                    showAlert('ì‚­ì œí•  ì˜ˆì•½ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.');
                 }
             });
         }
 
-        // °ü¸®ÀÚ ¸ğµå Åä±Û
+        // ê´€ë¦¬ì ëª¨ë“œ í† ê¸€
         function toggleAdminMode() {
             document.getElementById('adminPasswordInput').value = '';
             document.getElementById('adminPasswordModal').classList.remove('hidden');
             document.getElementById('adminPasswordModal').classList.add('flex');
         }
 
-        // °ü¸®ÀÚ ºñ¹Ğ¹øÈ£ È®ÀÎ
+        // ê´€ë¦¬ì ë¹„ë°€ë²ˆí˜¸ í™•ì¸
         function checkAdminPassword() {
             const password = document.getElementById('adminPasswordInput').value;
             
@@ -1444,78 +1444,78 @@ function doGet(e) {
                 const googleSheetSection = document.getElementById('googleSheetSection');
                 
                 if (isAdminMode) {
-                    adminBtn.textContent = '?? °ü¸®ÀÚ ¸ğµå (È°¼º)';
+                    adminBtn.textContent = 'ğŸ”“ ê´€ë¦¬ì ëª¨ë“œ (í™œì„±)';
                     adminBtn.className = 'bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition-colors';
                     googleSheetSection.style.display = 'block';
                 } else {
-                    adminBtn.textContent = '?? °ü¸®ÀÚ ¸ğµå';
+                    adminBtn.textContent = 'ğŸ” ê´€ë¦¬ì ëª¨ë“œ';
                     adminBtn.className = 'bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition-colors';
                     googleSheetSection.style.display = 'none';
                 }
                 
                 closeAdminPasswordModal();
-                createTimeTable(); // ½Ã°£Ç¥ ´Ù½Ã »ı¼º
-                showAlert(isAdminMode ? '°ü¸®ÀÚ ¸ğµå°¡ È°¼ºÈ­µÇ¾ú½À´Ï´Ù!' : '°ü¸®ÀÚ ¸ğµå°¡ ºñÈ°¼ºÈ­µÇ¾ú½À´Ï´Ù!');
+                createTimeTable(); // ì‹œê°„í‘œ ë‹¤ì‹œ ìƒì„±
+                showAlert(isAdminMode ? 'ê´€ë¦¬ì ëª¨ë“œê°€ í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤!' : 'ê´€ë¦¬ì ëª¨ë“œê°€ ë¹„í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤!');
             } else {
-                showAlert('ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù.');
+                showAlert('ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.');
             }
         }
 
-        // ½Ã°£´ë ºñÈ°¼ºÈ­/È°¼ºÈ­ Åä±Û
+        // ì‹œê°„ëŒ€ ë¹„í™œì„±í™”/í™œì„±í™” í† ê¸€
         async function toggleSlotDisabled(timeSlot) {
             const key = `${selectedDate}_${timeSlot}`;
             
             if (disabledSlots[key]) {
                 delete disabledSlots[key];
-                showAlert('½Ã°£´ë°¡ È°¼ºÈ­µÇ¾ú½À´Ï´Ù.');
+                showAlert('ì‹œê°„ëŒ€ê°€ í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤.');
                 createTimeTable();
             } else {
-                // ¿¹¾àÀÌ ÀÖ´Â °æ¿ì È®ÀÎ
+                // ì˜ˆì•½ì´ ìˆëŠ” ê²½ìš° í™•ì¸
                 if (reservations[key]) {
-                    showConfirm('ÀÌ ½Ã°£´ë¿¡ ¿¹¾àÀÌ ÀÖ½À´Ï´Ù. ¿¹¾àÀ» »èÁ¦ÇÏ°í ºñÈ°¼ºÈ­ÇÏ½Ã°Ú½À´Ï±î?', async () => {
+                    showConfirm('ì´ ì‹œê°„ëŒ€ì— ì˜ˆì•½ì´ ìˆìŠµë‹ˆë‹¤. ì˜ˆì•½ì„ ì‚­ì œí•˜ê³  ë¹„í™œì„±í™”í•˜ì‹œê² ìŠµë‹ˆê¹Œ?', async () => {
                         delete reservations[key];
                         disabledSlots[key] = true;
                         
-                        // ·ÎÄÃ ÀúÀå
+                        // ë¡œì»¬ ì €ì¥
                         localStorage.setItem('reservations', JSON.stringify(reservations));
                         localStorage.setItem('disabledSlots', JSON.stringify(disabledSlots));
                         
-                        // ±¸±Û ½ÃÆ®¿¡ ÀúÀå
+                        // êµ¬ê¸€ ì‹œíŠ¸ì— ì €ì¥
                         await saveToGoogleSheet();
                         
                         updateDateButtonColors();
-                        showAlert('¿¹¾àÀÌ »èÁ¦µÇ°í ½Ã°£´ë°¡ ºñÈ°¼ºÈ­µÇ¾ú½À´Ï´Ù.');
+                        showAlert('ì˜ˆì•½ì´ ì‚­ì œë˜ê³  ì‹œê°„ëŒ€ê°€ ë¹„í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤.');
                         createTimeTable();
                     });
                 } else {
                     disabledSlots[key] = true;
                     localStorage.setItem('disabledSlots', JSON.stringify(disabledSlots));
-                    showAlert('½Ã°£´ë°¡ ºñÈ°¼ºÈ­µÇ¾ú½À´Ï´Ù.');
+                    showAlert('ì‹œê°„ëŒ€ê°€ ë¹„í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤.');
                     createTimeTable();
                 }
             }
         }
 
-        // Ä¿½ºÅÒ ¾Ë¸² ÇÔ¼ö
+        // ì»¤ìŠ¤í…€ ì•Œë¦¼ í•¨ìˆ˜
         function showAlert(message) {
-            // ±âÁ¸ ¾Ë¸²ÀÌ ÀÖ´Ù¸é Á¦°Å
+            // ê¸°ì¡´ ì•Œë¦¼ì´ ìˆë‹¤ë©´ ì œê±°
             const existingAlert = document.getElementById('customAlert');
             if (existingAlert) {
                 existingAlert.remove();
             }
             
-            // »õ ¾Ë¸² »ı¼º
+            // ìƒˆ ì•Œë¦¼ ìƒì„±
             const alertDiv = document.createElement('div');
             alertDiv.id = 'customAlert';
             alertDiv.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 max-w-md text-center';
             alertDiv.innerHTML = `
                 <p class="whitespace-pre-line">${message}</p>
-                <button onclick="this.parentElement.remove()" class="ml-4 text-blue-200 hover:text-white">?</button>
+                <button onclick="this.parentElement.remove()" class="ml-4 text-blue-200 hover:text-white">âœ•</button>
             `;
             
             document.body.appendChild(alertDiv);
             
-            // 3ÃÊ ÈÄ ÀÚµ¿ Á¦°Å
+            // 3ì´ˆ í›„ ìë™ ì œê±°
             setTimeout(() => {
                 if (alertDiv.parentElement) {
                     alertDiv.remove();
@@ -1523,13 +1523,13 @@ function doGet(e) {
             }, 3000);
         }
 
-        // Ä¿½ºÅÒ È®ÀÎ ÇÔ¼ö
+        // ì»¤ìŠ¤í…€ í™•ì¸ í•¨ìˆ˜
         function showConfirm(message, onConfirm) {
             document.getElementById('confirmMessage').textContent = message;
             document.getElementById('confirmModal').classList.remove('hidden');
             document.getElementById('confirmModal').classList.add('flex');
             
-            // ÀÌº¥Æ® ¸®½º³Ê Á¦°Å ÈÄ »õ·Î Ãß°¡
+            // ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ ì œê±° í›„ ìƒˆë¡œ ì¶”ê°€
             const yesBtn = document.getElementById('confirmYes');
             const noBtn = document.getElementById('confirmNo');
             
@@ -1554,7 +1554,7 @@ function doGet(e) {
             document.getElementById('confirmModal').classList.remove('flex');
         }
 
-        // ¸ğ´Ş ´İ±â
+        // ëª¨ë‹¬ ë‹«ê¸°
         function closeModal() {
             document.getElementById('reservationModal').classList.add('hidden');
             document.getElementById('reservationModal').classList.remove('flex');
@@ -1570,21 +1570,21 @@ function doGet(e) {
             document.getElementById('adminPasswordModal').classList.remove('flex');
         }
 
-        // ÃÊ±âÈ­
+        // ì´ˆê¸°í™”
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. È¯°æ °¨Áö ¹× UI ¼³Á¤
+            // 1. í™˜ê²½ ê°ì§€ ë° UI ì„¤ì •
             const isIndependent = detectEnvironmentAndSetupUI();
             
-            // 2. ±âº» UI »ı¼º
+            // 2. ê¸°ë³¸ UI ìƒì„±
             createDateButtons();
             
-            // 3. ±¸±Û ½ÃÆ® URL ÀÚµ¿ ¼³Á¤
+            // 3. êµ¬ê¸€ ì‹œíŠ¸ URL ìë™ ì„¤ì •
             const defaultUrl = 'https://script.google.com/macros/s/AKfycbwJugsHhMWoZucgdyHY5m5RqVYkYglkxitYUZSfcPll9T3lk5tLdaUOSyZ7-8q5I6jN/exec';
             googleSheetUrl = defaultUrl;
             document.getElementById('googleSheetUrl').value = defaultUrl;
             localStorage.setItem('googleSheetUrl', defaultUrl);
             
-            // 4. ·ÎÄÃ ÀúÀå¼Ò¿¡¼­ µ¥ÀÌÅÍ ºÒ·¯¿À±â (¹é¾÷¿ë)
+            // 4. ë¡œì»¬ ì €ì¥ì†Œì—ì„œ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° (ë°±ì—…ìš©)
             const savedReservations = localStorage.getItem('reservations');
             const savedDisabledSlots = localStorage.getItem('disabledSlots');
             
@@ -1598,21 +1598,21 @@ function doGet(e) {
             
             updateDateButtonColors();
             
-            // 5. µ¶¸³ È¯°æ¿¡¼­¸¸ ±¸±Û ½ÃÆ® ÀÚµ¿ ¿¬°á
+            // 5. ë…ë¦½ í™˜ê²½ì—ì„œë§Œ êµ¬ê¸€ ì‹œíŠ¸ ìë™ ì—°ê²°
             if (isIndependent) {
-                console.log('µ¶¸³ È¯°æ - ±¸±Û ½ÃÆ® ÀÚµ¿ ¿¬°á ½ÃÀÛ');
+                console.log('ë…ë¦½ í™˜ê²½ - êµ¬ê¸€ ì‹œíŠ¸ ìë™ ì—°ê²° ì‹œì‘');
                 setTimeout(() => {
                     connectGoogleSheet();
                 }, 1000);
             } else {
-                console.log('Canva È¯°æ - ±¸±Û ½ÃÆ® ¿¬°á °Ç³Ê¶Ü (Á¦ÇÑµÈ È¯°æ)');
-                // Canva È¯°æ¿¡¼­´Â ¿¬°á »óÅÂ¸¦ Á¦ÇÑµÊÀ¸·Î Ç¥½Ã
-                document.getElementById('connectionStatus').innerHTML = '?? Canva È¯°æ - ¿ÜºÎ ¿¬°á Á¦ÇÑµÊ';
+                console.log('Canva í™˜ê²½ - êµ¬ê¸€ ì‹œíŠ¸ ì—°ê²° ê±´ë„ˆëœ€ (ì œí•œëœ í™˜ê²½)');
+                // Canva í™˜ê²½ì—ì„œëŠ” ì—°ê²° ìƒíƒœë¥¼ ì œí•œë¨ìœ¼ë¡œ í‘œì‹œ
+                document.getElementById('connectionStatus').innerHTML = 'âš ï¸ Canva í™˜ê²½ - ì™¸ë¶€ ì—°ê²° ì œí•œë¨';
                 document.getElementById('connectionStatus').className = 'text-orange-700 font-medium';
             }
         });
 
-        // ¸ğ´Ş ¿ÜºÎ Å¬¸¯½Ã ´İ±â
+        // ëª¨ë‹¬ ì™¸ë¶€ í´ë¦­ì‹œ ë‹«ê¸°
         document.getElementById('reservationModal').addEventListener('click', (e) => {
             if (e.target === e.currentTarget) closeModal();
         });
