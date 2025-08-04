@@ -1,58 +1,1633 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>예약 시스템</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
-    h1 { color: #333; }
-    input, button { padding: 8px; margin: 5px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장소 대관 예약 시스템</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+    </style>
 </head>
-<body>
-  <h1>예약하기</h1>
-  <label for="name">이름:</label>
-  <input type="text" id="name" placeholder="이름 입력">
-  <label for="date">날짜:</label>
-  <input type="date" id="date">
-  <label for="time">시간:</label>
-  <input type="time" id="time">
-  <button onclick="submitReservation()">예약</button>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Canva 호환성 안내 섹션 -->
+        <div class="bg-gradient-to-r from-blue-100 to-green-100 border border-blue-200 rounded-lg p-6 mb-6">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-blue-800 mb-3">🎯 예약 시스템 사용 안내</h2>
+                
+                <!-- 환경 감지 및 안내 -->
+                <div id="environmentInfo" class="mb-4">
+                    <!-- JavaScript로 동적 생성 -->
+                </div>
+                
+                <!-- 직접 예약 버튼 (Canva 외부에서만 표시) -->
+                <div id="directReservationSection" style="display: none;">
+                    <p class="text-blue-700 mb-4">바로 여기서 예약하실 수 있습니다!</p>
+                    <button onclick="scrollToReservation()" 
+                            class="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-4 rounded-xl text-xl font-bold shadow-lg transform hover:scale-105 transition-all duration-200 mb-4">
+                        📅 바로 예약하기
+                    </button>
+                </div>
+                
+                <!-- Canva 내부에서의 안내 -->
+                <div id="canvaInstructions" style="display: none;">
+                    <p class="text-purple-700 mb-4">Canva에서는 보안상 직접 예약이 제한됩니다.</p>
+                    
+                    <!-- 독립 페이지 링크 -->
+                    <div class="bg-white rounded-lg p-4 border border-purple-200 mb-4">
+                        <h3 class="font-bold text-purple-800 mb-2">🔗 독립 예약 페이지</h3>
+                        <p class="text-sm text-purple-700 mb-3">아래 링크를 복사해서 새 탭에서 열어주세요:</p>
+                        <div class="bg-gray-100 p-3 rounded border text-sm font-mono break-all">
+                            <span id="currentPageUrl"></span>
+                        </div>
+                        <button onclick="copyCurrentUrl()" 
+                                class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded mt-2 text-sm transition-colors">
+                            📋 링크 복사
+                        </button>
+                    </div>
+                    
+                    <!-- 사용법 안내 -->
+                    <div class="bg-white rounded-lg p-4 border border-purple-200">
+                        <h3 class="font-bold text-purple-800 mb-2">📋 사용 방법:</h3>
+                        <div class="text-left text-sm text-purple-700 space-y-2">
+                            <div class="flex items-start">
+                                <span class="bg-purple-200 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">1</span>
+                                <span>위의 링크를 복사</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-purple-200 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">2</span>
+                                <span>새 탭에서 링크 열기</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-purple-200 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">3</span>
+                                <span>독립 페이지에서 예약 진행</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 특별 안내: Canva 임베드 URL인 경우 -->
+                        <div id="embedUrlNotice" class="mt-3 bg-orange-50 border border-orange-200 rounded-lg p-3" style="display: none;">
+                            <p class="text-orange-800 text-xs font-bold mb-1">⚠️ 임베드 URL 감지됨</p>
+                            <p class="text-orange-700 text-xs">
+                                현재 URL이 Canva 임베드 형태입니다.<br>
+                                위의 변환된 독립 URL을 사용하거나, Canva에서 "웹사이트 게시" 기능을 이용해주세요.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 기술적 한계 설명 -->
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-4">
+                    <p class="text-yellow-800 text-sm">
+                        💡 <strong>기술적 안내:</strong> Canva의 보안 정책으로 인해 내부에서는 외부 API 연결이 제한됩니다.<br>
+                        독립 페이지에서는 모든 기능이 정상 작동합니다!
+                    </p>
+                </div>
+            </div>
+        </div>
 
-  <p id="result"></p>
+        <!-- 관리자 전용 구글 시트 연동 설정 -->
+        <div id="googleSheetSection" class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6" style="display: none;">
+            <h3 class="text-lg font-semibold text-blue-800 mb-3">🔗 구글 시트 연동 설정 (관리자 전용)</h3>
+            
+            <!-- 단계별 안내 -->
+            <div class="bg-white rounded-lg p-4 mb-4 border border-blue-200">
+                <h4 class="font-semibold text-blue-800 mb-2">📋 설정 방법:</h4>
+                <ol class="text-sm text-blue-700 space-y-1 list-decimal list-inside">
+                    <li><strong>구글 시트 열기:</strong> <a href="https://docs.google.com/spreadsheets/d/1FDCPdhGcVUoBxK9T4kb1YeVJCCnrOXj05kyTCfO8Zqs/edit" target="_blank" class="text-blue-600 underline hover:text-blue-800">여기를 클릭</a></li>
+                    <li><strong>Apps Script 열기:</strong> 확장 프로그램 → Apps Script 클릭</li>
+                    <li><strong>코드 붙여넣기:</strong> 아래 코드를 복사해서 붙여넣기</li>
+                    <li><strong>배포하기:</strong> 배포 → 새 배포 → 웹 앱으로 배포</li>
+                    <li><strong>URL 복사:</strong> 생성된 웹앱 URL을 아래에 입력</li>
+                </ol>
+                
+                <!-- Canva/Netlify 특별 요구사항 -->
+                <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mt-3">
+                    <h5 class="font-bold text-yellow-800 mb-2">🚨 Canva/Netlify 환경 필수 요구사항</h5>
+                    <div class="text-yellow-700 text-sm space-y-2">
+                        <div class="flex items-start">
+                            <span class="bg-yellow-200 text-yellow-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">1</span>
+                            <div>
+                                <p class="font-semibold">HTTPS 웹앱으로 배포 필수</p>
+                                <p class="text-xs">HTTP는 작동하지 않습니다. 반드시 https://script.google.com/... URL이어야 함</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-yellow-200 text-yellow-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">2</span>
+                            <div>
+                                <p class="font-semibold">액세스 권한: "모든 사용자" (Anyone) 필수</p>
+                                <p class="text-xs">익명 사용자 접근이 허용되어야 Canva/Netlify에서 작동</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-yellow-200 text-yellow-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-0.5">3</span>
+                            <div>
+                                <p class="font-semibold">최적화된 코드 사용</p>
+                                <p class="text-xs">CORS 헤더 제거된 ContentService만 사용 (위 코드 적용)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- iframe 제한 경고 -->
+                    <div class="bg-red-50 border border-red-300 rounded-lg p-3 mt-3">
+                        <p class="text-red-800 font-bold text-sm mb-1">⚠️ iframe 환경 제한사항</p>
+                        <p class="text-red-700 text-xs">
+                            Google Apps Script는 iframe 기반 호스팅에서 CORS를 완벽히 지원하지 않습니다.<br>
+                            <strong>독립 페이지에서는 정상 작동</strong>하지만, <strong>Canva 내부에서는 불안정</strong>할 수 있습니다.<br>
+                            최상의 경험을 위해서는 "웹사이트 게시" 기능을 사용하세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-  <script>
-    async function submitReservation() {
-      const name = document.getElementById('name').value;
-      const date = document.getElementById('date').value;
-      const time = document.getElementById('time').value;
+            <!-- 오류 해결 안내 -->
+            <div class="bg-red-50 border border-red-300 rounded-lg p-4 mb-4">
+                <h4 class="font-bold text-red-800 mb-2">🚨 연결 오류 해결 방법</h4>
+                <div class="text-red-700 text-sm space-y-3">
+                    
+                    <!-- Failed to fetch 오류 -->
+                    <div class="bg-orange-100 border border-orange-300 rounded p-3">
+                        <p class="font-bold text-orange-800 mb-1">🔥 "Failed to fetch" 오류 (가장 흔한 오류):</p>
+                        <p class="text-orange-700 mb-2">네트워크 요청이 차단되었습니다. Canva/Netlify 환경에서는 CORS 제한이 더 엄격합니다.</p>
+                        <div class="bg-white border border-orange-200 rounded p-2 mt-2">
+                            <p class="font-bold text-orange-800 text-xs mb-1">✅ Canva/Netlify 특화 해결법:</p>
+                            <ul class="list-disc list-inside text-orange-700 text-xs space-y-1">
+                                <li><strong>1단계:</strong> 위의 최적화된 코드 사용 (CORS 헤더 제거됨)</li>
+                                <li><strong>2단계:</strong> Apps Script에서 기존 배포 모두 삭제</li>
+                                <li><strong>3단계:</strong> 새 배포 생성 시 "액세스 권한: 모든 사용자" 필수!</li>
+                                <li><strong>4단계:</strong> 권한 승인 시 "고급" → "안전하지 않은 페이지로 이동" 클릭</li>
+                                <li><strong>5단계:</strong> iframe 환경에서는 여전히 불안정할 수 있음</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded p-2 mt-2">
+                            <p class="text-yellow-800 text-xs font-bold">⚠️ 중요 안내:</p>
+                            <p class="text-yellow-700 text-xs">
+                                Google Apps Script는 iframe 기반 호스팅(Canva 등)에서 CORS를 완벽히 지원하지 않습니다.<br>
+                                독립 페이지에서는 정상 작동하지만, Canva 내부에서는 제한될 수 있습니다.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-100 border border-yellow-300 rounded p-3">
+                        <p class="font-bold text-yellow-800 mb-1">⚠️ 302 오류 (로그인 리다이렉트):</p>
+                        <p class="text-yellow-700">Apps Script가 로그인 페이지로 리다이렉트하고 있습니다. 배포 설정이 잘못되었거나 권한이 없습니다.</p>
+                    </div>
+                    
+                    <p><strong>🔧 해결 방법 (순서대로 진행):</strong></p>
+                    
+                    <div class="bg-white border border-red-200 rounded p-3">
+                        <p class="font-bold text-red-800 mb-2">1️⃣ 기존 배포 완전 삭제</p>
+                        <ul class="list-disc list-inside ml-4 space-y-1 text-red-600">
+                            <li>Apps Script에서 "배포" → "배포 관리" 클릭</li>
+                            <li>기존 배포가 있다면 <strong>모두 삭제</strong> (🗑️ 아이콘 클릭)</li>
+                            <li>⚠️ 이 단계를 건너뛰면 302 오류가 계속 발생합니다!</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white border border-red-200 rounded p-3">
+                        <p class="font-bold text-red-800 mb-2">2️⃣ 새 배포 만들기 (Canva/Netlify 특화)</p>
+                        <ul class="list-disc list-inside ml-4 space-y-1 text-red-600">
+                            <li>"배포" → "새 배포" 클릭</li>
+                            <li>⚙️ 설정 아이콘 클릭 → "웹 앱" 선택</li>
+                            <li><span class="bg-yellow-200 px-2 py-1 rounded font-bold">실행 권한: "나"</span></li>
+                            <li><span class="bg-green-200 px-2 py-1 rounded font-bold">액세스 권한: "모든 사용자"</span> ⭐ Canva/Netlify 필수!</li>
+                            <li><span class="bg-blue-200 px-2 py-1 rounded font-bold">HTTPS 웹앱 URL 확인</span> (https://script.google.com/...)</li>
+                            <li>"배포" 버튼 클릭</li>
+                            <li>🔐 권한 승인 화면에서 "고급" → "안전하지 않은 페이지로 이동" 클릭</li>
+                            <li>모든 권한 허용 (익명 사용자 접근 포함)</li>
+                        </ul>
+                        
+                        <div class="bg-orange-50 border border-orange-200 rounded p-2 mt-2">
+                            <p class="text-orange-800 text-xs font-bold">🚨 Canva/Netlify 환경 주의사항:</p>
+                            <p class="text-orange-700 text-xs">
+                                • "모든 사용자" 권한이 없으면 CORS 오류 발생<br>
+                                • HTTP URL은 절대 작동하지 않음 (HTTPS 필수)<br>
+                                • Content-Type: application/json 헤더 필수
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white border border-red-200 rounded p-3">
+                        <p class="font-bold text-red-800 mb-2">3️⃣ 중요한 확인사항</p>
+                        <ul class="list-disc list-inside ml-4 space-y-1 text-red-600">
+                            <li>배포 후 생성된 URL이 <code>https://script.google.com/macros/s/...</code> 형태인지 확인</li>
+                            <li>구글 시트 URL이 아닌 <strong>웹앱 URL</strong>을 사용해야 함</li>
+                            <li>배포 시 "새 버전" 생성 확인</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-      if (!name || !date || !time) {
-        document.getElementById('result').textContent = '모든 정보를 입력해주세요';
-        return;
-      }
+            <!-- Apps Script 코드 -->
+            <div class="bg-gray-50 rounded-lg p-3 mb-4 border">
+                <div class="flex justify-between items-center mb-2">
+                    <h4 class="font-semibold text-gray-800">📝 최신 Apps Script 코드 (CORS 해결):</h4>
+                    <button onclick="copyAppsScriptCode()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors">
+                        📋 복사
+                    </button>
+                </div>
+                <textarea id="appsScriptCode" readonly class="w-full h-40 text-xs font-mono bg-white border rounded p-2 resize-none">// 🚨 Canva/Netlify 환경 최적화 코드
+// 1. HTTPS 웹앱으로 배포 (HTTP 불가)
+// 2. 액세스 권한: "모든 사용자" (Anyone) 필수
+// 3. ContentService만 사용 (CORS 헤더 제거로 안정성 향상)
 
-      const data = {
-        reservations: [[date, time, name]]
-      };
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('시트1'); // 시트 이름 정확히 입력
+    
+    if (data.reservations && Array.isArray(data.reservations)) {
+      // 기존 데이터 삭제 후 새 데이터 입력
+      sheet.clearContents();
+      sheet.appendRow(['날짜', '시간', '예약자']); // 헤더 추가
+      
+      // 예약 데이터 추가
+      data.reservations.forEach(row => {
+        if (row && row.length >= 3) {
+          sheet.appendRow(row);
+        }
+      });
+      
+      // 성공 응답 (JSON 형태로 반환)
+      return ContentService
+        .createTextOutput(JSON.stringify({ 
+          success: true, 
+          saved: data.reservations.length,
+          timestamp: new Date().toISOString()
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // 데이터가 없는 경우
+    return ContentService
+      .createTextOutput(JSON.stringify({ 
+        success: false, 
+        error: 'No valid reservations data found' 
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (err) {
+    // 오류 발생 시
+    console.error('doPost 오류:', err);
+    return ContentService
+      .createTextOutput(JSON.stringify({ 
+        success: false, 
+        error: err.message,
+        timestamp: new Date().toISOString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
 
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbx_ApTXacR9PP1H4TVeHxgFxgFApzDr4RdhO_rKMkjCDaalJsnGbk_tccC3_6vOZSNv/exec", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
+function doGet(e) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('시트1');
+    
+    // 시트에 데이터가 있는지 확인
+    const lastRow = sheet.getLastRow();
+    if (lastRow <= 1) {
+      // 헤더만 있거나 데이터가 없는 경우
+      return ContentService
+        .createTextOutput(JSON.stringify([]))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // 헤더 제외하고 데이터만 가져오기
+    const data = sheet.getRange(2, 1, lastRow - 1, 3).getValues();
+    
+    // 빈 행 제거
+    const filteredData = data.filter(row => 
+      row[0] && row[1] && row[2] && 
+      row[0].toString().trim() !== '' && 
+      row[1].toString().trim() !== '' && 
+      row[2].toString().trim() !== ''
+    );
+    
+    return ContentService
+      .createTextOutput(JSON.stringify(filteredData))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (err) {
+    console.error('doGet 오류:', err);
+    return ContentService
+      .createTextOutput(JSON.stringify({ 
+        error: err.message,
+        timestamp: new Date().toISOString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}</textarea>
+            </div>
+
+            <!-- URL 입력 -->
+            <div class="flex flex-col md:flex-row gap-3 items-center">
+                <input type="url" id="googleSheetUrl" placeholder="Apps Script 웹앱 URL을 입력하세요 (https://script.google.com/...)" 
+                       class="flex-1 px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button onclick="connectGoogleSheet()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                    연결 테스트
+                </button>
+                <button onclick="loadFromGoogleSheet()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                    데이터 불러오기
+                </button>
+            </div>
+            
+            <!-- 연결 상태 및 체크리스트 -->
+            <div class="mt-2 text-sm">
+                <p id="connectionStatus" class="text-red-700 font-medium">❌ 구글 시트 연결 안됨 - 로컬 저장만 가능</p>
+                <p class="text-xs mt-1 text-blue-600">💡 Apps Script 웹앱 URL이 필요합니다 (구글 시트 URL이 아님)</p>
+                
+                <!-- 연결 실패 시 체크리스트 -->
+                <div id="troubleshootingChecklist" class="mt-3 bg-orange-50 border border-orange-200 rounded-lg p-3" style="display: none;">
+                    <p class="font-bold text-orange-800 text-sm mb-2">🔍 연결 실패 체크리스트:</p>
+                    <div class="text-orange-700 text-xs space-y-1">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" class="mr-2 text-orange-600"> 
+                            <span>Apps Script 코드를 정확히 복사했나요?</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" class="mr-2 text-orange-600"> 
+                            <span>기존 배포를 모두 삭제했나요?</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" class="mr-2 text-orange-600"> 
+                            <span>액세스 권한을 "모든 사용자"로 설정했나요?</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" class="mr-2 text-orange-600"> 
+                            <span>권한 승인에서 "고급" → "안전하지 않은 페이지로 이동"을 클릭했나요?</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" class="mr-2 text-orange-600"> 
+                            <span>웹앱 URL을 사용하고 있나요? (구글 시트 URL이 아닌)</span>
+                        </label>
+                    </div>
+                    <p class="text-orange-600 text-xs mt-2 font-medium">
+                        ✅ 모든 항목을 체크한 후 다시 연결 테스트를 해보세요!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 헤더 -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">🏆 대회전 멘토링 예약</h1>
+            <p class="text-gray-600">2025년 8월 10일 ~ 9월 2일 | 오전 10시 ~ 오후 7시</p>
+            <div class="mt-4 text-sm text-gray-700 space-y-2">
+                <div class="bg-blue-50 p-3 rounded-lg">
+                    <p class="mb-1">📍 <strong>멘토링장:</strong> 안양시 인재육성재단 1층 &lt;산토리니&gt; 강의실</p>
+                    <p class="text-xs text-gray-600">(재단은 게임마에스터고등학교 샛별관에 있습니다.)</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <div class="text-center mb-3">
+                        <h3 class="text-lg font-bold text-green-800 mb-1">🏟️ 대회 운영 안내</h3>
+                        <div class="w-16 h-0.5 bg-green-400 mx-auto"></div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-center bg-white rounded-lg p-2 shadow-sm">
+                            <span class="text-green-700 font-medium">📍 장소: </span>
+                            <span class="ml-2 font-semibold text-gray-800">평촌 중앙공원</span>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 shadow-sm">
+                            <p class="text-green-700 font-medium text-center mb-2">⏰ 경기 시간</p>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="bg-blue-50 rounded-lg p-2 text-center border border-blue-200">
+                                    <div class="text-blue-700 font-semibold text-sm">초등부</div>
+                                    <div class="text-blue-800 font-bold">12:00 - 13:00</div>
+                                </div>
+                                <div class="bg-purple-50 rounded-lg p-2 text-center border border-purple-200">
+                                    <div class="text-purple-700 font-semibold text-sm">고등부</div>
+                                    <div class="text-purple-800 font-bold">15:00 - 18:00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 날짜 선택 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">📅 날짜 선택</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2" id="dateSelector">
+                <!-- 날짜 버튼들이 여기에 생성됩니다 -->
+            </div>
+        </div>
+
+        <!-- 시간표 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2 md:mb-0">⏰ 시간별 예약 현황</h2>
+                <div class="bg-red-50 border border-red-200 rounded-lg px-4 py-2">
+                    <p class="text-red-700 text-sm font-medium">⚠️ 예약후에는 수정이 안됩니다. 변경이 필요한 경우 단톡으로 남겨주세요</p>
+                </div>
+            </div>
+            <div class="text-center mb-4">
+                <span class="text-lg font-medium text-blue-600" id="selectedDateDisplay">날짜를 선택해주세요</span>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-700">시간</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-700">예약자</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timeTable">
+                        <!-- 시간표가 여기에 생성됩니다 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 관리자 모드 버튼 -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="text-center">
+                <button id="adminModeBtn" onclick="toggleAdminMode()" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition-colors">
+                    🔐 관리자 모드
+                </button>
+                <p class="text-sm text-gray-600 mt-2">관리자 기능 및 구글 시트 연동</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 예약 모달 -->
+    <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-96 mx-4">
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">예약하기</h3>
+            <form onsubmit="event.preventDefault(); confirmReservation();">
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600 mb-3">선택한 시간: <span id="modalTimeSlot" class="font-medium"></span></p>
+                    
+                    <!-- 학급 선택 -->
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">학급 선택</label>
+                        <div class="flex gap-3">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="grade" value="초등" id="elementary" class="mr-2 text-blue-600 focus:ring-blue-500">
+                                <span class="text-blue-700 font-medium">🎒 초등부</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="grade" value="고등" id="highschool" class="mr-2 text-purple-600 focus:ring-purple-500">
+                                <span class="text-purple-700 font-medium">🎓 고등부</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- 이름 입력 -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">이름</label>
+                        <input type="text" id="nameInput" placeholder="이름을 입력하세요" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
+                        예약하기
+                    </button>
+                    <button type="button" onclick="closeModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors">
+                        취소
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 수정/삭제 모달 -->
+    <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-96 mx-4">
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">예약 수정/삭제</h3>
+            <form onsubmit="event.preventDefault();">
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600 mb-2">현재 예약자: <span id="currentReserver" class="font-medium"></span></p>
+                    <input type="password" id="passwordInput" placeholder="관리자 비밀번호" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3">
+                    <input type="text" id="newNameInput" placeholder="새 이름 (수정시에만)" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="flex gap-2">
+                    <button type="button" onclick="updateReservation()" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors">
+                        수정
+                    </button>
+                    <button type="button" onclick="deleteReservation()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors">
+                        삭제
+                    </button>
+                    <button type="button" onclick="closeEditModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors">
+                        취소
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 관리자 비밀번호 모달 -->
+    <div id="adminPasswordModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-96 mx-4">
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">관리자 인증</h3>
+            <form onsubmit="event.preventDefault(); checkAdminPassword();">
+                <div class="mb-4">
+                    <input type="password" id="adminPasswordInput" placeholder="관리자 비밀번호를 입력하세요" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="flex gap-2">
+                    <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
+                        확인
+                    </button>
+                    <button type="button" onclick="closeAdminPasswordModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors">
+                        취소
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 확인 모달 -->
+    <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-96 mx-4">
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">확인</h3>
+            <p id="confirmMessage" class="text-gray-600 mb-6"></p>
+            <div class="flex gap-2">
+                <button id="confirmYes" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors">
+                    확인
+                </button>
+                <button id="confirmNo" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors">
+                    취소
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 전역 변수
+        let reservations = {};
+        let disabledSlots = {};
+        let selectedDate = '';
+        let selectedTimeSlot = '';
+        let isAdminMode = false;
+        let googleSheetUrl = '';
+        let isConnected = false;
+        const PASSWORD = '1234';
+
+        // 환경 감지 및 UI 설정
+        function detectEnvironmentAndSetupUI() {
+            const isInCanva = window.location.hostname.includes('canva.site') || 
+                             window.location.hostname.includes('canva.com') ||
+                             window.parent !== window || // iframe 내부
+                             document.referrer.includes('canva');
+            
+            const environmentInfo = document.getElementById('environmentInfo');
+            const directSection = document.getElementById('directReservationSection');
+            const canvaInstructions = document.getElementById('canvaInstructions');
+            const currentPageUrl = document.getElementById('currentPageUrl');
+            
+            if (isInCanva) {
+                // Canva 환경
+                environmentInfo.innerHTML = `
+                    <div class="bg-purple-100 border border-purple-300 rounded-lg p-3">
+                        <p class="text-purple-800 font-medium">🎨 Canva 환경에서 실행 중</p>
+                    </div>
+                `;
+                canvaInstructions.style.display = 'block';
+                directSection.style.display = 'none';
+                
+                // 현재 페이지 URL 표시 (독립 페이지용)
+                // Canva 임베드 URL을 독립 페이지 URL로 변환
+                let independentUrl = window.location.href;
+                
+                // Canva 임베드 URL 패턴 감지 및 변환
+                if (independentUrl.includes('canva-hosted-embed.com')) {
+                    // 임베드 URL에서 독립 페이지 URL 추출 시도
+                    const urlParts = independentUrl.split('/');
+                    const codeId = urlParts[urlParts.length - 2]; // codelet ID 추출
+                    
+                    // 독립 페이지 URL 생성 (예상 패턴)
+                    independentUrl = `https://${codeId.substring(0, 16)}.canva.site/`;
+                    
+                    console.log('Canva 임베드 URL 감지:', window.location.href);
+                    console.log('변환된 독립 URL:', independentUrl);
+                }
+                
+                if (currentPageUrl) {
+                    currentPageUrl.textContent = independentUrl;
+                }
+                
+                // 임베드 URL인 경우 특별 안내 표시
+                if (window.location.href.includes('canva-hosted-embed.com')) {
+                    const embedNotice = document.getElementById('embedUrlNotice');
+                    if (embedNotice) {
+                        embedNotice.style.display = 'block';
+                    }
+                }
+            } else {
+                // 독립 환경
+                environmentInfo.innerHTML = `
+                    <div class="bg-green-100 border border-green-300 rounded-lg p-3">
+                        <p class="text-green-800 font-medium">✅ 독립 페이지에서 실행 중 - 모든 기능 사용 가능!</p>
+                    </div>
+                `;
+                directSection.style.display = 'block';
+                canvaInstructions.style.display = 'none';
+            }
+            
+            return !isInCanva; // 독립 환경이면 true 반환
+        }
+        
+        // 예약 섹션으로 스크롤
+        function scrollToReservation() {
+            const dateSelector = document.getElementById('dateSelector');
+            if (dateSelector) {
+                dateSelector.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                showAlert('📅 날짜를 선택해서 예약을 시작하세요!');
+            }
+        }
+        
+        // 현재 URL 복사
+        function copyCurrentUrl() {
+            const url = window.location.href;
+            
+            // 클립보드 API 사용 (최신 브라우저)
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showAlert('✅ 링크가 복사되었습니다!\n\n새 탭에서 붙여넣기해서 열어주세요.');
+                }).catch(() => {
+                    fallbackCopyUrl(url);
+                });
+            } else {
+                fallbackCopyUrl(url);
+            }
+        }
+        
+        // 클립보드 API 지원하지 않는 경우 대체 방법
+        function fallbackCopyUrl(url) {
+            // 임시 텍스트 영역 생성
+            const textArea = document.createElement('textarea');
+            textArea.value = url;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showAlert('✅ 링크가 복사되었습니다!\n\n새 탭에서 붙여넣기해서 열어주세요.');
+            } catch (err) {
+                showAlert('❌ 자동 복사에 실패했습니다.\n\n링크를 직접 선택해서 복사해주세요:\n\n' + url);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Apps Script 코드 복사
+        function copyAppsScriptCode() {
+            const textarea = document.getElementById('appsScriptCode');
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            
+            try {
+                document.execCommand('copy');
+                showAlert('✅ Apps Script 코드가 복사되었습니다!\n\n구글 시트의 Apps Script에 붙여넣으세요.');
+            } catch (err) {
+                showAlert('❌ 복사에 실패했습니다.\n\n코드를 직접 선택해서 복사해주세요.');
+            }
+        }
+
+        // 구글 시트 연결 테스트
+        async function connectGoogleSheet() {
+            const url = document.getElementById('googleSheetUrl').value.trim();
+            if (!url) {
+                showAlert('Apps Script 웹앱 URL을 입력해주세요.');
+                return;
+            }
+            
+            // HTTPS 검증 (Canva/Netlify 필수)
+            if (!url.startsWith('https://')) {
+                showAlert('❌ HTTPS URL이 필요합니다!\n\nCanva/Netlify 환경에서는 HTTP URL이 작동하지 않습니다.\n반드시 https://script.google.com/... 형태여야 합니다.');
+                return;
+            }
+            
+            if (!url.includes('script.google.com')) {
+                showAlert('❌ 올바른 Apps Script URL이 아닙니다.\n\n구글 시트 URL이 아닌 Apps Script 웹앱 URL을 입력해주세요.\n(https://script.google.com/... 형태)');
+                return;
+            }
+            
+            // 연결 테스트 시작 알림
+            showAlert('🔄 연결을 테스트하는 중...\n잠시만 기다려주세요.');
+            
+            try {
+                console.log('=== 구글 시트 연결 테스트 시작 ===');
+                console.log('테스트 URL:', url);
+                console.log('브라우저:', navigator.userAgent);
+                console.log('현재 시간:', new Date().toISOString());
+                
+                // 1단계: 기본 연결성 테스트 (간단한 GET 요청)
+                console.log('\n1단계: 기본 연결성 테스트');
+                
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 15000); // 15초 타임아웃
+                
+                const getResponse = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    redirect: 'follow',
+                    signal: controller.signal,
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'User-Agent': 'Mozilla/5.0 (compatible; ReservationSystem/1.0)'
+                    }
+                });
+                
+                clearTimeout(timeoutId);
+                
+                console.log('✅ GET 요청 성공');
+                console.log('응답 상태:', getResponse.status, getResponse.statusText);
+                console.log('응답 URL:', getResponse.url);
+                console.log('응답 헤더:', Object.fromEntries(getResponse.headers.entries()));
+                
+                // 응답 상태 확인
+                if (!getResponse.ok) {
+                    throw new Error(`HTTP ${getResponse.status}: ${getResponse.statusText}`);
+                }
+                
+                // 응답 내용 확인
+                const getResponseText = await getResponse.text();
+                console.log('응답 내용 길이:', getResponseText.length);
+                console.log('응답 내용 미리보기:', getResponseText.substring(0, 200));
+                
+                // JSON 파싱 시도
+                let getData;
+                try {
+                    getData = JSON.parse(getResponseText);
+                    console.log('✅ JSON 파싱 성공:', getData);
+                } catch (parseError) {
+                    console.log('❌ JSON 파싱 실패:', parseError.message);
+                    
+                    // HTML 응답 확인 (로그인 페이지 등)
+                    if (getResponseText.includes('<html') || getResponseText.includes('<!DOCTYPE')) {
+                        throw new Error('PERMISSION_ERROR: HTML 로그인 페이지 응답 - 권한 설정 확인 필요');
+                    }
+                    
+                    // 빈 응답 확인
+                    if (getResponseText.trim() === '') {
+                        throw new Error('EMPTY_RESPONSE: 빈 응답 - Apps Script 코드 확인 필요');
+                    }
+                    
+                    throw new Error(`JSON_PARSE_ERROR: ${parseError.message}`);
+                }
+                
+                // 2단계: POST 요청으로 쓰기 권한 테스트
+                console.log('\n2단계: 쓰기 권한 테스트');
+                
+                const testData = {
+                    reservations: [['2025-08-10', '10:00', '연결테스트_' + Date.now()]]
+                };
+                
+                const postController = new AbortController();
+                const postTimeoutId = setTimeout(() => postController.abort(), 15000);
+                
+                const postResponse = await fetch(url, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    redirect: 'follow',
+                    signal: postController.signal,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json, text/plain, */*',
+                        'User-Agent': 'Mozilla/5.0 (compatible; ReservationSystem/1.0)'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                clearTimeout(postTimeoutId);
+                
+                console.log('✅ POST 요청 성공');
+                console.log('POST 응답 상태:', postResponse.status, postResponse.statusText);
+                console.log('POST 응답 헤더:', Object.fromEntries(postResponse.headers.entries()));
+                
+                if (!postResponse.ok) {
+                    throw new Error(`POST_ERROR: HTTP ${postResponse.status} - ${postResponse.statusText}`);
+                }
+                
+                const postResponseText = await postResponse.text();
+                console.log('POST 응답 내용:', postResponseText);
+                
+                let result;
+                try {
+                    result = JSON.parse(postResponseText);
+                    console.log('✅ POST JSON 파싱 성공:', result);
+                } catch (parseError) {
+                    console.log('❌ POST JSON 파싱 실패:', parseError.message);
+                    
+                    if (postResponseText.includes('<html') || postResponseText.includes('<!DOCTYPE')) {
+                        throw new Error('PERMISSION_ERROR: POST 요청에서 HTML 응답 - 권한 설정 확인 필요');
+                    }
+                    
+                    throw new Error(`POST_JSON_PARSE_ERROR: ${parseError.message}`);
+                }
+                
+                // 결과 확인
+                if (result.success) {
+                    console.log('🎉 연결 테스트 완전 성공!');
+                    
+                    // 연결 성공 처리
+                    googleSheetUrl = url;
+                    localStorage.setItem('googleSheetUrl', url);
+                    isConnected = true;
+                    
+                    document.getElementById('connectionStatus').innerHTML = '✅ 구글 시트 연결됨 - 실시간 동기화 가능';
+                    document.getElementById('connectionStatus').className = 'text-green-700 font-medium';
+                    
+                    // 체크리스트 숨기기
+                    document.getElementById('troubleshootingChecklist').style.display = 'none';
+                    
+                    showAlert('🎉 구글 시트 연결 완전 성공!\n\n✅ 네트워크 연결 확인\n✅ 읽기 권한 확인\n✅ 쓰기 권한 확인\n✅ 데이터 저장 테스트 완료\n\n이제 예약 데이터가 실시간으로 동기화됩니다!');
+                    
+                    // 연결 후 자동으로 데이터 불러오기
+                    setTimeout(() => loadFromGoogleSheet(), 1000);
+                } else {
+                    throw new Error(`SAVE_TEST_FAILED: ${result.error || '저장 테스트 실패'}`);
+                }
+                
+            } catch (error) {
+                console.error('❌ 연결 테스트 실패:', error);
+                console.error('오류 스택:', error.stack);
+                
+                isConnected = false;
+                
+                // 오류 유형별 맞춤 메시지
+                let errorMessage = '❌ 구글 시트 연결에 실패했습니다.\n\n';
+                let errorType = 'UNKNOWN';
+                
+                if (error.name === 'AbortError' || error.message.includes('aborted')) {
+                    errorType = 'TIMEOUT';
+                    errorMessage += '⏰ 연결 시간 초과 (15초)\n\n';
+                    errorMessage += '🔍 가능한 원인:\n';
+                    errorMessage += '• 네트워크 연결이 느림\n';
+                    errorMessage += '• Apps Script 서버 응답 지연\n';
+                    errorMessage += '• 방화벽이나 보안 프로그램이 차단\n\n';
+                    errorMessage += '💡 해결 방법:\n';
+                    errorMessage += '• 잠시 후 다시 시도\n';
+                    errorMessage += '• 다른 네트워크에서 시도\n';
+                    errorMessage += '• VPN 사용 중이면 해제 후 시도\n';
+                } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                    errorType = 'NETWORK_BLOCKED';
+                    errorMessage += '🚫 네트워크 요청이 차단되었습니다.\n\n';
+                    errorMessage += '🔥 이것은 가장 흔한 "Failed to fetch" 오류입니다!\n\n';
+                    errorMessage += '🎯 주요 원인:\n';
+                    errorMessage += '1️⃣ Apps Script 배포 권한이 잘못됨 (90%)\n';
+                    errorMessage += '2️⃣ CORS 정책 위반\n';
+                    errorMessage += '3️⃣ 브라우저 보안 설정\n\n';
+                    
+                    errorMessage += '🚨 긴급 해결법 (순서대로!):\n\n';
+                    errorMessage += '🔧 1단계: 기존 배포 완전 삭제\n';
+                    errorMessage += '• Apps Script → "배포" → "배포 관리"\n';
+                    errorMessage += '• 기존 배포 모두 삭제 (🗑️ 아이콘)\n';
+                    errorMessage += '• ⚠️ 이 단계가 가장 중요합니다!\n\n';
+                    
+                    errorMessage += '🔧 2단계: 새 배포 생성\n';
+                    errorMessage += '• "배포" → "새 배포"\n';
+                    errorMessage += '• ⚙️ 설정 → "웹 앱" 선택\n';
+                    errorMessage += '• 실행 권한: "나"\n';
+                    errorMessage += '• 액세스 권한: "모든 사용자" ⭐\n';
+                    errorMessage += '• "배포" 클릭\n\n';
+                    
+                    errorMessage += '🔧 3단계: 권한 승인 (핵심!)\n';
+                    errorMessage += '• "앱이 확인되지 않음" → "고급"\n';
+                    errorMessage += '• "안전하지 않은 페이지로 이동"\n';
+                    errorMessage += '• 모든 권한 "허용"\n';
+                } else if (error.message.includes('PERMISSION_ERROR')) {
+                    errorType = 'PERMISSION';
+                    errorMessage += '🔒 권한 설정 문제\n\n';
+                    errorMessage += 'Apps Script가 HTML 로그인 페이지를 반환했습니다.\n';
+                    errorMessage += '이는 배포 권한이 올바르지 않음을 의미합니다.\n\n';
+                    errorMessage += '✅ 해결 방법:\n';
+                    errorMessage += '• 배포 시 "액세스 권한"을 "모든 사용자"로 설정\n';
+                    errorMessage += '• 기존 배포 삭제 후 새로 배포\n';
+                    errorMessage += '• 권한 승인 과정을 정확히 진행\n';
+                } else if (error.message.includes('JSON_PARSE_ERROR')) {
+                    errorType = 'CODE_ERROR';
+                    errorMessage += '📝 Apps Script 코드 문제\n\n';
+                    errorMessage += 'Apps Script에서 올바른 JSON을 반환하지 않습니다.\n\n';
+                    errorMessage += '✅ 해결 방법:\n';
+                    errorMessage += '• 제공된 코드를 정확히 복사했는지 확인\n';
+                    errorMessage += '• Apps Script에서 코드 저장 (Ctrl+S)\n';
+                    errorMessage += '• 새 배포 생성\n';
+                } else if (error.message.includes('EMPTY_RESPONSE')) {
+                    errorType = 'EMPTY_RESPONSE';
+                    errorMessage += '📭 빈 응답 오류\n\n';
+                    errorMessage += 'Apps Script가 아무것도 반환하지 않습니다.\n\n';
+                    errorMessage += '✅ 해결 방법:\n';
+                    errorMessage += '• Apps Script 코드가 올바른지 확인\n';
+                    errorMessage += '• doGet, doPost 함수가 있는지 확인\n';
+                    errorMessage += '• 코드 저장 후 새 배포\n';
+                } else {
+                    errorMessage += `🔍 오류 상세: ${error.message}\n\n`;
+                }
+                
+                // 공통 추가 도움말
+                errorMessage += '\n📋 추가 도움말:\n\n';
+                errorMessage += '🌐 브라우저별 해결법:\n';
+                errorMessage += '• Chrome: 시크릿 모드에서 시도\n';
+                errorMessage += '• Firefox: 추적 방지 해제\n';
+                errorMessage += '• Safari: 개발자 메뉴에서 CORS 해제\n\n';
+                
+                errorMessage += '🔧 고급 해결법:\n';
+                errorMessage += '• 브라우저 캐시 완전 삭제\n';
+                errorMessage += '• 다른 구글 계정으로 시도\n';
+                errorMessage += '• 개발자 도구(F12) → 콘솔 탭에서 상세 오류 확인\n\n';
+                
+                errorMessage += '💡 여전히 안 되면:\n';
+                errorMessage += '• 30분 후 다시 시도 (구글 서버 동기화 시간)\n';
+                errorMessage += '• 다른 기기/네트워크에서 시도\n';
+                errorMessage += '• 구글 Apps Script 상태 페이지 확인';
+                
+                showAlert(errorMessage);
+                
+                // 연결 실패 상태 표시
+                document.getElementById('connectionStatus').innerHTML = `❌ 연결 실패 (${errorType}) - 로컬 저장만 가능`;
+                document.getElementById('connectionStatus').className = 'text-red-700 font-medium';
+                
+                // 체크리스트 표시
+                document.getElementById('troubleshootingChecklist').style.display = 'block';
+            }
+        }
+
+        // 구글 시트에서 데이터 불러오기
+        async function loadFromGoogleSheet() {
+            if (!isConnected || !googleSheetUrl) {
+                showAlert('먼저 구글 시트를 연결해주세요.');
+                return;
+            }
+            
+            try {
+                showAlert('데이터를 불러오는 중...');
+                
+                const response = await fetch(googleSheetUrl);
+                const data = await response.json();
+                
+                // 데이터 파싱
+                reservations = {};
+                if (data && data.length > 0) {
+                    data.forEach(row => {
+                        if (row.length >= 3 && row[0] && row[1] && row[2]) {
+                            const key = `${row[0]}_${row[1]}`;
+                            reservations[key] = row[2];
+                        }
+                    });
+                }
+                
+                // UI 업데이트
+                updateDateButtonColors();
+                if (selectedDate) {
+                    createTimeTable();
+                }
+                
+                showAlert(`✅ 데이터를 성공적으로 불러왔습니다!\n총 ${Object.keys(reservations).length}개의 예약`);
+                
+            } catch (error) {
+                console.error('데이터 불러오기 실패:', error);
+                showAlert('❌ 데이터 불러오기에 실패했습니다.\nURL을 확인해주세요.');
+            }
+        }
+
+        // 구글 시트에 데이터 저장
+        async function saveToGoogleSheet() {
+            if (!isConnected || !googleSheetUrl) {
+                console.log('구글 시트 연결 안됨 - 로컬 저장만');
+                return; // 연결되지 않은 경우 로컬 저장만
+            }
+            
+            try {
+                // 예약 데이터를 배열로 변환
+                const reservationArray = [];
+                Object.keys(reservations).forEach(key => {
+                    const parts = key.split('_');
+                    const date = parts[0];
+                    const time = parts[1];
+                    const name = reservations[key];
+                    reservationArray.push([date, time, name]);
+                });
+                
+                const payload = {
+                    reservations: reservationArray
+                };
+                
+                console.log('구글 시트에 저장할 데이터:', payload);
+                console.log('저장할 URL:', googleSheetUrl);
+                
+                const response = await fetch(googleSheetUrl, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json, text/plain, */*'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                console.log('응답 상태:', response.status);
+                console.log('응답 헤더:', response.headers);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const result = await response.json();
+                console.log('구글 시트 저장 결과:', result);
+                
+                if (result.success) {
+                    console.log(`✅ 구글 시트에 ${result.saved || reservationArray.length}개 데이터 저장 완료`);
+                    
+                    // 저장 성공 시 연결 상태 업데이트
+                    document.getElementById('connectionStatus').innerHTML = '✅ 구글 시트 연결됨 - 실시간 동기화 가능';
+                    document.getElementById('connectionStatus').className = 'text-green-700 font-medium';
+                } else {
+                    throw new Error(result.error || '저장 실패');
+                }
+                
+            } catch (error) {
+                console.error('구글 시트 저장 실패:', error);
+                
+                // 연결 상태를 실패로 변경
+                isConnected = false;
+                document.getElementById('connectionStatus').innerHTML = '❌ 구글 시트 저장 실패 - 로컬 저장만 가능';
+                document.getElementById('connectionStatus').className = 'text-red-700';
+                
+                showAlert('⚠️ 구글 시트 저장에 실패했습니다.\n로컬에만 저장되었습니다.\n\n오류: ' + error.message + '\n\n관리자 모드에서 다시 연결해보세요.');
+            }
+        }
+
+        // 날짜를 yyyy-mm-dd 형식으로 포맷팅
+        function formatDateToYYYYMMDD(date) {
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const dd = String(date.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        // 날짜 생성 (8월 10일 ~ 9월 2일)
+        function generateDates() {
+            const dates = [];
+            const startDate = new Date(2025, 7, 10); // 8월 10일 (월은 0부터 시작)
+            const endDate = new Date(2025, 8, 2);   // 9월 2일
+            
+            const currentDate = new Date(startDate);
+            while (currentDate <= endDate) {
+                dates.push(new Date(currentDate));
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            return dates;
+        }
+
+        // 날짜 버튼 생성
+        function createDateButtons() {
+            const dateSelector = document.getElementById('dateSelector');
+            const dates = generateDates();
+            
+            dates.forEach(date => {
+                const dateStr = formatDateToYYYYMMDD(date);
+                const button = document.createElement('button');
+                button.setAttribute('data-date', dateStr);
+                button.className = 'px-4 py-2 border border-gray-300 rounded-lg hover:bg-blue-50 transition-colors';
+                button.textContent = `${date.getMonth() + 1}/${date.getDate()}`;
+                button.onclick = () => selectDate(dateStr, button);
+                dateSelector.appendChild(button);
+            });
+        }
+
+        // 예약 개수에 따른 색상 클래스 반환 (초록색 그라데이션)
+        function getReservationColorClass(count) {
+            if (count === 0) return 'px-4 py-2 border border-gray-300 rounded-lg hover:bg-blue-50 transition-colors';
+            if (count === 1) return 'px-4 py-2 border border-green-200 bg-green-100 text-green-700 rounded-lg hover:bg-green-150 transition-colors';
+            if (count === 2) return 'px-4 py-2 border border-green-300 bg-green-200 text-green-800 rounded-lg hover:bg-green-250 transition-colors';
+            if (count === 3) return 'px-4 py-2 border border-green-400 bg-green-300 text-green-900 rounded-lg hover:bg-green-350 transition-colors';
+            if (count === 4) return 'px-4 py-2 border border-green-500 bg-green-400 text-white rounded-lg hover:bg-green-450 transition-colors';
+            return 'px-4 py-2 border border-green-600 bg-green-500 text-white rounded-lg hover:bg-green-550 transition-colors font-bold';
+        }
+
+        // 특정 날짜의 예약 개수 계산
+        function getReservationCount(dateStr) {
+            let count = 0;
+            for (let hour = 10; hour <= 19; hour++) {
+                const key = `${dateStr}_${hour}:00`;
+                if (reservations[key]) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        // 모든 날짜 버튼 색상 업데이트
+        function updateDateButtonColors() {
+            document.querySelectorAll('#dateSelector button').forEach(button => {
+                const dateStr = button.getAttribute('data-date');
+                const count = getReservationCount(dateStr);
+                const isSelected = dateStr === selectedDate;
+                
+                if (isSelected) {
+                    button.className = 'px-4 py-2 border-2 border-blue-500 bg-blue-100 text-blue-700 rounded-lg font-medium';
+                } else {
+                    button.className = getReservationColorClass(count);
+                }
+            });
+        }
+
+        // 날짜 선택
+        function selectDate(dateStr, buttonElement) {
+            selectedDate = dateStr;
+            
+            console.log('=== 날짜 선택 디버깅 ===');
+            console.log('입력된 dateStr:', dateStr);
+            
+            try {
+                // 완전히 수동으로 날짜 파싱 (Date 객체 사용 안함)
+                const parts = dateStr.split('-');
+                const year = parseInt(parts[0]);
+                const month = parseInt(parts[1]);
+                const day = parseInt(parts[2]);
+                
+                console.log('파싱된 값들:', { year, month, day });
+                
+                // 요일 계산도 수동으로 (Zeller's congruence 알고리즘)
+                let m = month;
+                let y = year;
+                
+                // 1월과 2월은 전년도의 13월, 14월로 계산
+                if (month <= 2) {
+                    m = month + 12;
+                    y = year - 1;
+                }
+                
+                // Zeller's congruence 공식
+                const q = day;
+                const k = y % 100;
+                const j = Math.floor(y / 100);
+                
+                const h = (q + Math.floor((13 * (m + 1)) / 5) + k + Math.floor(k / 4) + Math.floor(j / 4) - 2 * j) % 7;
+                
+                // 결과를 일요일=0 기준으로 변환 (Zeller는 토요일=0이므로 조정)
+                const dayOfWeek = (h + 6) % 7;
+                
+                const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+                const koreanDayName = dayNames[dayOfWeek];
+                
+                console.log('수동 계산된 요일 인덱스:', dayOfWeek);
+                console.log('한국어 요일:', koreanDayName);
+                
+                // 날짜 표시 - 파싱된 값을 직접 사용
+                const displayText = `${month}월 ${day}일 (${koreanDayName})`;
+                console.log('최종 표시 텍스트:', displayText);
+                
+                document.getElementById('selectedDateDisplay').textContent = displayText;
+                
+            } catch (error) {
+                console.error('날짜 파싱 오류:', error);
+                document.getElementById('selectedDateDisplay').textContent = `날짜 오류: ${dateStr}`;
+            }
+            
+            console.log('=== 날짜 선택 디버깅 끝 ===');
+            
+            // 모든 버튼 색상 업데이트
+            updateDateButtonColors();
+            
+            createTimeTable();
+        }
+
+        // 시간표 생성
+        function createTimeTable() {
+            const timeTable = document.getElementById('timeTable');
+            timeTable.innerHTML = '';
+            
+            for (let hour = 10; hour <= 19; hour++) {
+                const timeSlot = `${hour}:00`;
+                const key = `${selectedDate}_${timeSlot}`;
+                const reserver = reservations[key] || '';
+                const isDisabled = disabledSlots[key];
+                
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50';
+                
+                if (isDisabled) {
+                    // 비활성화된 경우
+                    row.innerHTML = `
+                        <td class="border border-gray-300 px-4 py-2 font-medium text-gray-700">${timeSlot}</td>
+                        <td class="border border-gray-300 px-4 py-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 font-bold text-xl tracking-widest">
+                                    ---
+                                </span>
+                                ${isAdminMode ? `
+                                    <button onclick="toggleSlotDisabled('${timeSlot}')" 
+                                            class="bg-green-100 hover:bg-green-200 text-green-800 px-3 py-1 rounded text-sm transition-colors">
+                                        활성화
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </td>
+                    `;
+                } else if (reserver) {
+                    // 예약된 경우
+                    row.innerHTML = `
+                        <td class="border border-gray-300 px-4 py-2 font-medium text-gray-700">${timeSlot}</td>
+                        <td class="border border-gray-300 px-4 py-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-blue-600 font-medium" id="reserver_${key}">
+                                    ${reserver}
+                                </span>
+                                <div class="flex gap-2">
+                                    <button onclick="openEditModal('${timeSlot}')" 
+                                            class="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-3 py-1 rounded text-sm transition-colors">
+                                        수정/삭제
+                                    </button>
+                                    ${isAdminMode ? `
+                                        <button onclick="toggleSlotDisabled('${timeSlot}')" 
+                                                class="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1 rounded text-sm transition-colors">
+                                            비활성화
+                                        </button>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </td>
+                    `;
+                } else {
+                    // 예약 가능한 경우
+                    row.innerHTML = `
+                        <td class="border border-gray-300 px-4 py-2 font-medium text-gray-700">${timeSlot}</td>
+                        <td class="border border-gray-300 px-4 py-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400" id="reserver_${key}">
+                                    예약 가능
+                                </span>
+                                <div class="flex gap-2">
+                                    <button onclick="openReservationModal('${timeSlot}')" 
+                                            class="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded text-sm transition-colors">
+                                        예약하기
+                                    </button>
+                                    ${isAdminMode ? `
+                                        <button onclick="toggleSlotDisabled('${timeSlot}')" 
+                                                class="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1 rounded text-sm transition-colors">
+                                            비활성화
+                                        </button>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </td>
+                    `;
+                }
+                
+                timeTable.appendChild(row);
+            }
+        }
+
+        // 예약 모달 열기
+        function openReservationModal(timeSlot) {
+            if (!selectedDate) {
+                showAlert('먼저 날짜를 선택해주세요.');
+                return;
+            }
+            
+            selectedTimeSlot = timeSlot;
+            document.getElementById('modalTimeSlot').textContent = `${selectedDate} ${timeSlot}`;
+            document.getElementById('nameInput').value = '';
+            
+            // 학급 선택 초기화
+            document.getElementById('elementary').checked = false;
+            document.getElementById('highschool').checked = false;
+            
+            document.getElementById('reservationModal').classList.remove('hidden');
+            document.getElementById('reservationModal').classList.add('flex');
+        }
+
+        // 수정/삭제 모달 열기
+        function openEditModal(timeSlot) {
+            if (!selectedDate) {
+                showAlert('먼저 날짜를 선택해주세요.');
+                return;
+            }
+            
+            selectedTimeSlot = timeSlot;
+            const key = `${selectedDate}_${timeSlot}`;
+            const reserver = reservations[key];
+            
+            document.getElementById('currentReserver').textContent = reserver;
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('newNameInput').value = '';
+            document.getElementById('editModal').classList.remove('hidden');
+            document.getElementById('editModal').classList.add('flex');
+        }
+
+        // 예약 확인
+        async function confirmReservation() {
+            const name = document.getElementById('nameInput').value.trim();
+            const gradeRadios = document.getElementsByName('grade');
+            let selectedGrade = '';
+            
+            // 학급 선택 확인
+            for (let radio of gradeRadios) {
+                if (radio.checked) {
+                    selectedGrade = radio.value;
+                    break;
+                }
+            }
+            
+            if (!selectedGrade) {
+                showAlert('학급을 선택해주세요.');
+                return;
+            }
+            
+            if (!name) {
+                showAlert('이름을 입력해주세요.');
+                return;
+            }
+            
+            const key = `${selectedDate}_${selectedTimeSlot}`;
+            reservations[key] = `${selectedGrade} - ${name}`;
+            
+            // 로컬 저장
+            localStorage.setItem('reservations', JSON.stringify(reservations));
+            
+            // 구글 시트에 저장
+            await saveToGoogleSheet();
+            
+            closeModal();
+            createTimeTable();
+            updateDateButtonColors();
+            showAlert('예약이 완료되었습니다!');
+        }
+
+        // 예약 수정
+        async function updateReservation() {
+            const password = document.getElementById('passwordInput').value;
+            const newName = document.getElementById('newNameInput').value.trim();
+            
+            if (password !== PASSWORD) {
+                showAlert('비밀번호가 틀렸습니다.');
+                return;
+            }
+            
+            if (!newName) {
+                showAlert('새 이름을 입력해주세요.');
+                return;
+            }
+            
+            const key = `${selectedDate}_${selectedTimeSlot}`;
+            reservations[key] = newName;
+            
+            // 로컬 저장
+            localStorage.setItem('reservations', JSON.stringify(reservations));
+            
+            // 구글 시트에 저장
+            await saveToGoogleSheet();
+            
+            closeEditModal();
+            createTimeTable();
+            updateDateButtonColors();
+            showAlert('예약이 수정되었습니다!');
+        }
+
+        // 예약 삭제
+        function deleteReservation() {
+            const password = document.getElementById('passwordInput').value;
+            
+            if (password !== PASSWORD) {
+                showAlert('비밀번호가 틀렸습니다.');
+                return;
+            }
+            
+            showConfirm('정말로 예약을 삭제하시겠습니까?', async () => {
+                const key = `${selectedDate}_${selectedTimeSlot}`;
+                
+                // 예약 데이터에서 삭제
+                if (reservations[key]) {
+                    delete reservations[key];
+                    
+                    // 로컬 저장
+                    localStorage.setItem('reservations', JSON.stringify(reservations));
+                    
+                    // 구글 시트에 저장
+                    await saveToGoogleSheet();
+                    
+                    // 모달 닫기를 먼저 실행
+                    closeEditModal();
+                    
+                    // UI 업데이트
+                    createTimeTable();
+                    updateDateButtonColors();
+                    
+                    // 성공 메시지
+                    showAlert('예약이 삭제되었습니다!');
+                } else {
+                    closeEditModal();
+                    showAlert('삭제할 예약을 찾을 수 없습니다.');
+                }
+            });
+        }
+
+        // 관리자 모드 토글
+        function toggleAdminMode() {
+            document.getElementById('adminPasswordInput').value = '';
+            document.getElementById('adminPasswordModal').classList.remove('hidden');
+            document.getElementById('adminPasswordModal').classList.add('flex');
+        }
+
+        // 관리자 비밀번호 확인
+        function checkAdminPassword() {
+            const password = document.getElementById('adminPasswordInput').value;
+            
+            if (password === PASSWORD) {
+                isAdminMode = !isAdminMode;
+                const adminBtn = document.getElementById('adminModeBtn');
+                const googleSheetSection = document.getElementById('googleSheetSection');
+                
+                if (isAdminMode) {
+                    adminBtn.textContent = '🔓 관리자 모드 (활성)';
+                    adminBtn.className = 'bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition-colors';
+                    googleSheetSection.style.display = 'block';
+                } else {
+                    adminBtn.textContent = '🔐 관리자 모드';
+                    adminBtn.className = 'bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition-colors';
+                    googleSheetSection.style.display = 'none';
+                }
+                
+                closeAdminPasswordModal();
+                createTimeTable(); // 시간표 다시 생성
+                showAlert(isAdminMode ? '관리자 모드가 활성화되었습니다!' : '관리자 모드가 비활성화되었습니다!');
+            } else {
+                showAlert('비밀번호가 틀렸습니다.');
+            }
+        }
+
+        // 시간대 비활성화/활성화 토글
+        async function toggleSlotDisabled(timeSlot) {
+            const key = `${selectedDate}_${timeSlot}`;
+            
+            if (disabledSlots[key]) {
+                delete disabledSlots[key];
+                showAlert('시간대가 활성화되었습니다.');
+                createTimeTable();
+            } else {
+                // 예약이 있는 경우 확인
+                if (reservations[key]) {
+                    showConfirm('이 시간대에 예약이 있습니다. 예약을 삭제하고 비활성화하시겠습니까?', async () => {
+                        delete reservations[key];
+                        disabledSlots[key] = true;
+                        
+                        // 로컬 저장
+                        localStorage.setItem('reservations', JSON.stringify(reservations));
+                        localStorage.setItem('disabledSlots', JSON.stringify(disabledSlots));
+                        
+                        // 구글 시트에 저장
+                        await saveToGoogleSheet();
+                        
+                        updateDateButtonColors();
+                        showAlert('예약이 삭제되고 시간대가 비활성화되었습니다.');
+                        createTimeTable();
+                    });
+                } else {
+                    disabledSlots[key] = true;
+                    localStorage.setItem('disabledSlots', JSON.stringify(disabledSlots));
+                    showAlert('시간대가 비활성화되었습니다.');
+                    createTimeTable();
+                }
+            }
+        }
+
+        // 커스텀 알림 함수
+        function showAlert(message) {
+            // 기존 알림이 있다면 제거
+            const existingAlert = document.getElementById('customAlert');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+            
+            // 새 알림 생성
+            const alertDiv = document.createElement('div');
+            alertDiv.id = 'customAlert';
+            alertDiv.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 max-w-md text-center';
+            alertDiv.innerHTML = `
+                <p class="whitespace-pre-line">${message}</p>
+                <button onclick="this.parentElement.remove()" class="ml-4 text-blue-200 hover:text-white">✕</button>
+            `;
+            
+            document.body.appendChild(alertDiv);
+            
+            // 3초 후 자동 제거
+            setTimeout(() => {
+                if (alertDiv.parentElement) {
+                    alertDiv.remove();
+                }
+            }, 3000);
+        }
+
+        // 커스텀 확인 함수
+        function showConfirm(message, onConfirm) {
+            document.getElementById('confirmMessage').textContent = message;
+            document.getElementById('confirmModal').classList.remove('hidden');
+            document.getElementById('confirmModal').classList.add('flex');
+            
+            // 이벤트 리스너 제거 후 새로 추가
+            const yesBtn = document.getElementById('confirmYes');
+            const noBtn = document.getElementById('confirmNo');
+            
+            const newYesBtn = yesBtn.cloneNode(true);
+            const newNoBtn = noBtn.cloneNode(true);
+            
+            yesBtn.parentNode.replaceChild(newYesBtn, yesBtn);
+            noBtn.parentNode.replaceChild(newNoBtn, noBtn);
+            
+            newYesBtn.onclick = () => {
+                closeConfirmModal();
+                onConfirm();
+            };
+            
+            newNoBtn.onclick = () => {
+                closeConfirmModal();
+            };
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+            document.getElementById('confirmModal').classList.remove('flex');
+        }
+
+        // 모달 닫기
+        function closeModal() {
+            document.getElementById('reservationModal').classList.add('hidden');
+            document.getElementById('reservationModal').classList.remove('flex');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+            document.getElementById('editModal').classList.remove('flex');
+        }
+
+        function closeAdminPasswordModal() {
+            document.getElementById('adminPasswordModal').classList.add('hidden');
+            document.getElementById('adminPasswordModal').classList.remove('flex');
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. 환경 감지 및 UI 설정
+            const isIndependent = detectEnvironmentAndSetupUI();
+            
+            // 2. 기본 UI 생성
+            createDateButtons();
+            
+            // 3. 구글 시트 URL 자동 설정
+            const defaultUrl = 'https://script.google.com/macros/s/AKfycbwJugsHhMWoZucgdyHY5m5RqVYkYglkxitYUZSfcPll9T3lk5tLdaUOSyZ7-8q5I6jN/exec';
+            googleSheetUrl = defaultUrl;
+            document.getElementById('googleSheetUrl').value = defaultUrl;
+            localStorage.setItem('googleSheetUrl', defaultUrl);
+            
+            // 4. 로컬 저장소에서 데이터 불러오기 (백업용)
+            const savedReservations = localStorage.getItem('reservations');
+            const savedDisabledSlots = localStorage.getItem('disabledSlots');
+            
+            if (savedReservations) {
+                reservations = JSON.parse(savedReservations);
+            }
+            
+            if (savedDisabledSlots) {
+                disabledSlots = JSON.parse(savedDisabledSlots);
+            }
+            
+            updateDateButtonColors();
+            
+            // 5. 독립 환경에서만 구글 시트 자동 연결
+            if (isIndependent) {
+                console.log('독립 환경 - 구글 시트 자동 연결 시작');
+                setTimeout(() => {
+                    connectGoogleSheet();
+                }, 1000);
+            } else {
+                console.log('Canva 환경 - 구글 시트 연결 건너뜀 (제한된 환경)');
+                // Canva 환경에서는 연결 상태를 제한됨으로 표시
+                document.getElementById('connectionStatus').innerHTML = '⚠️ Canva 환경 - 외부 연결 제한됨';
+                document.getElementById('connectionStatus').className = 'text-orange-700 font-medium';
+            }
         });
 
-        const text = await response.text();
-        document.getElementById('result').textContent = text;
-      } catch (error) {
-        console.error("에러 발생:", error);
-        document.getElementById('result').textContent = '예약 실패: ' + error.message;
-      }
-    }
-  </script>
-</body>
+        // 모달 외부 클릭시 닫기
+        document.getElementById('reservationModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+
+        document.getElementById('editModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeEditModal();
+        });
+
+        document.getElementById('adminPasswordModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeAdminPasswordModal();
+        });
+
+        document.getElementById('confirmModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeConfirmModal();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'969c66aec5f0ea8f',t:'MTc1NDI5MzE2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
